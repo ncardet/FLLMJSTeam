@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tips &amp; Tricks — Robotic Jones &amp; The Temple of LEGO</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .qa-callout {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(0,196,168,0.2);
+      border-left: 3px solid var(--teal-dark);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+    }
+    .qa-header {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .qa-item + .qa-item {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(0,196,168,0.1);
+    }
+    .qa-q { font-size: 0.8rem; color: var(--stone-light); line-height: 1.5; margin-bottom: 0.2rem; }
+    .qa-a { font-size: 0.8rem; color: var(--teal); line-height: 1.5; }
+    .qa-q::before { content: "Q  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--tan); letter-spacing: 0.1em; }
+    .qa-a::before { content: "A  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--teal-dark); letter-spacing: 0.1em; }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────── -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-text">
+      Robotic Jones
+      <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li><a href="tips.html" class="active">Tips &amp; Tricks</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="calculator.html">Score Calculator</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── Page Header ──────────────────────────────────── -->
+<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
+  <p class="eyebrow">💡 Expert Knowledge</p>
+  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Tips &amp; Tricks</h1>
+  <div class="section-divider"></div>
+  <p class="section-desc">Wisdom from experienced FLL teams. Master these strategies to dominate <em>Robotic Jones &amp; The Temple of LEGO</em>.</p>
+</div>
+
+<div class="page-container">
+
+  <!-- ───────────────────────────────────────────────── -->
+  <!-- SECTION: General Strategy -->
+  <!-- ───────────────────────────────────────────────── -->
+  <div class="section-header" style="margin-top:0;">
+    <p class="eyebrow">🗺️ The Big Picture</p>
+    <h2 class="section-title">General Strategy</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🎯</div>
+      <h3 class="tip-card-title">Plan Your Run Route</h3>
+      <ul>
+        <li>Map out which missions your robot will attempt <strong>before</strong> every practice run — don't just wing it.</li>
+        <li>Group nearby missions into a single trip to reduce travel time.</li>
+        <li>Identify your "anchor" missions (easy, reliable points) and always do those first.</li>
+        <li>Use the Score Calculator to figure out the highest-value combination of missions.</li>
+        <li>Have a Plan A and a Plan B in case something goes wrong mid-run.</li>
+      </ul>
+      <div class="tip-highlight">💡 The team that scores the most doesn't always attempt the most missions — they attempt the <em>right</em> missions consistently.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔋</div>
+      <h3 class="tip-card-title">Preserve Your Supply Caches</h3>
+      <ul>
+        <li>Mission 15 (Supplies Caches) is worth up to <strong>50 points</strong> — almost as much as 5 normal missions!</li>
+        <li>Every interruption outside of home costs a cache. Only touch the robot when it's in the home zone.</li>
+        <li>If your robot gets stuck mid-run, resist the temptation to grab it immediately — wait to see if it recovers.</li>
+        <li>Practice until your robot rarely needs to be interrupted.</li>
+      </ul>
+      <div class="tip-alert">⚠️ Never interrupt the robot outside home unless absolutely necessary. One interruption = 10 points lost!</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">⏱️</div>
+      <h3 class="tip-card-title">Time Management</h3>
+      <ul>
+        <li>You have exactly <strong>150 seconds</strong>. Time every practice run with a stopwatch.</li>
+        <li>Know the time each mission segment takes — cut ones that consistently eat up too much time.</li>
+        <li>Factor in travel time between missions — it adds up fast.</li>
+        <li>Aim to finish with 10-20 seconds to spare so you're not rushing the last mission.</li>
+        <li>Simpler missions at the end of the run are safer when you're short on time.</li>
+      </ul>
+      <div class="tip-highlight">💡 A robot that completes 6 missions perfectly scores more than one that attempts 12 and fails half.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔄</div>
+      <h3 class="tip-card-title">Consistency is King</h3>
+      <ul>
+        <li>Aim for the same score 10 runs in a row, not one perfect run.</li>
+        <li>A mission that succeeds 8 out of 10 times is more valuable than one that succeeds 3 out of 10.</li>
+        <li>Log your scores from every practice run to track improvement over time.</li>
+        <li>When something breaks, fix it — don't band-aid over problems.</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">📋</div>
+      <h3 class="tip-card-title">Pre-Match Checklist</h3>
+      <ul>
+        <li>Verify your robot and attachments fit completely in the launch area.</li>
+        <li>Check that robot height is under <strong>12 inches (305 mm)</strong>.</li>
+        <li>Charge your battery fully — bring a spare if allowed.</li>
+        <li>Test your first two missions in the practice area before your match.</li>
+        <li>Have one team member assigned to watch the clock and call out time warnings.</li>
+        <li>Double-check all attachment connections — things come loose in transit!</li>
+      </ul>
+      <div class="tip-alert">⚠️ Mission 00 (Equipment Inspection) is free 20 points — never skip the height check!</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🤝</div>
+      <h3 class="tip-card-title">Teamwork &amp; Roles</h3>
+      <ul>
+        <li>Assign clear roles: <em>Driver</em> (touches the robot), <em>Navigator</em> (calls out the plan), <em>Timer</em>.</li>
+        <li>The driver should stay focused on the field — the navigator communicates with referees and tracks time.</li>
+        <li>Practice transitions between your team's sub-runs so there's no hesitation.</li>
+        <li>Celebrate small wins during practice — positivity builds better teams.</li>
+      </ul>
+    </div>
+
+  </div><!-- end tips-grid -->
+
+  <div class="rope-divider"><div class="rope-divider-gem"></div></div>
+
+  <!-- ───────────────────────────────────────────────── -->
+  <!-- SECTION: Robot Design -->
+  <!-- ───────────────────────────────────────────────── -->
+  <div class="section-header">
+    <p class="eyebrow">🤖 Build Smarter</p>
+    <h2 class="section-title">Robot Design Tips</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🏗️</div>
+      <h3 class="tip-card-title">Base Robot Design</h3>
+      <ul>
+        <li>Build a <strong>compact, low base</strong> — staying under 12 inches is non-negotiable for Mission 00.</li>
+        <li>Use a sturdy, symmetrical drive base. Wobbly robots drift off course.</li>
+        <li>Keep your center of gravity low and centered to prevent tipping.</li>
+        <li>Use the same wheel type on both sides and ensure they're balanced.</li>
+        <li>Protect motors and the hub from accidental bumps to mission elements.</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔧</div>
+      <h3 class="tip-card-title">Attachments &amp; Tools</h3>
+      <ul>
+        <li>Design attachments that are quick to swap — use simple push-on connectors.</li>
+        <li>One good attachment that handles multiple missions beats five fragile single-purpose ones.</li>
+        <li>Test each attachment at least 20 times before competition.</li>
+        <li>Color-code attachments so the team can swap them fast without confusion.</li>
+        <li>Always reinforce attachment connection points — they're the most common failure spot.</li>
+      </ul>
+      <div class="tip-highlight">💡 The fewer attachments you need to swap mid-run, the more time you save.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">📐</div>
+      <h3 class="tip-card-title">Navigation &amp; Alignment</h3>
+      <ul>
+        <li>Use wall-following techniques at the start of each sub-run for consistent alignment.</li>
+        <li>Add physical guides or "jig" pieces to help the robot align precisely with mission elements.</li>
+        <li>Mark your launch position on the robot and the field — consistency starts at home.</li>
+        <li>Gyro sensors are powerful for straight-line movement — calibrate before every match.</li>
+        <li>Slow down before critical moments — speed is useless if the robot overshoots.</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔌</div>
+      <h3 class="tip-card-title">SPIKE Prime Best Practices</h3>
+      <ul>
+        <li>Always start programs with the robot battery above 80% charge.</li>
+        <li>Calibrate the gyro sensor at room temperature — it can drift if it gets warm.</li>
+        <li>Use <code>wait_for_seconds</code> carefully — it can cause timing issues. Prefer encoder-based movement.</li>
+        <li>Test programs after any hardware changes — small builds can alter motor performance.</li>
+        <li>Save backup versions of programs before making large changes.</li>
+      </ul>
+      <div class="qa-callout">
+        <div class="qa-header">📋 Official Q&amp;A</div>
+        <div class="qa-item">
+          <div class="qa-q">Is a small robot (e.g., Driving Base 1 Lego Spike) allowed at competition?</div>
+          <div class="qa-a">You can use any Spike Prime robot design. You cannot use Spike Prime Essentials though.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rope-divider"><div class="rope-divider-gem"></div></div>
+
+  <!-- ───────────────────────────────────────────────── -->
+  <!-- SECTION: Per-Mission Tips -->
+  <!-- ───────────────────────────────────────────────── -->
+  <div class="section-header">
+    <p class="eyebrow">🗿 Mission by Mission</p>
+    <h2 class="section-title">Mission-Specific Tips</h2>
+    <div class="section-divider"></div>
+    <p class="section-desc">Targeted advice for each of the 16 missions. Study the ones your robot targets most!</p>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔍</div>
+      <h3 class="tip-card-title">M00 · Equipment Inspection</h3>
+      <ul>
+        <li>Measure your robot's height with all attachments loaded <em>before</em> the inspection — not after.</li>
+        <li>Keep a 12-inch ruler at your team table as a quick reference.</li>
+        <li>If you're borderline, build slightly shorter — referees measure from the mat.</li>
+        <li>This is 20 free points — there is no excuse for failing this!</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 20 pts — Always achievable. Never miss this one.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🛒</div>
+      <h3 class="tip-card-title">M01 · The Great Escape</h3>
+      <ul>
+        <li>Approach the mine cart at a consistent angle — test the approach multiple times.</li>
+        <li>A gentle push is often better than a fast collision — avoid knocking the cart off the track.</li>
+        <li>Aim for both points: cart through the arch <em>and</em> still on the track (20 pts total).</li>
+        <li>If staying on the track is hard, at least secure the 10 pts for going through the arch.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 20 pts. A great "on the way" mission if the path goes near it.</div>
+      <div class="qa-callout">
+        <div class="qa-header">📋 Official Q&amp;A</div>
+        <div class="qa-item">
+          <div class="qa-q">The instructions say "push." Must it be pushed, or can it be pulled or the track lifted?</div>
+          <div class="qa-a">You can accomplish the mission in any legal way.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🪨</div>
+      <h3 class="tip-card-title">M02 · Restore the Cave</h3>
+      <ul>
+        <li>The cave walls must stay upright — slow and gentle is the approach here.</li>
+        <li>Use a funnel-shaped attachment to guide the boulder into the cave without touching walls.</li>
+        <li>Practice positioning the boulder on the orange circle for the bonus 10 points.</li>
+        <li>If the bonus is unreliable, still collect the 20 pts for boulder in cave with walls up.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 30 pts. High-value mission — prioritize if nearby other missions.</div>
+      <div class="qa-callout">
+        <div class="qa-header">📋 Official Q&amp;A</div>
+        <div class="qa-item">
+          <div class="qa-q">Are there any points if the boulder is inside the cave but the walls are knocked down?</div>
+          <div class="qa-a">No, the walls must be up to score points.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🚩</div>
+      <h3 class="tip-card-title">M03 · Trailblazers</h3>
+      <ul>
+        <li>Markers must not be touching the mat — use a gripper that places them precisely on the mountain.</li>
+        <li>Placing 2 markers = 20 pts. Both markers count — don't combine them!</li>
+        <li>Practice dropping markers at the exact height so they land on the mountain, not the mat.</li>
+        <li>This mission pairs well with others that send the robot to that side of the field.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 20 pts. Often overlooked — easy points for a well-placed arm.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🏺</div>
+      <h3 class="tip-card-title">M04 · Replace the Relic</h3>
+      <ul>
+        <li>This is a high-complexity, high-reward mission (up to 40 pts). Invest practice time here!</li>
+        <li>Getting the idol in the center of the pedestal (30 pts) requires precision — use gyro navigation.</li>
+        <li>Even if centering fails, idol on pedestal (20 pts) + relic removed (10 pts) = 30 pts — still excellent.</li>
+        <li>Build an attachment that can hold the idol securely and release it with control.</li>
+        <li>Practice the approach direction — even 1 cm off can drop you to a lower tier.</li>
+      </ul>
+      <div class="tip-alert">⚠️ Idol tier points are exclusive — only the highest achieved counts.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🪔</div>
+      <h3 class="tip-card-title">M05 · Light the Way</h3>
+      <ul>
+        <li>The lantern must be standing in the oval — lying down doesn't count.</li>
+        <li>For the 5-pt bonus, ensure your attachment leaves the lantern facing the panel.</li>
+        <li>A slow, controlled placement is better than a fast push that topples the lantern.</li>
+        <li>Practice from multiple approach angles to find the most reliable one.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 15 pts. Quick mission if you have the right attachment.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🫙</div>
+      <h3 class="tip-card-title">M06 · Hide the Relics</h3>
+      <ul>
+        <li>The table must tip <em>completely</em> over — partially tipped doesn't score.</li>
+        <li>Hit the table with enough force from the right angle to ensure it goes all the way over.</li>
+        <li>Test the minimum force needed — too hard can cause other problems.</li>
+        <li>This is a simple push mission — great for a fast, efficient sub-run.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 10 pts. Easy win if your path passes the table.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">💨</div>
+      <h3 class="tip-card-title">M07 · Boulder Dash</h3>
+      <ul>
+        <li>Release all boulders from the ramp first (10 pts), then try to collect them into the quarry.</li>
+        <li>Each boulder in the quarry is 5 pts — getting all 3 = 15 more pts on top of the 10 pt release.</li>
+        <li>Boulders cannot be attached together — your collector needs to handle them separately.</li>
+        <li>Test how far boulders roll when released — use that to your advantage.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 25 pts. Release alone (10 pts) is easy; quarry placement requires practice.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🌉</div>
+      <h3 class="tip-card-title">M08 · Bridge the Gap</h3>
+      <ul>
+        <li>The bridge must be completely lowered — ensure your robot pushes it all the way down.</li>
+        <li>Approach from the correct side — check the field setup carefully.</li>
+        <li>A simple pushing attachment works well here. No need to over-engineer.</li>
+        <li>Pair this with nearby missions for an efficient route.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 20 pts. Straightforward if approached correctly — great ROI on time.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔦</div>
+      <h3 class="tip-card-title">M09 · Reflect the Light</h3>
+      <ul>
+        <li>Lower the grey reflective panel completely to score the 15 points.</li>
+        <li>Design an attachment that can reliably engage and lower the panel.</li>
+        <li>Check the field mat to understand the panel orientation before your run.</li>
+        <li>Pairs well with Mission 05 (Light the Way) since both involve the lantern area.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 15 pts. Often achievable in the same trip as Mission 05.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🟩</div>
+      <h3 class="tip-card-title">M10 · Claim Territory</h3>
+      <ul>
+        <li>Markers must land on green panels or in the grey divot — not on the mat.</li>
+        <li><strong>Only 2 markers count total — one per dig site.</strong> Don't waste time placing a third!</li>
+        <li>The grey divot is the small recessed/trapezoid-shaped area on the grey model.</li>
+        <li>Markers can tip over and still count — they just need to be completely on the divot or panel.</li>
+        <li>Practice marker placement accuracy — dropping on the mat scores nothing.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 20 pts (2 markers × 10 pts, one at each dig site).</div>
+      <div class="qa-callout">
+        <div class="qa-header">📋 Official Q&amp;A</div>
+        <div class="qa-item">
+          <div class="qa-q">Can we put all the site markers on one dig site?</div>
+          <div class="qa-a">Only two markers will count, and there needs to be one at each dig site.</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q">Does the marker have to be standing on the divot, or can it tip over and still count?</div>
+          <div class="qa-a">As long as it is completely on the divot, it will count.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🗿</div>
+      <h3 class="tip-card-title">M11 · Retrieve the Lost LEGOlith</h3>
+      <ul>
+        <li>Both walls standing = 25 pts — this is the goal! A gentle, slow approach is essential.</li>
+        <li>If walls fall, 15 pts (one wall) or 10 pts (no walls) still score — don't give up if a wall falls.</li>
+        <li>Practice a slow entry into the room — speed is your enemy here.</li>
+        <li>Design an attachment that can grab or push the LEGOlith into home reliably.</li>
+        <li>Test what "disturbs" the walls in practice so you can avoid those movements.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 25 pts. One of the highest-value missions — worth significant practice time.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🚪</div>
+      <h3 class="tip-card-title">M12 · Reveal the Secret Passage</h3>
+      <ul>
+        <li>The passage must be <em>completely</em> uncovered — move the barrier fully out of the way.</li>
+        <li>Know which direction the barrier needs to move and approach accordingly.</li>
+        <li>A hook or pusher attachment works well to slide the barrier aside.</li>
+        <li>This mission is near Mission 10 (Claim Territory) — try to combo them.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 20 pts. Simple mechanism — great value for a reliable push.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">⛵</div>
+      <h3 class="tip-card-title">M13 · Looting</h3>
+      <ul>
+        <li>Lower the treasure ship completely — partial lowering scores nothing.</li>
+        <li>Understand the ship's hinge direction — come from the right side.</li>
+        <li>A consistent pushing attachment that engages the ship at the right height works well.</li>
+        <li>This is a clean all-or-nothing mission: 20 pts or 0 pts. Make it reliable.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: 20 pts. Great mission if you're already traveling to that side of the field.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">⚙️</div>
+      <h3 class="tip-card-title">M14 · Disarm the Trap</h3>
+      <ul>
+        <li>Each gear removed = 5 points, max 3 gears = 15 points total.</li>
+        <li>Study how the gears are positioned — a scraping or pulling attachment can remove multiple in one pass.</li>
+        <li>Even removing 1 gear is 5 points — this mission has low barriers to entry.</li>
+        <li>Practice extracting gears without tipping or disturbing nearby mission elements.</li>
+      </ul>
+      <div class="tip-highlight">💡 Value: up to 15 pts. Reliable partial scoring makes this a great consistent mission.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔴</div>
+      <h3 class="tip-card-title">M15 · Supplies Caches</h3>
+      <ul>
+        <li>The ultimate passive mission — earn up to 50 pts just by <em>not interrupting</em> your robot outside home.</li>
+        <li>Plan your programs to be fully autonomous. Every human touch outside home = −10 pts.</li>
+        <li>If your robot gets stuck, resist helping it until it re-enters home or time runs out.</li>
+        <li>5 or 6 caches = same 50 pts — so one touch isn't catastrophic, but two is very costly.</li>
+        <li>This mission should guide how you design your entire strategy.</li>
+      </ul>
+      <div class="tip-alert">⚠️ This is the single most important mission to plan around. 50 pts for doing nothing wrong!</div>
+    </div>
+
+  </div><!-- end tips-grid -->
+
+  <div class="rope-divider"><div class="rope-divider-gem"></div></div>
+
+  <!-- ───────────────────────────────────────────────── -->
+  <!-- SECTION: Competition Day -->
+  <!-- ───────────────────────────────────────────────── -->
+  <div class="section-header">
+    <p class="eyebrow">🏆 Game Day</p>
+    <h2 class="section-title">Competition Day Wisdom</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip-card">
+      <div class="tip-card-icon">😌</div>
+      <h3 class="tip-card-title">Stay Calm &amp; Trust Your Practice</h3>
+      <ul>
+        <li>Nerves are normal — take a deep breath before each match.</li>
+        <li>Trust your robot. You've practiced this. Stick to the plan.</li>
+        <li>Don't change your strategy at the last minute unless you have a very good reason.</li>
+        <li>If something goes wrong in Match 1, reset, debrief quickly, and come back stronger in Match 2.</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">📦</div>
+      <h3 class="tip-card-title">What to Bring</h3>
+      <ul>
+        <li>Fully charged battery (and a backup if allowed)</li>
+        <li>Extra LEGO pieces for quick repairs</li>
+        <li>Ruler to double-check the 12-inch height</li>
+        <li>A printed copy of the mission rules for quick reference</li>
+        <li>Stopwatch or timer app</li>
+        <li>Team spirit and a positive attitude!</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🔬</div>
+      <h3 class="tip-card-title">Use Practice Rounds Wisely</h3>
+      <ul>
+        <li>Use the practice field to confirm your robot is running as expected — not to try new things.</li>
+        <li>Check that the competition field's elements are positioned as expected (referees set them up).</li>
+        <li>Note any differences from your practice field and make quick mental adjustments.</li>
+        <li>Watch other teams at the practice field — you might spot something useful.</li>
+      </ul>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-icon">🤠</div>
+      <h3 class="tip-card-title">The Indiana Jones Mindset</h3>
+      <ul>
+        <li>"I'm making this up as I go." — Even if something goes wrong, improvise and keep going.</li>
+        <li>Every explorer hits obstacles. The best ones adapt on the fly.</li>
+        <li>Win or lose, celebrate what your team has built and learned together.</li>
+        <li>Gracious Professionalism: cheer for other teams. We're all adventurers on the same quest.</li>
+      </ul>
+      <div class="tip-highlight">💡 "Fortune and glory, kid. Fortune and glory." — But most importantly, have fun!</div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;padding:2rem;background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(61,32,16,0.3));border:1px solid rgba(212,168,67,0.2);border-radius:var(--radius-lg);">
+    <p class="eyebrow">📅 Ready to Practice?</p>
+    <h2 class="section-title" style="font-size:1.8rem;margin:0.5rem 0;">Check the Meeting Schedule</h2>
+    <p style="color:var(--tan);font-style:italic;font-size:0.9rem;margin-bottom:1.5rem;">See when the team meets and what each session focuses on.</p>
+    <a href="schedule.html" class="btn btn-primary">View Schedule →</a>
+  </div>
+
+</div><!-- end page-container -->
+
+<!-- ── Footer ───────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
+  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-divider"></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="missions.html">Missions</a>
+    <a href="tips.html">Tips &amp; Tricks</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="calculator.html">Calculator</a>
+  </div>
+  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+</body>
+</html>
