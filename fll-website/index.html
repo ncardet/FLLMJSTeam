@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competition Hub — Robotic Jones &amp; The Temple of LEGO</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Competition Hub page styles ── */
+    .hub-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* Competition Date Banner */
+    .comp-date-banner {
+      background: linear-gradient(135deg, rgba(212,168,67,0.15) 0%, rgba(61,32,16,0.6) 100%);
+      border: 2px solid var(--gold-dark);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .comp-date-big {
+      text-align: center;
+      min-width: 130px;
+    }
+    .comp-date-month {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .comp-date-day {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--gold-light);
+      text-shadow: 0 0 20px rgba(212,168,67,0.5);
+    }
+    .comp-date-year {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      color: var(--stone-light);
+    }
+    .comp-date-info {
+      flex: 1;
+    }
+    .comp-date-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .comp-date-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .comp-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--tan-light);
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(212,168,67,0.2);
+      border-radius: 4px;
+      padding: 0.35rem 0.75rem;
+    }
+    .comp-meta-item a {
+      color: var(--tan-light);
+      text-decoration: none;
+    }
+    .comp-meta-item a:hover {
+      color: var(--gold-light);
+    }
+    .comp-countdown-inline {
+      text-align: center;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(212,168,67,0.3);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.25rem;
+      min-width: 120px;
+    }
+    .comp-countdown-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .comp-countdown-label {
+      font-size: 0.7rem;
+      color: var(--stone-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
+    /* Resource Cards */
+    .resource-section {
+      background: linear-gradient(135deg, rgba(46,21,8,0.7) 0%, rgba(22,10,2,0.9) 100%);
+      border: 1px solid rgba(122,72,40,0.5);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .resource-section-header {
+      background: linear-gradient(90deg, rgba(212,168,67,0.12), rgba(122,72,40,0.2));
+      border-bottom: 1px solid rgba(122,72,40,0.5);
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .resource-section-icon {
+      font-size: 1.75rem;
+      filter: drop-shadow(0 0 6px var(--gold));
+    }
+    .resource-section-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+    .resource-section-tag {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-family: var(--font-heading);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0,196,168,0.1);
+      border: 1px solid rgba(0,196,168,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+    }
+    .resource-section-body {
+      padding: 1.75rem;
+    }
+    .resource-desc {
+      font-size: 0.92rem;
+      color: var(--tan-light);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Resource link cards */
+    .resource-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .resource-link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(122,72,40,0.4);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: var(--tan-light);
+      transition: var(--transition);
+    }
+    .resource-link-card:hover {
+      border-color: var(--gold-dark);
+      background: rgba(212,168,67,0.07);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .resource-link-file-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .resource-link-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .resource-link-name {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+    .resource-link-card:hover .resource-link-name {
+      color: var(--gold-light);
+    }
+    .resource-link-type {
+      font-size: 0.75rem;
+      color: var(--stone-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .resource-link-arrow {
+      font-size: 1rem;
+      color: var(--gold-dark);
+      flex-shrink: 0;
+    }
+
+    /* Steps list */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--tan-light);
+      line-height: 1.5;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: rgba(212,168,67,0.15);
+      border: 1px solid var(--gold-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 0.1rem;
+    }
+
+    /* Info callout box */
+    .info-callout {
+      background: rgba(0,196,168,0.07);
+      border: 1px solid rgba(0,196,168,0.25);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--tan-light);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .info-callout-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* Warning callout */
+    .warn-callout {
+      background: rgba(212,168,67,0.07);
+      border: 1px solid rgba(212,168,67,0.3);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--tan-light);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    /* Two-column layout for rules/rubric */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+      .comp-date-banner { flex-direction: column; text-align: center; }
+      .comp-date-meta { justify-content: center; }
+    }
+
+    /* Official Q&A */
+    .qa-callout {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(0,196,168,0.2);
+      border-left: 3px solid var(--teal-dark);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+    }
+    .qa-header {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .qa-item + .qa-item {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(0,196,168,0.1);
+    }
+    .qa-q { font-size: 0.8rem; color: var(--stone-light); line-height: 1.5; margin-bottom: 0.2rem; }
+    .qa-a { font-size: 0.8rem; color: var(--teal); line-height: 1.5; }
+    .qa-q::before { content: "Q  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--tan); letter-spacing: 0.1em; }
+    .qa-a::before { content: "A  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--teal-dark); letter-spacing: 0.1em; }
+
+    /* Q&A section grid */
+    .qa-section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .qa-topic-card {
+      background: linear-gradient(135deg, rgba(46,21,8,0.5), rgba(22,10,2,0.8));
+      border: 1px solid rgba(122,72,40,0.4);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .qa-topic-label {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────── -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-text">
+      Robotic Jones
+      <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li><a href="tips.html">Tips &amp; Tricks</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="calculator.html">Score Calculator</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── Page Header ──────────────────────────────────── -->
+<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
+  <p class="eyebrow">🏆 Everything You Need</p>
+  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Competition Hub</h1>
+  <div class="section-divider"></div>
+  <p class="section-desc">Your one-stop resource for competition day — board setup, presentations, rules, and the rubric. Get ready to win!</p>
+</div>
+
+<div class="page-container">
+  <div class="hub-grid">
+
+    <!-- ── Competition Date ────────────────────────────── -->
+    <div class="comp-date-banner">
+      <div class="comp-date-big">
+        <div class="comp-date-month">May</div>
+        <div class="comp-date-day">17</div>
+        <div class="comp-date-year">2026</div>
+      </div>
+      <div class="comp-date-info">
+        <div class="comp-date-title">Spring Showdown 2026</div>
+        <p style="font-size:0.9rem;color:var(--stone-light);line-height:1.6;">Our big competition day is almost here! This is everything we have been working toward — three official rounds, judges watching, and the whole team giving it everything.</p>
+        <div class="comp-date-meta">
+          <div class="comp-meta-item">📅 Sunday, May 17, 2026</div>
+          <div class="comp-meta-item">⏰ Arrive Early</div>
+          <div class="comp-meta-item">📍 <a href="https://maps.app.goo.gl/ngwDeNgpP8jHwD8F7" target="_blank" rel="noopener">View Venue on Maps ↗</a></div>
+          <div class="comp-meta-item">🔁 3 Official Rounds</div>
+        </div>
+      </div>
+      <div class="comp-countdown-inline">
+        <div class="comp-countdown-num" id="countdownNum">—</div>
+        <div class="comp-countdown-label">Days to Go</div>
+      </div>
+    </div>
+
+    <!-- ── Board Setup ─────────────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">🗺️</span>
+        <span class="resource-section-title">Setting Up the Competition Board</span>
+        <span class="resource-section-tag">Setup Guide</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          Before every practice run, the board needs to be set up exactly the same way. Consistent setup means consistent results — small differences in model placement can throw off your entire program!
+        </p>
+        <div class="steps-list">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>Open the board setup guide below and study each mission model's starting position carefully.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>Place the mat flat on a stable table — no bumps or overhangs on the edges.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>Build and place each model exactly as shown — check angles, color alignment, and which hole it snaps into.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <span>Double-check your Launch area — your robot and all attachments must fit with nothing touching the black border.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">5</span>
+            <span>Have a second person verify the setup before starting a timed run.</span>
+          </div>
+        </div>
+        <div class="warn-callout">
+          <span class="info-callout-icon">⚠️</span>
+          <span><strong style="color:var(--gold);">Important:</strong> At competition, referees set up the board. But in practice, always reset to the official starting positions between runs — otherwise your scores won't reflect real competition conditions.</span>
+        </div>
+        <div class="qa-callout">
+          <div class="qa-header">📋 Official Q&amp;A — Field Setup</div>
+          <div class="qa-item">
+            <div class="qa-q">Are the barricades dual locked onto the map?</div>
+            <div class="qa-a">Yes, they are dual locked down. If a model used dual lock in the fall season, it is dual locked down this season.</div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q">How should we align the mat on our FLL table?</div>
+            <div class="qa-a">Centered on the table against the south wall.</div>
+          </div>
+          <div class="qa-item">
+            <div class="qa-q">The map is very uneven — is that intentional or did we get a bad printout?</div>
+            <div class="qa-a">The map is a bit uneven this year.</div>
+          </div>
+        </div>
+        <div class="resource-links">
+          <a href="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📋</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Board Setup Guide</div>
+              <div class="resource-link-type">Google Drive · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Robotics Presentation ───────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">🎤</span>
+        <span class="resource-section-title">Robotics Presentation</span>
+        <span class="resource-section-tag">Team Project</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          The Robotics Presentation is one of the judged segments of competition — you will present your team's robot design process, explain key decisions, and show off what makes your solution unique. Judges are looking for clear communication, teamwork, and evidence of the engineering process.
+        </p>
+        <div class="info-callout">
+          <span class="info-callout-icon">💡</span>
+          <span>You have <strong style="color:var(--teal);">two documents</strong> to help you prepare. The first is your team's working presentation guide — use it to plan what each person will say. The second is a reference document with additional details and talking points.</span>
+        </div>
+        <div class="steps-list">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <span>Read through both documents below so you know the full scope of the presentation.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <span>Decide who will cover which part — every team member should have a speaking role.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <span>Practice saying your part out loud at least five times before competition day.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-num">4</span>
+            <span>Run through the full presentation as a team during the Apr 9 Mock Competition meeting.</span>
+          </div>
+        </div>
+        <div class="resource-links">
+          <a href="https://docs.google.com/document/d/1apH3niU3LqC7jzeksgItDY4hBRi0bTe033a8nE4goSw/edit?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📝</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Robotics Presentation — Part 1</div>
+              <div class="resource-link-type">Google Docs · Team Guide</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://docs.google.com/document/d/1TMB_FdjnpF4MyU4wpnH-HfN-izaSJJc7hC1rxfyF744/edit?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📄</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Robotics Presentation — Part 2</div>
+              <div class="resource-link-type">Google Docs · Reference</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Game Rules & Rubric ─────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">📜</span>
+        <span class="resource-section-title">Game Rules &amp; Judging Rubric</span>
+        <span class="resource-section-tag">Official Docs</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          Know the rules cold — referees enforce them exactly at competition. The rulebook covers everything from equipment inspection to how each mission is scored. The rubric tells you exactly what judges are looking for in every judged category.
+        </p>
+        <div class="info-callout">
+          <span class="info-callout-icon">📖</span>
+          <span>Read the rulebook <em>at least twice</em> before competition. Pay close attention to the <strong style="color:var(--teal);">precise conditions</strong> for each mission — small wording details like "completely" or "at least one" can mean the difference between scoring and not.</span>
+        </div>
+        <div class="two-col">
+          <div>
+            <p style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:0.75rem;">ROBOT GAME RULES</p>
+            <div class="steps-list">
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>All 16 missions and their scoring conditions</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>Equipment inspection requirements</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>What counts as an interruption (costs a Supply Cache!)</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>What robots can and cannot touch during a run</span>
+              </div>
+            </div>
+            <a href="https://drive.google.com/file/d/17nYCXdE8ERAJbczAQq89z5wcQMX-wI0r/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
+              <span class="resource-link-file-icon">📋</span>
+              <div class="resource-link-info">
+                <div class="resource-link-name">Official Game Rules</div>
+                <div class="resource-link-type">Google Drive · PDF</div>
+              </div>
+              <span class="resource-link-arrow">↗</span>
+            </a>
+          </div>
+          <div>
+            <p style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:0.75rem;">JUDGING RUBRIC</p>
+            <div class="steps-list">
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>Robotics Design judging criteria</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>Core Values assessment breakdown</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>What "Exceeds Expectations" looks like</span>
+              </div>
+              <div class="step-item">
+                <span class="step-num">✓</span>
+                <span>How judges score your presentation</span>
+              </div>
+            </div>
+            <a href="https://drive.google.com/file/d/17_2N-emRCjW5AcCkhS9bQD0hPHGGgd4o/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
+              <span class="resource-link-file-icon">⚖️</span>
+              <div class="resource-link-info">
+                <div class="resource-link-name">Judging Rubric</div>
+                <div class="resource-link-type">Google Drive · PDF</div>
+              </div>
+              <span class="resource-link-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Official Q&A ───────────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">💬</span>
+        <span class="resource-section-title">Official Q&amp;A from the CA Southern Spring Showdown</span>
+        <span class="resource-section-tag">Confirmed Rules</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          These are real questions submitted by teams — and answered by the competition admins. Read every answer carefully: they clarify rules that are easy to misread in the rulebook.
+        </p>
+        <div class="qa-section-grid">
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">🏁 Competition Format</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">How many matches will each team get on competition day?</div>
+              <div class="qa-a">1 Practice round, 3 performance rounds, 2 On The Spot rounds.</div>
+            </div>
+          </div>
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">🤖 Robot Starting Position</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">Can we run our robot from the black home area to do a mission, or does it have to start from the other home area?</div>
+              <div class="qa-a">All robots must start from the Launch area — the 2 quarter circles on the sides of the field. All rules from the Fall still hold unless expressly stated.</div>
+            </div>
+          </div>
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">⏱️ Scoring</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">If we complete a mission but it gets undone during the run, does it still count?</div>
+              <div class="qa-a">All scoring is done at the end of the match — if something gets undone, it will not count.</div>
+            </div>
+          </div>
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">🤝 On-The-Spot — Alliances</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">Does "random draw" mean our whole team pairs up with another team, or are individual members mixed into new alliances?</div>
+              <div class="qa-a">Random draw will be whole teams partnering up with other teams.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-q">During preparation, is the whole team allowed to collaborate, or only the selected operators?</div>
+              <div class="qa-a">All team members are involved in the planning and practice process. We will restrict the number of operators at the table, but that doesn't exclude the others from participating.</div>
+            </div>
+          </div>
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">🔢 Max Score</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">What is the maximum possible score?</div>
+              <div class="qa-a">The max score is 360 points.</div>
+            </div>
+          </div>
+
+          <div class="qa-topic-card">
+            <div class="qa-topic-label">🤖 Robot Design</div>
+            <div class="qa-item" style="margin-top:0;">
+              <div class="qa-q">Is a small robot (e.g., Driving Base 1 Lego Spike) allowed at competition?</div>
+              <div class="qa-a">You can use any Spike Prime robot design. You cannot use Spike Prime Essentials though.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Competition Day Checklist ───────────────────── -->
+    <div style="padding:1.75rem;background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(61,32,16,0.4));border:1px solid rgba(212,168,67,0.25);border-radius:var(--radius-lg);">
+      <p class="eyebrow" style="margin-bottom:0.75rem;">🎒 Competition Day Checklist</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.5rem;">
+        <div style="font-size:0.82rem;color:var(--tan-light);">🤖 Robot (fully charged battery!)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🔌 SPIKE Prime hub + USB cable</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🧩 All attachments (labeled!)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">💻 Laptop with programs backed up</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">📓 Engineering notebook</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🔧 Repair kit (spare parts, tool)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">📋 Printed presentation notes</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🧠 Confidence &amp; team spirit!</div>
+      </div>
+    </div>
+
+  </div><!-- end hub-grid -->
+</div><!-- end page-container -->
+
+<!-- ── Footer ───────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
+  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-divider"></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="missions.html">Missions</a>
+    <a href="tips.html">Tips &amp; Tricks</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="calculator.html">Calculator</a>
+  </div>
+  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Countdown to May 17, 2026
+  const compDate = new Date('2026-05-17T08:00:00');
+  function updateCountdown() {
+    const now  = new Date();
+    const diff = compDate - now;
+    if (diff <= 0) {
+      document.getElementById('countdownNum').textContent = '🏆';
+    } else {
+      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('countdownNum').textContent = days;
+    }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>
+</body>
+</html>
