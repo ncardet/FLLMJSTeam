@@ -644,6 +644,100 @@
     }
     .done-banner-sub { font-size: 0.85rem; color: var(--stone-light); line-height: 1.6; }
 
+    /* ── Team Picker Overlay ─────────────────── */
+    .team-picker-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .team-picker-overlay.open { opacity: 1; pointer-events: all; }
+    .team-picker-box {
+      width: 100%; max-width: 520px;
+      background: linear-gradient(160deg, var(--brown-mid), var(--brown-dark));
+      border: 2px solid var(--gold-dark);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .team-picker-icon { font-size: 3rem; margin-bottom: 0.6rem; }
+    .team-picker-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--gold-light);
+      margin-bottom: 0.45rem;
+    }
+    .team-picker-sub {
+      font-size: 0.86rem; color: var(--stone-light);
+      margin-bottom: 1.75rem; line-height: 1.6;
+    }
+    .team-picker-cards { display: flex; flex-direction: column; gap: 0.7rem; }
+    .team-card {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.3rem;
+      border-radius: var(--radius); border: 2px solid;
+      cursor: pointer; transition: all 0.2s;
+      text-align: left; background: transparent;
+      width: 100%; font-family: var(--font-heading);
+    }
+    .team-card:hover { transform: translateY(-2px); filter: brightness(1.2); }
+    .team-card-chickens  { border-color:rgba(212,168,67,0.5);  background:rgba(212,168,67,0.06);  color:var(--gold-light); }
+    .team-card-mavericks { border-color:rgba(0,196,168,0.5);   background:rgba(0,196,168,0.06);   color:var(--teal); }
+    .team-card-bolts     { border-color:rgba(74,144,217,0.5);  background:rgba(74,144,217,0.06);  color:#7ab8f5; }
+    .team-card-icon { font-size: 2rem; flex-shrink: 0; }
+    .team-card-info { flex: 1; }
+    .team-card-name { font-size: 0.95rem; letter-spacing: 0.04em; }
+    .team-card-hint { font-size: 0.7rem; opacity: 0.7; margin-top: 0.12rem; font-family: var(--font-body); }
+
+    /* ── Team Badge (sidebar) ────────────────── */
+    .team-badge {
+      background: linear-gradient(135deg,rgba(46,21,8,0.65),rgba(22,10,2,0.9));
+      border: 1px solid rgba(122,72,40,0.5);
+      border-radius: var(--radius-lg);
+      padding: 0.8rem 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .team-badge-icon { font-size: 1.25rem; flex-shrink: 0; }
+    .team-badge-info { flex: 1; min-width: 0; }
+    .team-badge-label {
+      font-family: var(--font-heading);
+      font-size: 0.56rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--stone-light);
+    }
+    .team-badge-name {
+      font-family: var(--font-heading); font-size: 0.85rem;
+      color: var(--gold-light); letter-spacing: 0.03em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .team-badge-switch {
+      background: transparent; border: 1px solid rgba(122,72,40,0.35);
+      border-radius: var(--radius); color: var(--stone-light);
+      font-family: var(--font-heading); font-size: 0.55rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; padding: 0.28rem 0.5rem; transition: all 0.2s; flex-shrink: 0;
+    }
+    .team-badge-switch:hover { border-color: var(--stone); color: var(--tan-light); }
+
+    /* ── Sync Buttons ────────────────────────── */
+    .sb-btn-sync-save {
+      background: rgba(74,144,217,0.1); border: 1px solid rgba(74,144,217,0.3); color: #7ab8f5;
+    }
+    .sb-btn-sync-save:hover { background: rgba(74,144,217,0.2); }
+    .sb-btn-sync-load {
+      background: rgba(74,144,217,0.06); border: 1px solid rgba(74,144,217,0.2); color: #7ab8f5;
+    }
+    .sb-btn-sync-load:hover { background: rgba(74,144,217,0.15); }
+    .sync-status {
+      font-family: var(--font-heading); font-size: 0.6rem;
+      letter-spacing: 0.08em; text-align: center;
+      color: var(--stone-light); min-height: 0.9rem; transition: color 0.2s;
+    }
+    .sync-status.ok  { color: var(--teal); }
+    .sync-status.err { color: #e06060; }
+
     /* ── Mobile ────────────────────────────────── */
     @media (max-width: 780px) {
       .builder-wrap {
@@ -710,6 +804,15 @@
   <!-- Sidebar -->
   <aside class="builder-sidebar">
 
+    <div class="team-badge">
+      <span class="team-badge-icon" id="teamBadgeIcon">🤠</span>
+      <div class="team-badge-info">
+        <div class="team-badge-label">Working as</div>
+        <div class="team-badge-name" id="teamBadgeName">—</div>
+      </div>
+      <button class="team-badge-switch" onclick="switchTeam()">Switch</button>
+    </div>
+
     <div class="progress-card">
       <div class="progress-label">Your Progress</div>
       <div class="progress-bar-track">
@@ -723,6 +826,9 @@
     <div style="display:flex;flex-direction:column;gap:0.5rem;">
       <button class="sb-btn sb-btn-log" onclick="openLog()">📋 Iteration Log</button>
       <button class="sb-btn sb-btn-export" onclick="openExport()">📤 Export Notes</button>
+      <button class="sb-btn sb-btn-sync-save" onclick="syncToCloud()">☁ Save to Cloud</button>
+      <button class="sb-btn sb-btn-sync-load" onclick="syncFromCloud(false)">☁ Load from Cloud</button>
+      <div class="sync-status" id="syncStatus"></div>
       <button class="sb-btn sb-btn-clear" onclick="clearAll()">↺ Clear &amp; Start Over</button>
     </div>
 
@@ -735,7 +841,7 @@
     </div>
 
     <div class="autosave-note">
-      💾 Saves automatically in this browser. Use <strong>Export Notes</strong> to save your work elsewhere.
+      💾 Auto-saves in this browser. Use <strong>Save to Cloud</strong> to sync between computers, or <strong>Export Notes</strong> to copy your work.
     </div>
 
   </aside>
@@ -777,6 +883,16 @@
 <!-- ── Save Toast ──────────────────────────────── -->
 <div class="save-toast" id="saveToast">Saved ✓</div>
 
+<!-- ── Team Picker Overlay ──────────────────────── -->
+<div class="team-picker-overlay" id="teamPickerOverlay">
+  <div class="team-picker-box">
+    <div class="team-picker-icon">🤠</div>
+    <div class="team-picker-title">Choose Your Team</div>
+    <div class="team-picker-sub">Pick your team to load your work. Each team's answers are saved separately.</div>
+    <div class="team-picker-cards" id="teamPickerCards"></div>
+  </div>
+</div>
+
 <!-- ── Footer ─────────────────────────────────── -->
 <footer>
   <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
@@ -793,6 +909,23 @@
 </footer>
 
 <script>
+// ═══════════════════════════════════════════════════
+// CLOUD SYNC CONFIGURATION
+// Deploy Code.gs as a Google Apps Script web app, then
+// paste the web app URL below. Leave blank to disable sync.
+// ═══════════════════════════════════════════════════
+const APPS_SCRIPT_URL = '';  // ← paste your web app URL here
+
+// ═══════════════════════════════════════════════════
+// TEAMS
+// ═══════════════════════════════════════════════════
+const TEAMS = [
+  { id: 'RoboChickens',  icon: '🐔', cls: 'team-card-chickens',  hint: 'Your journey starts here, RoboChickens.' },
+  { id: 'Code Mavericks', icon: '⚡', cls: 'team-card-mavericks', hint: 'Let\'s build something remarkable, Mavericks.' },
+  { id: 'Blue Bolts',    icon: '🔵', cls: 'team-card-bolts',     hint: 'Charge up and get started, Blue Bolts.' }
+];
+const TEAM_KEY = 'fll_pres_team';
+
 // ═══════════════════════════════════════════════════
 // SECTION DATA
 // ═══════════════════════════════════════════════════
@@ -1131,20 +1264,23 @@ const SECTIONS = [
 // ═══════════════════════════════════════════════════
 // STATE & STORAGE
 // ═══════════════════════════════════════════════════
-const ANSWERS_KEY = 'fll_pres_answers_v1';
-const LOG_KEY     = 'fll_pres_log_v1';
-
+let currentTeam = null;
 let currentIdx  = 0;
 let answers     = {};
 let logEntries  = [];
 let toastTimer  = null;
+let syncTimer   = null;
+
+function teamAnswerKey() { return 'fll_pres_answers_' + currentTeam + '_v1'; }
+function teamLogKey()    { return 'fll_pres_log_' + currentTeam + '_v1'; }
 
 function loadAll() {
-  try { answers    = JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}'); } catch(e) { answers = {}; }
-  try { logEntries = JSON.parse(localStorage.getItem(LOG_KEY)     || '[]'); } catch(e) { logEntries = []; }
+  if (!currentTeam) return;
+  try { answers    = JSON.parse(localStorage.getItem(teamAnswerKey()) || '{}'); } catch(e) { answers = {}; }
+  try { logEntries = JSON.parse(localStorage.getItem(teamLogKey())    || '[]'); } catch(e) { logEntries = []; }
 }
-function saveAnswers() { localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers)); }
-function saveLog()     { localStorage.setItem(LOG_KEY,     JSON.stringify(logEntries)); }
+function saveAnswers() { if (currentTeam) localStorage.setItem(teamAnswerKey(), JSON.stringify(answers)); }
+function saveLog()     { if (currentTeam) localStorage.setItem(teamLogKey(),    JSON.stringify(logEntries)); }
 
 function setAnswer(sectionId, qId, val) {
   answers[sectionId] = answers[sectionId] || {};
@@ -1152,6 +1288,105 @@ function setAnswer(sectionId, qId, val) {
   saveAnswers();
   updateProgress();
   showToast();
+}
+
+// ═══════════════════════════════════════════════════
+// TEAM MANAGEMENT
+// ═══════════════════════════════════════════════════
+function renderTeamPicker() {
+  document.getElementById('teamPickerCards').innerHTML = TEAMS.map(t =>
+    `<button class="team-card ${t.cls}" onclick="pickTeam('${t.id}')">
+       <span class="team-card-icon">${t.icon}</span>
+       <div class="team-card-info">
+         <div class="team-card-name">${t.id}</div>
+         <div class="team-card-hint">${t.hint}</div>
+       </div>
+       <span>→</span>
+     </button>`
+  ).join('');
+}
+
+function showTeamPicker() {
+  document.getElementById('teamPickerOverlay').classList.add('open');
+}
+function hideTeamPicker() {
+  document.getElementById('teamPickerOverlay').classList.remove('open');
+}
+
+function pickTeam(teamId) {
+  currentTeam = teamId;
+  localStorage.setItem(TEAM_KEY, teamId);
+  answers = {}; logEntries = [];
+  loadAll();
+  currentIdx = 0;
+  hideTeamPicker();
+  updateTeamBadge();
+  renderSection(0);
+  updateProgress();
+  if (APPS_SCRIPT_URL) syncFromCloud(true);
+}
+
+function switchTeam() {
+  if (!confirm('Switch teams? Your work for ' + currentTeam + ' is saved locally. Pick your team again to return to it.')) return;
+  currentTeam = null;
+  localStorage.removeItem(TEAM_KEY);
+  answers = {}; logEntries = []; currentIdx = 0;
+  showTeamPicker();
+}
+
+function updateTeamBadge() {
+  if (!currentTeam) return;
+  const t = TEAMS.find(x => x.id === currentTeam);
+  document.getElementById('teamBadgeIcon').textContent = t ? t.icon : '🤠';
+  document.getElementById('teamBadgeName').textContent = currentTeam;
+}
+
+// ═══════════════════════════════════════════════════
+// CLOUD SYNC
+// ═══════════════════════════════════════════════════
+function setSyncStatus(msg, duration, type) {
+  const el = document.getElementById('syncStatus');
+  el.textContent = msg;
+  el.className = 'sync-status' + (type ? ' ' + type : '');
+  clearTimeout(syncTimer);
+  if (duration) syncTimer = setTimeout(() => { el.textContent = ''; el.className = 'sync-status'; }, duration);
+}
+
+async function syncToCloud() {
+  if (!currentTeam) return;
+  if (!APPS_SCRIPT_URL) { alert('Cloud sync is not configured yet.\nAsk your teacher to set up the Google Sheets connection.'); return; }
+  setSyncStatus('Saving…');
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ team: currentTeam, answers, log: logEntries })
+    });
+    setSyncStatus('☁ Saved to cloud ✓', 4000, 'ok');
+  } catch(e) {
+    setSyncStatus('⚠ Save failed', 4000, 'err');
+  }
+}
+
+async function syncFromCloud(silent) {
+  if (!currentTeam) return;
+  if (!APPS_SCRIPT_URL) { if (!silent) alert('Cloud sync is not configured yet.\nAsk your teacher to set up the Google Sheets connection.'); return; }
+  if (!silent) setSyncStatus('Loading…');
+  try {
+    const resp = await fetch(APPS_SCRIPT_URL + '?team=' + encodeURIComponent(currentTeam));
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    if (data.answers && Object.keys(data.answers).length > 0) answers = data.answers;
+    if (data.log && data.log.length > 0) logEntries = data.log;
+    saveAnswers(); saveLog();
+    renderSection(currentIdx);
+    updateProgress();
+    if (!silent) setSyncStatus('☁ Loaded ✓', 4000, 'ok');
+  } catch(e) {
+    if (!silent) setSyncStatus('⚠ Load failed', 4000, 'err');
+  }
 }
 
 // ═══════════════════════════════════════════════════
@@ -1403,7 +1638,7 @@ function generateExportText() {
   const line  = '═'.repeat(52);
   const dline = '─'.repeat(52);
   const date  = new Date().toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  let out = `${line}\nROBOTICS PRESENTATION BUILDER — EXPORT\nMayfield Junior School FLL Club\nExported: ${date}\n${line}\n\n`;
+  let out = `${line}\nROBOTICS PRESENTATION BUILDER — EXPORT\nTeam: ${currentTeam || 'Unknown'}\nMayfield Junior School FLL Club\nExported: ${date}\n${line}\n\n`;
 
   SECTIONS.forEach((s, si) => {
     const sa = answers[s.id] || {};
@@ -1453,11 +1688,10 @@ function copyExport() {
 // CLEAR
 // ═══════════════════════════════════════════════════
 function clearAll() {
-  if (!confirm('Are you sure you want to clear all your answers and the iteration log? This cannot be undone.')) return;
+  if (!confirm('Clear all answers and the iteration log for ' + (currentTeam || 'this team') + '? This cannot be undone.')) return;
   answers = {};
   logEntries = [];
-  localStorage.removeItem(ANSWERS_KEY);
-  localStorage.removeItem(LOG_KEY);
+  if (currentTeam) { localStorage.removeItem(teamAnswerKey()); localStorage.removeItem(teamLogKey()); }
   currentIdx = 0;
   renderSection(0);
   updateProgress();
@@ -1495,10 +1729,16 @@ document.getElementById('hamburger').addEventListener('click', () => {
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
-loadAll();
-updateSidebar();
-renderSection(0);
-updateProgress();
+renderTeamPicker();
+const storedTeam = localStorage.getItem(TEAM_KEY);
+if (storedTeam && TEAMS.some(t => t.id === storedTeam)) {
+  pickTeam(storedTeam);
+} else {
+  showTeamPicker();
+  updateSidebar();
+  renderSection(0);
+  updateProgress();
+}
 </script>
 </body>
 </html>
