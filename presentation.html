@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation Builder — Robotic Jones &amp; The Temple of LEGO</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Builder Layout ────────────────────────── */
+    .builder-wrap {
+      max-width: 1160px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 252px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ── Sidebar ───────────────────────────────── */
+    .builder-sidebar {
+      position: sticky;
+      top: 84px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Progress */
+    .progress-card {
+      background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(22,10,2,0.8));
+      border: 1px solid rgba(212,168,67,0.25);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.1rem;
+    }
+    .progress-label {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar-track {
+      background: rgba(0,0,0,0.4);
+      border-radius: 4px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--teal-dark), var(--teal));
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+      min-width: 0;
+    }
+    .progress-fraction {
+      font-size: 0.7rem;
+      color: var(--stone-light);
+      margin-top: 0.4rem;
+      text-align: right;
+    }
+
+    /* Section nav */
+    .section-nav {
+      background: linear-gradient(135deg, rgba(46,21,8,0.65), rgba(22,10,2,0.9));
+      border: 1px solid rgba(122,72,40,0.45);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .snav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 0.9rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(122,72,40,0.18);
+      transition: background 0.2s, color 0.2s;
+      font-size: 0.76rem;
+      color: var(--stone-light);
+      position: relative;
+      user-select: none;
+    }
+    .snav-item:last-child { border-bottom: none; }
+    .snav-item:hover { background: rgba(212,168,67,0.07); color: var(--tan-light); }
+    .snav-item.active {
+      background: rgba(212,168,67,0.1);
+      color: var(--gold-light);
+      border-left: 3px solid var(--gold);
+      padding-left: calc(0.9rem - 3px);
+    }
+    .snav-icon { font-size: 0.95rem; flex-shrink: 0; }
+    .snav-text { flex: 1; line-height: 1.25; }
+    .snav-check {
+      font-size: 0.65rem;
+      color: var(--teal);
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .snav-item.has-content .snav-check { opacity: 1; }
+
+    /* Sidebar buttons */
+    .sb-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .sb-btn-log {
+      background: rgba(0,196,168,0.1);
+      border: 1px solid rgba(0,196,168,0.3);
+      color: var(--teal);
+    }
+    .sb-btn-log:hover { background: rgba(0,196,168,0.2); }
+    .sb-btn-export {
+      background: rgba(212,168,67,0.1);
+      border: 1px solid rgba(212,168,67,0.28);
+      color: var(--gold);
+    }
+    .sb-btn-export:hover { background: rgba(212,168,67,0.18); }
+    .sb-btn-clear {
+      background: transparent;
+      border: 1px solid rgba(122,72,40,0.3);
+      color: var(--stone);
+      font-size: 0.6rem;
+    }
+    .sb-btn-clear:hover { color: var(--red); border-color: rgba(204,34,34,0.3); }
+
+    /* Docs reference */
+    .docs-ref {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(122,72,40,0.3);
+      border-radius: var(--radius);
+      padding: 0.8rem;
+    }
+    .docs-ref-label {
+      font-family: var(--font-heading);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone-light);
+      margin-bottom: 0.5rem;
+    }
+    .docs-ref-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 0.28rem 0;
+      transition: color 0.2s;
+    }
+    .docs-ref-link:hover { color: var(--gold-light); }
+
+    /* ── Main Panel ────────────────────────────── */
+    .section-panel {
+      background: linear-gradient(135deg, rgba(46,21,8,0.6), rgba(22,10,2,0.88));
+      border: 1px solid rgba(122,72,40,0.5);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .sp-header {
+      background: linear-gradient(90deg, rgba(212,168,67,0.12), rgba(122,72,40,0.2));
+      border-bottom: 1px solid rgba(122,72,40,0.4);
+      padding: 1.5rem 2rem;
+    }
+    .sp-step {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.35rem;
+    }
+    .sp-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.9rem);
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    .sp-context {
+      font-size: 0.86rem;
+      color: var(--stone-light);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .sp-body { padding: 1.75rem 2rem; }
+
+    /* Questions */
+    .q-block { margin-bottom: 1.75rem; }
+    .q-prompt {
+      font-size: 0.87rem;
+      color: var(--tan-light);
+      line-height: 1.55;
+      margin-bottom: 0.6rem;
+      font-family: var(--font-heading);
+      letter-spacing: 0.01em;
+    }
+    .q-num {
+      display: inline-block;
+      background: rgba(212,168,67,0.13);
+      border: 1px solid rgba(212,168,67,0.28);
+      color: var(--gold);
+      font-size: 0.58rem;
+      font-family: var(--font-heading);
+      letter-spacing: 0.1em;
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+    .q-area {
+      width: 100%;
+      background: rgba(0,0,0,0.32);
+      border: 1px solid rgba(122,72,40,0.38);
+      border-radius: var(--radius);
+      padding: 0.7rem 0.9rem;
+      color: var(--tan-light);
+      font-family: var(--font-body);
+      font-size: 0.87rem;
+      line-height: 1.65;
+      resize: vertical;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .q-area:focus {
+      outline: none;
+      border-color: rgba(212,168,67,0.48);
+      background: rgba(0,0,0,0.42);
+    }
+    .q-area::placeholder { color: var(--stone); font-style: italic; }
+    .q-area.has-content { border-color: rgba(0,196,168,0.28); }
+
+    /* Hints */
+    .hint-disc {
+      margin-top: 0.45rem;
+    }
+    .hint-disc summary {
+      list-style: none;
+      font-size: 0.73rem;
+      color: var(--stone);
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+    .hint-disc summary::-webkit-details-marker { display: none; }
+    .hint-disc summary::before {
+      content: '›';
+      font-size: 0.95rem;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+    .hint-disc[open] summary::before { transform: rotate(90deg); }
+    .hint-disc summary:hover { color: var(--gold); }
+    .hint-body {
+      background: rgba(212,168,67,0.05);
+      border: 1px solid rgba(212,168,67,0.14);
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--tan);
+      line-height: 1.6;
+    }
+    .hint-body em { color: var(--stone-light); display: block; margin-bottom: 0.35rem; }
+    .hint-body ul { padding-left: 1.1rem; margin: 0; }
+    .hint-body li { margin-bottom: 0.3rem; }
+
+    /* Section footer */
+    .sp-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2rem;
+      border-top: 1px solid rgba(122,72,40,0.28);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .nav-btns { display: flex; gap: 0.6rem; }
+    .nbtn {
+      padding: 0.58rem 1.15rem;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .nbtn-primary {
+      background: linear-gradient(135deg, var(--gold-dark), var(--brown-warm));
+      color: var(--gold-light);
+      border: 1px solid var(--gold-dark);
+    }
+    .nbtn-primary:hover { filter: brightness(1.15); }
+    .nbtn-ghost {
+      background: transparent;
+      color: var(--stone-light);
+      border: 1px solid rgba(122,72,40,0.38);
+    }
+    .nbtn-ghost:hover { color: var(--tan-light); border-color: var(--stone); }
+    .nbtn:disabled { opacity: 0.28; cursor: not-allowed; }
+    .nbtn-log {
+      background: rgba(0,196,168,0.08);
+      border: 1px solid rgba(0,196,168,0.25);
+      color: var(--teal);
+    }
+    .nbtn-log:hover { background: rgba(0,196,168,0.15); }
+
+    /* ── Iteration Log Overlay ─────────────────── */
+    .log-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 900;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .log-overlay.open { opacity: 1; pointer-events: all; }
+    .log-panel {
+      width: 100%;
+      max-width: 800px;
+      max-height: 88vh;
+      background: linear-gradient(160deg, var(--brown-mid), var(--brown-dark));
+      border: 1px solid rgba(0,196,168,0.3);
+      border-bottom: none;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(48px);
+      transition: transform 0.35s cubic-bezier(0.2,0,0,1);
+      overflow: hidden;
+    }
+    .log-overlay.open .log-panel { transform: translateY(0); }
+    .log-ph {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.75rem;
+      border-bottom: 1px solid rgba(0,196,168,0.2);
+      flex-shrink: 0;
+    }
+    .log-ph-left { display: flex; flex-direction: column; gap: 0.1rem; }
+    .log-ph-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--teal);
+    }
+    .log-ph-sub {
+      font-size: 0.75rem;
+      color: var(--stone-light);
+      font-style: italic;
+    }
+    .log-close {
+      background: none;
+      border: none;
+      color: var(--stone-light);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .log-close:hover { color: var(--tan-light); }
+
+    .log-body {
+      overflow-y: auto;
+      flex: 1;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Add entry form */
+    .log-add-form {
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(0,196,168,0.2);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      flex-shrink: 0;
+    }
+    .log-form-title {
+      font-family: var(--font-heading);
+      font-size: 0.67rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.8rem;
+    }
+    .log-form-label-row {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--stone-light);
+      margin-bottom: 0.3rem;
+      margin-top: 0.6rem;
+      display: block;
+    }
+    .log-form-label-row:first-of-type { margin-top: 0; }
+    .log-fld {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(122,72,40,0.38);
+      border-radius: var(--radius);
+      padding: 0.5rem 0.75rem;
+      color: var(--tan-light);
+      font-family: var(--font-body);
+      font-size: 0.83rem;
+      line-height: 1.5;
+      resize: none;
+      transition: border-color 0.2s;
+    }
+    .log-fld:focus { outline: none; border-color: rgba(0,196,168,0.4); }
+    .log-fld::placeholder { color: var(--stone); font-style: italic; }
+    .log-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .log-add-btn {
+      margin-top: 0.85rem;
+      padding: 0.58rem 1.4rem;
+      background: rgba(0,196,168,0.13);
+      border: 1px solid rgba(0,196,168,0.38);
+      border-radius: var(--radius);
+      color: var(--teal);
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .log-add-btn:hover { background: rgba(0,196,168,0.22); }
+
+    /* Log entry card */
+    .log-entry {
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(0,196,168,0.15);
+      border-left: 3px solid var(--teal-dark);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem;
+    }
+    .log-entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.65rem;
+    }
+    .log-entry-num {
+      background: rgba(0,196,168,0.12);
+      border: 1px solid rgba(0,196,168,0.28);
+      border-radius: 3px;
+      padding: 0.12rem 0.45rem;
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+    }
+    .log-entry-label {
+      font-size: 0.8rem;
+      color: var(--tan-light);
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+    }
+    .log-entry-date { font-size: 0.68rem; color: var(--stone); margin-left: auto; }
+    .log-del {
+      background: none;
+      border: none;
+      color: var(--stone);
+      cursor: pointer;
+      font-size: 0.72rem;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .log-del:hover { color: var(--red); }
+    .log-entry-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .log-entry-col-label {
+      font-family: var(--font-heading);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone-light);
+      margin-bottom: 0.2rem;
+    }
+    .log-entry-col-val {
+      font-size: 0.81rem;
+      color: var(--tan-light);
+      line-height: 1.5;
+    }
+    .log-empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--stone);
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* ── Export Modal ──────────────────────────── */
+    .export-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .export-modal.open { opacity: 1; pointer-events: all; }
+    .export-box {
+      width: 100%;
+      max-width: 620px;
+      background: linear-gradient(135deg, var(--brown-mid), var(--brown-dark));
+      border: 1px solid var(--gold-dark);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+    .export-box-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+    }
+    .export-box-sub {
+      font-size: 0.82rem;
+      color: var(--stone-light);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .export-ta {
+      width: 100%;
+      height: 240px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(122,72,40,0.4);
+      border-radius: var(--radius);
+      padding: 0.75rem;
+      color: var(--tan-light);
+      font-family: monospace;
+      font-size: 0.76rem;
+      resize: none;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    .export-acts { display: flex; gap: 0.75rem; }
+    .export-copy {
+      padding: 0.58rem 1.3rem;
+      background: var(--gold-dark);
+      border: none;
+      border-radius: var(--radius);
+      color: var(--gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: filter 0.2s;
+    }
+    .export-copy:hover { filter: brightness(1.15); }
+    .export-close {
+      padding: 0.58rem 1.3rem;
+      background: transparent;
+      border: 1px solid rgba(122,72,40,0.4);
+      border-radius: var(--radius);
+      color: var(--stone-light);
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+    .export-close:hover { border-color: var(--stone); color: var(--tan-light); }
+
+    /* ── Save Toast ────────────────────────────── */
+    .save-toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: rgba(0,196,168,0.12);
+      border: 1px solid rgba(0,196,168,0.28);
+      color: var(--teal);
+      padding: 0.38rem 0.8rem;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+      z-index: 800;
+    }
+    .save-toast.show { opacity: 1; }
+
+    /* ── Autosave note ─────────────────────────── */
+    .autosave-note {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(122,72,40,0.25);
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      color: var(--stone-light);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ── Completion banner ─────────────────────── */
+    .done-banner {
+      background: linear-gradient(135deg, rgba(0,196,168,0.12), rgba(61,32,16,0.5));
+      border: 1px solid rgba(0,196,168,0.3);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+    .done-banner-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--teal);
+      margin-bottom: 0.4rem;
+    }
+    .done-banner-sub { font-size: 0.85rem; color: var(--stone-light); line-height: 1.6; }
+
+    /* ── Mobile ────────────────────────────────── */
+    @media (max-width: 780px) {
+      .builder-wrap {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+      }
+      .builder-sidebar { position: static; }
+      .section-nav { display: flex; overflow-x: auto; border-radius: var(--radius); }
+      .snav-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-width: 68px;
+        padding: 0.55rem 0.45rem;
+        gap: 0.2rem;
+        border-bottom: none;
+        border-right: 1px solid rgba(122,72,40,0.18);
+        font-size: 0.64rem;
+      }
+      .snav-item.active { border-left: none; border-bottom: 3px solid var(--gold); padding-left: 0.45rem; }
+      .snav-check { position: absolute; top: 3px; right: 3px; }
+      .log-form-grid { grid-template-columns: 1fr; }
+      .log-entry-cols { grid-template-columns: 1fr; }
+      .sp-body { padding: 1.25rem 1.1rem; }
+      .sp-footer { padding: 0.9rem 1.1rem; }
+      .sp-header { padding: 1.25rem 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────── -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-text">
+      Robotic Jones
+      <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="missions.html">Missions</a></li>
+    <li><a href="tips.html">Tips &amp; Tricks</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="calculator.html">Score Calculator</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── Page Header ─────────────────────────────── -->
+<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3rem 2rem 2.5rem;text-align:center;">
+  <p class="eyebrow">🎤 Robot Design Presentation</p>
+  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(1.7rem,4vw,3rem);">Presentation Builder</h1>
+  <div class="section-divider"></div>
+  <p class="section-desc" style="max-width:580px;margin:0 auto;">Work through your story one question at a time. There are no wrong answers — just <em>your</em> process, <em>your</em> ideas, and <em>your</em> team. Your work saves automatically.</p>
+</div>
+
+<!-- ── Builder ─────────────────────────────────── -->
+<div class="builder-wrap">
+
+  <!-- Sidebar -->
+  <aside class="builder-sidebar">
+
+    <div class="progress-card">
+      <div class="progress-label">Your Progress</div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="progress-fraction" id="progressFraction">0 questions filled in</div>
+    </div>
+
+    <nav class="section-nav" id="sectionNav"></nav>
+
+    <div style="display:flex;flex-direction:column;gap:0.5rem;">
+      <button class="sb-btn sb-btn-log" onclick="openLog()">📋 Iteration Log</button>
+      <button class="sb-btn sb-btn-export" onclick="openExport()">📤 Export Notes</button>
+      <button class="sb-btn sb-btn-clear" onclick="clearAll()">↺ Clear &amp; Start Over</button>
+    </div>
+
+    <div class="docs-ref">
+      <div class="docs-ref-label">📎 Your Team's Guides</div>
+      <a href="https://docs.google.com/document/d/1apH3niU3LqC7jzeksgItDY4hBRi0bTe033a8nE4goSw/edit?usp=sharing"
+         target="_blank" rel="noopener" class="docs-ref-link">📝 Presentation Guide — Part 1 ↗</a>
+      <a href="https://docs.google.com/document/d/1TMB_FdjnpF4MyU4wpnH-HfN-izaSJJc7hC1rxfyF744/edit?usp=sharing"
+         target="_blank" rel="noopener" class="docs-ref-link">📄 Presentation Guide — Part 2 ↗</a>
+    </div>
+
+    <div class="autosave-note">
+      💾 Saves automatically in this browser. Use <strong>Export Notes</strong> to save your work elsewhere.
+    </div>
+
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <div id="sectionContent"></div>
+  </main>
+
+</div>
+
+<!-- ── Iteration Log Overlay ───────────────────── -->
+<div class="log-overlay" id="logOverlay" onclick="handleOverlayClick(event)">
+  <div class="log-panel">
+    <div class="log-ph">
+      <div class="log-ph-left">
+        <div class="log-ph-title">🔄 Iteration Log</div>
+        <div class="log-ph-sub">Document every design change — from first build to final version</div>
+      </div>
+      <button class="log-close" onclick="closeLog()">×</button>
+    </div>
+    <div class="log-body" id="logBody"></div>
+  </div>
+</div>
+
+<!-- ── Export Modal ────────────────────────────── -->
+<div class="export-modal" id="exportModal" onclick="handleExportOverlayClick(event)">
+  <div class="export-box">
+    <div class="export-box-title">Export Your Notes</div>
+    <div class="export-box-sub">Copy this text and paste it into a Google Doc, email it to your teacher, or save it somewhere safe. Your answers in Google Slides or Canva are separate from this.</div>
+    <textarea class="export-ta" id="exportText" readonly></textarea>
+    <div class="export-acts">
+      <button class="export-copy" onclick="copyExport()">Copy to Clipboard</button>
+      <button class="export-close" onclick="closeExport()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Save Toast ──────────────────────────────── -->
+<div class="save-toast" id="saveToast">Saved ✓</div>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
+  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-divider"></div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="missions.html">Missions</a>
+    <a href="tips.html">Tips &amp; Tricks</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="calculator.html">Calculator</a>
+  </div>
+  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+// SECTION DATA
+// ═══════════════════════════════════════════════════
+const SECTIONS = [
+  {
+    id: 'team',
+    icon: '🤠',
+    title: 'Meet the Team',
+    context: 'Before you can tell your story, judges need to know who is telling it. This section is about your team — who each of you are and how you work together.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'List each team member and their main role in the robot design process. (Examples: builder, programmer, tester, strategist — or create your own!)',
+        placeholder: 'Write your team roster and roles here...',
+        rows: 4,
+        hint: { intro: 'Think about what each person actually spends the most time doing:', tips: ['People can have more than one role — be honest about what actually happens.', 'Roles may have changed during the season. That\'s normal and worth mentioning.', 'Think beyond building and coding: who plans? Who tests? Who documents things?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What is something each team member is particularly good at — something that actually helped your robot get built or improved?',
+        placeholder: 'Go beyond "good at coding." Think about patience, creativity, attention to detail, staying calm under pressure...',
+        rows: 4,
+        hint: { intro: 'Strength shows up in many ways:', tips: ['Someone who stays calm when things break is incredibly valuable.', 'Someone who always asks "but why?" stops the team from accepting bad designs.', 'Someone who catches small mistakes before they become big problems matters a lot.'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'When your team disagrees on a design decision, how do you work through it?',
+        placeholder: 'Think of a real example of a disagreement and how you actually resolved it...',
+        rows: 3,
+        hint: { intro: 'There\'s no right way to handle disagreements — judges want to see your way:', tips: ['Do you vote? Let one person have final say? Try both ideas and compare?', 'Have you ever been surprised that someone else\'s idea worked better than yours?', 'How do you make sure everyone feels heard, even when they didn\'t get their way?'] }
+      }
+    ]
+  },
+  {
+    id: 'challenge',
+    icon: '🎯',
+    title: 'The Problem We Tackled',
+    context: 'What was your robot up against? This section helps you explain the engineering problem you set out to solve — and why it was worth solving.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'Which missions is your robot designed to complete, and why did you focus on those specific ones?',
+        placeholder: 'List the missions and explain the thinking behind your choices...',
+        rows: 4,
+        hint: { intro: 'Think about the strategy behind your choices:', tips: ['Was it about the highest point value? The most reliable missions? Missions physically close together on the board?', 'Did you start with a longer list and cut missions — why did you cut them?', 'What missions did you want to do but decided not to, and why?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What made those missions hard to solve? What could go wrong during a run?',
+        placeholder: 'Get specific — what are the technically tricky parts?',
+        rows: 4,
+        hint: { intro: 'Think about what kinds of engineering challenges they involve:', tips: ['Precision problems: the robot has to land in exactly the right spot.', 'Reliability problems: it works sometimes but not consistently.', 'Timing problems: the mechanism works but takes too long.', 'All of these are real engineering challenges worth talking about.'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What would your score look like if your robot couldn\'t complete any of these missions? Frame the stakes.',
+        placeholder: 'Compare your score with vs. without these missions successfully completed...',
+        rows: 3
+      }
+    ]
+  },
+  {
+    id: 'ideas',
+    icon: '💡',
+    title: 'Our First Ideas',
+    context: 'Every great design starts messy. This section captures your team\'s thinking before you built anything — the creative, uncertain, "what if we tried..." stage.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'Before you built anything, what was your team\'s very first idea for how to solve the problem? (Even if it turned out to be completely wrong!)',
+        placeholder: 'Describe your first idea — no judgment here...',
+        rows: 4,
+        hint: { intro: 'First ideas are valuable even when they don\'t work:', tips: ['What did you think would work before you had any real evidence?', 'What were you most excited about in that first idea?', 'Did everyone agree on the first idea, or were there already different opinions?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'Did different team members have different ideas at the start? What were they?',
+        placeholder: 'List the competing ideas — including the ones you didn\'t choose!',
+        rows: 4,
+        hint: { intro: 'Multiple ideas means your team actually explored the problem:', tips: ['What was the most creative idea, even if it didn\'t make the cut?', 'What was the simplest "safe" idea someone suggested?', 'Did any idea seem totally impossible at first — but later turned out to have something useful in it?'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'Did you do any research or find inspiration before you started building? (Videos, other robots, real-world tools, anything.)',
+        placeholder: 'Describe what you looked at or tried before your first build...',
+        rows: 3,
+        hint: { intro: 'Research doesn\'t have to be formal:', tips: ['Did you study how a real-world tool works — clamps, cranes, scissors?', 'Did you look very carefully at the mission model and notice something specific?', 'Did you just try a quick experiment to see what would happen? That counts too!'] }
+      },
+      {
+        id: 'q4',
+        prompt: 'How did your team decide which idea to try first?',
+        placeholder: 'Describe the decision — was it a vote? A gut feeling? A quick experiment?',
+        rows: 3,
+        hint: { intro: 'Engineering decisions with incomplete information are normal:', tips: ['Did you pick the simplest idea? The most creative? The one most people liked?', 'Who had to compromise — and how did they handle it?', 'Would you make the same decision again, now that you know how it turned out?'] }
+      }
+    ]
+  },
+  {
+    id: 'building',
+    icon: '🏗️',
+    title: 'Building the First Design',
+    context: 'You\'ve got an idea — now you\'re building. This section is about your first physical design: what it looked like, what choices you made, and what you were hoping it would do.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'Describe your first design in words. What did it look like, and how was it supposed to work?',
+        placeholder: 'Describe it as if the judges can\'t see it — walk us through it step by step...',
+        rows: 5,
+        hint: { intro: 'Try to describe the mechanism clearly:', tips: ['How did the robot approach the mission element?', 'What attachment or tool did you add to the robot?', 'What was the core mechanism — a pusher, grabber, lifter, dropper, something else entirely?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What key choices did you make while building? Why those parts, that structure, that approach?',
+        placeholder: 'Explain the reasoning behind your design choices...',
+        rows: 4,
+        hint: { intro: 'The "why" behind a design choice is what engineers explain to each other:', tips: ['Why that motor type? That gear? That sensor?', 'Why that size or shape?', 'Were there parts you wanted to use but couldn\'t — and why not?'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What part of this first design were you most confident would work? What were you least confident about?',
+        placeholder: 'Be honest — knowing where your design is risky is an engineering skill!',
+        rows: 3,
+        hint: { intro: 'Good engineers know their design\'s strengths and weak points:', tips: ['What felt solid and well-thought-out?', 'What felt like a gamble or an educated guess?', 'Did your gut feelings turn out to be right when you tested?'] }
+      }
+    ]
+  },
+  {
+    id: 'testing',
+    icon: '🔬',
+    title: 'Testing & Learning',
+    context: 'Testing is where engineering theory meets reality. What happened when you actually ran your robot? This section is about real observations, data, and surprises.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'What happened when you first tested your design? Describe a real test run — what did the robot actually do?',
+        placeholder: 'Be specific — not just "it didn\'t work" but exactly what happened...',
+        rows: 5,
+        hint: { intro: 'A test result is data — be as specific as possible:', tips: ['Did it succeed more than it failed? What was the rough ratio?', 'Where in the run did things break down — at the start, middle, or end?', 'What did it look like when the robot "almost" worked?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What surprised you about the test results? Was anything better or worse than you expected?',
+        placeholder: 'What did testing teach you that you couldn\'t have predicted beforehand?',
+        rows: 3,
+        hint: { intro: 'Surprises are where learning happens:', tips: ['Did something work on the first try that you thought would be hard?', 'Did something fail in a completely unexpected way?', 'Did you discover a problem you didn\'t even know was a problem?'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'How did you track your test results? What did you write down, record, or remember from your testing?',
+        placeholder: 'Notes, scores, video, conversations between teammates — how did you keep track?',
+        rows: 3,
+        hint: { intro: 'Tracking results is what separates guessing from engineering:', tips: ['Did you count how many times it worked vs. failed?', 'Did you notice patterns — like it always fails when approaching from one side?', 'What did you say to each other right after a bad test run?'] }
+      }
+    ]
+  },
+  {
+    id: 'iteration',
+    icon: '🔄',
+    title: 'Iteration',
+    context: 'This is the heart of engineering. Iteration means improving your design based on what you actually learned from testing. Real engineers don\'t get it right the first time — they just keep getting better.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'What was the first change you made after testing, and why specifically that change?',
+        placeholder: 'What problem did you decide to fix first, and what was your fix?',
+        rows: 4,
+        hint: { intro: 'The "why" of a change is as important as the change itself:', tips: ['Was it the most urgent problem?', 'Was it the easiest fix available?', 'Did you fix the symptom or the actual root cause?', 'Looking back, was that the right thing to prioritize?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'How many different versions of your design have you gone through? What changed from version to version?',
+        placeholder: 'Describe the evolution — try to capture what was different each time...',
+        rows: 5,
+        hint: { intro: 'Use the Iteration Log (button below) to capture each version in detail as you go!', tips: ['You don\'t need formal version numbers — just describe the changes.', 'Even small tweaks count: a 2mm position adjustment is still a design decision.', 'Think about mechanical changes and programming changes separately.'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What is the biggest difference between your very first design and your current one?',
+        placeholder: 'If someone saw both versions side by side, what would they notice most?',
+        rows: 4,
+        hint: { intro: 'This question shows your team\'s engineering growth:', tips: ['Think about size, shape, mechanism, approach angle, attachment type...', 'Did your fundamental strategy change, or did you refine the same core idea?', 'Would the "old you" be impressed by what you built now?'] }
+      },
+      {
+        id: 'q4',
+        prompt: 'Was there a moment when you considered starting completely over? What did you decide, and why?',
+        placeholder: 'Be honest — this is one of the hardest calls in engineering!',
+        rows: 3,
+        hint: { intro: 'There\'s no wrong answer here:', tips: ['Starting over shows courage and honest self-assessment.', 'Iterating on an existing design shows resourcefulness.', 'What made you lean one way or the other?'] }
+      }
+    ]
+  },
+  {
+    id: 'solution',
+    icon: '🏆',
+    title: 'Our Final Design',
+    context: 'This is where you show off. Your current design is the result of everything you\'ve built and learned. Now explain how it works, what makes it special, and what you\'re proud of.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'How does your current robot work? Walk through a full run, step by step, as if the judges can\'t see it.',
+        placeholder: 'Start at the launch. Walk us through exactly what happens...',
+        rows: 6,
+        hint: { intro: 'Narrate it like a video of your robot running:', tips: ['What does it do first? Then what?', 'What triggers each action — a timer, a sensor, a specific position?', 'How does the run end? What\'s the last thing it does?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What makes your approach unique or clever? What might another team do differently — and why is your way interesting?',
+        placeholder: 'What\'s special about how YOUR team chose to solve this problem?',
+        rows: 4,
+        hint: { intro: 'Every team\'s solution reflects their own thinking:', tips: ['Is your design unusually simple? Compact? Adaptable?', 'Did you use a part or technique in a creative or unexpected way?', 'What trade-off did you make that you think was the right engineering call?'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What part of your final design are you most proud of, and why?',
+        placeholder: 'Don\'t be modest — you\'ve worked hard for this!',
+        rows: 3
+      },
+      {
+        id: 'q4',
+        prompt: 'What is still imperfect about your current design? Every design has trade-offs — being honest about them is a strength.',
+        placeholder: 'What would you fix with more time? What\'s the most failure-prone part?',
+        rows: 3,
+        hint: { intro: 'Engineers who know their design\'s limits are more trustworthy, not less:', tips: ['What conditions make your robot perform worse?', 'What mission did you give up on trying — and why?', 'Is there a part that\'s fragile or inconsistent that you\'ve accepted for now?'] }
+      }
+    ]
+  },
+  {
+    id: 'teamwork',
+    icon: '🤝',
+    title: 'Teamwork in Action',
+    context: 'FLL is about more than robots. This section shows judges how your team actually worked together — the collaboration, the hard moments, and the growth.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'Give specific examples of how different team members contributed to the robot design process.',
+        placeholder: 'Who did what, specifically? Concrete examples are much more powerful than general statements...',
+        rows: 4,
+        hint: { intro: 'Go beyond "they built things" or "they coded":', tips: ['Who suggested a specific idea that made it into the final design?', 'Who caught a mistake before it caused a big problem?', 'Who kept the team going when morale was low or things kept breaking?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'Describe a specific moment when your team overcame a challenge together. Tell us what actually happened.',
+        placeholder: 'This is story time — judges love a real "and then..." moment...',
+        rows: 5,
+        hint: { intro: 'Pick a real, specific moment — not a summary:', tips: ['It could be a technical problem, a disagreement, a time crunch, or a big failure.', 'Who stepped up? What was the turning point?', 'What would have happened if the team hadn\'t worked together on it?'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What did you learn about working as a team this season that you didn\'t know before?',
+        placeholder: 'What about teamwork surprised you, or changed how you work with others?',
+        rows: 3,
+        hint: { intro: 'Growth in teamwork matters just as much as growth in robot design:', tips: ['Did you get better at listening? Explaining your ideas? Compromising?', 'What would you tell your teammates that you haven\'t said out loud yet?'] }
+      }
+    ]
+  },
+  {
+    id: 'reflection',
+    icon: '🌟',
+    title: 'Reflection',
+    context: 'The best engineers don\'t just build — they step back and think about what they learned. This section helps you capture those insights.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'If you had two more weeks before competition, what is the first thing you would change or improve?',
+        placeholder: 'Think about what\'s most impactful — reliability? New missions? Cleaner code?',
+        rows: 3,
+        hint: { intro: 'This shows judges that your engineering brain keeps working:', tips: ['What\'s the change with the biggest potential payoff?', 'Would you add something new, or make what you have more reliable?'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'What is one thing you wish you\'d known at the very start of this season?',
+        placeholder: 'If you could send a message back to yourself from week one...',
+        rows: 3,
+        hint: { intro: 'This is a great way to show what you\'ve actually learned:', tips: ['Could be technical (calibrate your gyro every single session!).', 'Could be strategic (pick fewer missions and make them reliable).', 'Could be about teamwork (set clearer roles from day one).'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What is the most important thing you learned from this whole experience — about engineering, teamwork, or yourself?',
+        placeholder: 'Your single biggest takeaway from this entire season...',
+        rows: 3
+      },
+      {
+        id: 'q4',
+        prompt: 'What advice would you give to a team just starting this challenge next year?',
+        placeholder: 'Write them a note — be as specific and honest as possible...',
+        rows: 4,
+        hint: { intro: 'Specific advice is memorable advice:', tips: ['"Start early" is good advice.', '"Test every attachment 10 times before you lock your run" is better advice.', 'What\'s the one mistake you\'re sure most teams make?'] }
+      }
+    ]
+  },
+  {
+    id: 'presentation',
+    icon: '🎬',
+    title: 'Your Presentation Plan',
+    context: 'Now that you\'ve thought through your story, it\'s time to plan how to tell it. This section helps you figure out who says what, how your slides or Canva will flow, and how to practice.',
+    questions: [
+      {
+        id: 'q1',
+        prompt: 'How will you organize your presentation into sections or slides? List each section with a one-line description of what it covers.',
+        placeholder: 'Section 1: ...\nSection 2: ...\nSection 3: ...',
+        rows: 6,
+        hint: { intro: 'Think about what judges need to understand, and in what order:', tips: ['Start with who you are.', 'Then explain the problem.', 'Then walk through your design process.', 'End with what you learned and your final design.', 'But you can tell it in any order that feels right for your team\'s story!'] }
+      },
+      {
+        id: 'q2',
+        prompt: 'Who will speak for each section of the presentation, and approximately how long will their part be? (Total is usually around 5 minutes.)',
+        placeholder: 'Name → what section they cover → approximate time...',
+        rows: 5,
+        hint: { intro: 'Every team member should have a speaking role:', tips: ['Even one strong sentence from each person shows real teamwork.', 'Put the person who knows a topic best on that part — authenticity shows.', 'Practice your transitions between speakers — they can feel awkward without rehearsal.'] }
+      },
+      {
+        id: 'q3',
+        prompt: 'What visuals, photos, diagrams, or props will you use? Will you do any live demonstrations?',
+        placeholder: 'List everything you plan to show, not just say...',
+        rows: 4,
+        hint: { intro: 'Showing beats telling in presentations:', tips: ['A side-by-side photo of your first design vs. your current one is powerful.', 'A short video clip of a test that failed — and then one that worked — tells a great story.', 'If you bring a physical attachment, judges can look at and hold it!'] }
+      },
+      {
+        id: 'q4',
+        prompt: 'Have you practiced your full presentation out loud, start to finish, as a team? What did you notice when you did?',
+        placeholder: 'Notes from your practice runs — what was awkward, what felt strong, what you\'re still working on...',
+        rows: 4,
+        hint: { intro: 'Out-loud practice reveals things that reading your notes never will:', tips: ['Did you go over or under time?', 'Were there awkward silences or pauses during transitions?', 'Did something sound different out loud than it did in your head?'] }
+      },
+      {
+        id: 'q5',
+        prompt: 'What is the one thing you most want judges to remember after you leave the room?',
+        placeholder: 'If they only remember one thing about your team, what should it be?',
+        rows: 3,
+        hint: { intro: 'This is your "headline" — knowing it helps you stay focused:', tips: ['Is it a specific innovation you\'re proud of?', 'Is it how much your team learned and grew?', 'Is it how you solved a tricky problem in a clever way?', 'Build your whole presentation around that one thing.'] }
+      }
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════
+// STATE & STORAGE
+// ═══════════════════════════════════════════════════
+const ANSWERS_KEY = 'fll_pres_answers_v1';
+const LOG_KEY     = 'fll_pres_log_v1';
+
+let currentIdx  = 0;
+let answers     = {};
+let logEntries  = [];
+let toastTimer  = null;
+
+function loadAll() {
+  try { answers    = JSON.parse(localStorage.getItem(ANSWERS_KEY) || '{}'); } catch(e) { answers = {}; }
+  try { logEntries = JSON.parse(localStorage.getItem(LOG_KEY)     || '[]'); } catch(e) { logEntries = []; }
+}
+function saveAnswers() { localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers)); }
+function saveLog()     { localStorage.setItem(LOG_KEY,     JSON.stringify(logEntries)); }
+
+function setAnswer(sectionId, qId, val) {
+  answers[sectionId] = answers[sectionId] || {};
+  answers[sectionId][qId] = val;
+  saveAnswers();
+  updateProgress();
+  showToast();
+}
+
+// ═══════════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════════
+function totalQs() {
+  return SECTIONS.reduce((sum, s) => sum + s.questions.length, 0);
+}
+function answeredQs() {
+  let n = 0;
+  SECTIONS.forEach(s => {
+    const sa = answers[s.id] || {};
+    s.questions.forEach(q => { if ((sa[q.id] || '').trim()) n++; });
+  });
+  return n;
+}
+function sectionHasContent(s) {
+  const sa = answers[s.id] || {};
+  return s.questions.some(q => (sa[q.id] || '').trim());
+}
+function updateProgress() {
+  const total = totalQs();
+  const done  = answeredQs();
+  const pct   = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFraction').textContent =
+    done + ' of ' + total + ' questions filled in';
+  updateSidebar();
+}
+
+// ═══════════════════════════════════════════════════
+// SIDEBAR
+// ═══════════════════════════════════════════════════
+function updateSidebar() {
+  const nav = document.getElementById('sectionNav');
+  nav.innerHTML = SECTIONS.map((s, i) => {
+    const active  = i === currentIdx;
+    const hasData = sectionHasContent(s);
+    return `<div class="snav-item${active ? ' active' : ''}${hasData ? ' has-content' : ''}"
+                 onclick="goTo(${i})">
+      <span class="snav-icon">${s.icon}</span>
+      <span class="snav-text">${s.title}</span>
+      <span class="snav-check">✓</span>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// SECTION RENDERING
+// ═══════════════════════════════════════════════════
+function goTo(idx) {
+  currentIdx = idx;
+  renderSection(idx);
+  updateSidebar();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderSection(idx) {
+  const s    = SECTIONS[idx];
+  const sa   = answers[s.id] || {};
+  const isFirst = idx === 0;
+  const isLast  = idx === SECTIONS.length - 1;
+
+  // Build question HTML (values set via DOM after insertion)
+  const questionsHTML = s.questions.map((q, qi) => {
+    let hintHTML = '';
+    if (q.hint) {
+      const items = q.hint.tips.map(t => `<li>${t}</li>`).join('');
+      hintHTML = `<details class="hint-disc">
+        <summary>Need a nudge?</summary>
+        <div class="hint-body">
+          <em>${q.hint.intro}</em>
+          <ul>${items}</ul>
+        </div>
+      </details>`;
+    }
+    return `<div class="q-block">
+      <div class="q-prompt"><span class="q-num">${qi + 1}</span>${escHtml(q.prompt)}</div>
+      <textarea
+        class="q-area"
+        id="qa-${s.id}-${q.id}"
+        rows="${q.rows || 4}"
+        placeholder="${escAttr(q.placeholder || 'Your ideas here...')}"
+      ></textarea>
+      ${hintHTML}
+    </div>`;
+  }).join('');
+
+  // Completion banner on last section if all filled
+  const totalSectionQs = s.questions.length;
+  const filledSectionQs = s.questions.filter(q => (sa[q.id] || '').trim()).length;
+  const allDone = answeredQs() === totalQs() && answeredQs() > 0;
+
+  const doneBanner = (isLast && allDone) ? `
+    <div class="done-banner">
+      <div class="done-banner-title">🎉 You've worked through all 10 sections!</div>
+      <div class="done-banner-sub">Your notes are saved. Hit <strong>Export Notes</strong> in the sidebar to copy everything into a Google Doc or share with your teacher. Now go build that presentation!</div>
+    </div>` : '';
+
+  const nextLabel = isLast ? 'Export Notes →' : 'Next Section →';
+  const nextAction = isLast ? 'openExport()' : `goTo(${idx + 1})`;
+
+  document.getElementById('sectionContent').innerHTML = `
+    <div class="section-panel">
+      <div class="sp-header">
+        <div class="sp-step">Section ${idx + 1} of ${SECTIONS.length}</div>
+        <div class="sp-title">${s.icon} ${s.title}</div>
+        <div class="sp-context">${s.context}</div>
+      </div>
+      <div class="sp-body">
+        ${doneBanner}
+        ${questionsHTML}
+      </div>
+      <div class="sp-footer">
+        <div class="nav-btns">
+          <button class="nbtn nbtn-ghost" onclick="goTo(${idx - 1})" ${isFirst ? 'disabled' : ''}>← Previous</button>
+          <button class="nbtn nbtn-primary" onclick="${nextAction}">${nextLabel}</button>
+        </div>
+        <button class="nbtn nbtn-log" onclick="openLog()">+ Add to Iteration Log</button>
+      </div>
+    </div>`;
+
+  // Set textarea values safely (no innerHTML injection risk)
+  s.questions.forEach(q => {
+    const el = document.getElementById(`qa-${s.id}-${q.id}`);
+    if (!el) return;
+    const val = sa[q.id] || '';
+    el.value = val;
+    el.classList.toggle('has-content', !!val.trim());
+    el.addEventListener('input', () => {
+      el.classList.toggle('has-content', !!el.value.trim());
+      setAnswer(s.id, q.id, el.value);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// ITERATION LOG
+// ═══════════════════════════════════════════════════
+function openLog() {
+  document.getElementById('logOverlay').classList.add('open');
+  renderLogBody();
+}
+function closeLog() {
+  document.getElementById('logOverlay').classList.remove('open');
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('logOverlay')) closeLog();
+}
+
+function renderLogBody() {
+  const sortedEntries = [...logEntries].reverse(); // newest first
+
+  const formHTML = `
+    <div class="log-add-form">
+      <div class="log-form-title">➕ Add a New Entry</div>
+      <div class="log-form-grid">
+        <div>
+          <label class="log-form-label-row">What did you try?</label>
+          <textarea class="log-fld" id="logTried" rows="3" placeholder="Describe the design or idea you tested..."></textarea>
+        </div>
+        <div>
+          <label class="log-form-label-row">What happened?</label>
+          <textarea class="log-fld" id="logHappened" rows="3" placeholder="What did the test show? What worked or failed?"></textarea>
+        </div>
+        <div>
+          <label class="log-form-label-row">What did you change next?</label>
+          <textarea class="log-fld" id="logChanged" rows="3" placeholder="What was your next move based on what you learned?"></textarea>
+        </div>
+      </div>
+      <label class="log-form-label-row">Label / Version (optional)</label>
+      <input class="log-fld" id="logLabel" type="text" placeholder="e.g., v2, After Week 3 testing, Gripper attempt 1..." style="margin-bottom:0;" />
+      <button class="log-add-btn" onclick="addLogEntry()">Save Entry</button>
+    </div>`;
+
+  const entriesHTML = sortedEntries.length === 0
+    ? `<div class="log-empty">No entries yet. Use this log to capture every design change, test result, or "aha!" moment.<br><br>Great engineering is about the <em>process</em> — document it as you go!</div>`
+    : sortedEntries.map(e => `
+        <div class="log-entry" id="log-entry-${e.id}">
+          <div class="log-entry-meta">
+            <span class="log-entry-num">ENTRY #${e.num}</span>
+            ${e.label ? `<span class="log-entry-label">${escHtml(e.label)}</span>` : ''}
+            <span class="log-entry-date">${e.date}</span>
+            <button class="log-del" onclick="deleteLogEntry(${e.id})" title="Delete entry">✕ Delete</button>
+          </div>
+          <div class="log-entry-cols">
+            <div>
+              <div class="log-entry-col-label">What we tried</div>
+              <div class="log-entry-col-val">${escHtml(e.tried) || '<em style="color:var(--stone)">—</em>'}</div>
+            </div>
+            <div>
+              <div class="log-entry-col-label">What happened</div>
+              <div class="log-entry-col-val">${escHtml(e.happened) || '<em style="color:var(--stone)">—</em>'}</div>
+            </div>
+            <div>
+              <div class="log-entry-col-label">What we changed</div>
+              <div class="log-entry-col-val">${escHtml(e.changed) || '<em style="color:var(--stone)">—</em>'}</div>
+            </div>
+          </div>
+        </div>`).join('');
+
+  document.getElementById('logBody').innerHTML = formHTML + entriesHTML;
+}
+
+function addLogEntry() {
+  const tried    = document.getElementById('logTried').value.trim();
+  const happened = document.getElementById('logHappened').value.trim();
+  const changed  = document.getElementById('logChanged').value.trim();
+  const label    = document.getElementById('logLabel').value.trim();
+
+  if (!tried && !happened && !changed) {
+    alert('Fill in at least one field before saving an entry.');
+    return;
+  }
+
+  const num = logEntries.length + 1;
+  const id  = Date.now();
+  const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+  logEntries.push({ id, num, date, label, tried, happened, changed });
+  saveLog();
+  renderLogBody();
+}
+
+function deleteLogEntry(id) {
+  if (!confirm('Delete this iteration log entry?')) return;
+  logEntries = logEntries.filter(e => e.id !== id);
+  // Renumber
+  logEntries.forEach((e, i) => { e.num = i + 1; });
+  saveLog();
+  renderLogBody();
+}
+
+// ═══════════════════════════════════════════════════
+// EXPORT
+// ═══════════════════════════════════════════════════
+function openExport() {
+  document.getElementById('exportText').value = generateExportText();
+  document.getElementById('exportModal').classList.add('open');
+}
+function closeExport() {
+  document.getElementById('exportModal').classList.remove('open');
+}
+function handleExportOverlayClick(e) {
+  if (e.target === document.getElementById('exportModal')) closeExport();
+}
+
+function generateExportText() {
+  const line  = '═'.repeat(52);
+  const dline = '─'.repeat(52);
+  const date  = new Date().toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  let out = `${line}\nROBOTICS PRESENTATION BUILDER — EXPORT\nMayfield Junior School FLL Club\nExported: ${date}\n${line}\n\n`;
+
+  SECTIONS.forEach((s, si) => {
+    const sa = answers[s.id] || {};
+    out += `SECTION ${si + 1}: ${s.title.toUpperCase()}\n${dline}\n\n`;
+    s.questions.forEach((q, qi) => {
+      out += `Q${qi + 1}: ${q.prompt}\n`;
+      const val = (sa[q.id] || '').trim();
+      out += val ? `→ ${val.replace(/\n/g, '\n  ')}\n\n` : `→ (not yet filled in)\n\n`;
+    });
+    out += '\n';
+  });
+
+  if (logEntries.length > 0) {
+    out += `${line}\nITERATION LOG (${logEntries.length} ${logEntries.length === 1 ? 'entry' : 'entries'})\n${line}\n\n`;
+    logEntries.forEach(e => {
+      out += `ENTRY #${e.num}${e.label ? ' — ' + e.label : ''} | ${e.date}\n`;
+      out += `  What we tried:   ${e.tried || '—'}\n`;
+      out += `  What happened:   ${e.happened || '—'}\n`;
+      out += `  What we changed: ${e.changed || '—'}\n\n`;
+    });
+  } else {
+    out += `${line}\nITERATION LOG\n${line}\n(No entries yet — use the Iteration Log to document your design changes!)\n`;
+  }
+
+  return out;
+}
+
+function copyExport() {
+  const ta = document.getElementById('exportText');
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  try {
+    navigator.clipboard.writeText(ta.value).then(() => {
+      const btn = document.querySelector('.export-copy');
+      btn.textContent = 'Copied! ✓';
+      setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 2000);
+    });
+  } catch(e) {
+    document.execCommand('copy');
+    const btn = document.querySelector('.export-copy');
+    btn.textContent = 'Copied! ✓';
+    setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 2000);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// CLEAR
+// ═══════════════════════════════════════════════════
+function clearAll() {
+  if (!confirm('Are you sure you want to clear all your answers and the iteration log? This cannot be undone.')) return;
+  answers = {};
+  logEntries = [];
+  localStorage.removeItem(ANSWERS_KEY);
+  localStorage.removeItem(LOG_KEY);
+  currentIdx = 0;
+  renderSection(0);
+  updateProgress();
+}
+
+// ═══════════════════════════════════════════════════
+// SAVE TOAST
+// ═══════════════════════════════════════════════════
+function showToast() {
+  const t = document.getElementById('saveToast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+// ═══════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+function escAttr(str) {
+  if (!str) return '';
+  return String(str).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ═══════════════════════════════════════════════════
+// MOBILE NAV
+// ═══════════════════════════════════════════════════
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+loadAll();
+updateSidebar();
+renderSection(0);
+updateProgress();
+</script>
+</body>
+</html>
