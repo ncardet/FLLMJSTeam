@@ -149,6 +149,30 @@
       margin-bottom: 1.25rem;
     }
 
+    /* Board setup video embed */
+    .video-embed-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 0.9rem;
+    }
+    .video-embed-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-fallback-note {
+      font-size: 0.78rem;
+      color: var(--stone-light);
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
+    }
+
     /* Resource link cards */
     .resource-links {
       display: grid;
@@ -440,16 +464,18 @@
             <div class="qa-a">The map is a bit uneven this year.</div>
           </div>
         </div>
-        <div class="resource-links">
-          <a href="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
-            <span class="resource-link-file-icon">📋</span>
-            <div class="resource-link-info">
-              <div class="resource-link-name">Board Setup Guide</div>
-              <div class="resource-link-type">Google Drive · PDF</div>
-            </div>
-            <span class="resource-link-arrow">↗</span>
-          </a>
+        <div class="video-embed-wrap">
+          <iframe
+            src="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/preview"
+            allow="autoplay"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
         </div>
+        <p class="video-fallback-note">
+          Video not loading? Make sure you're signed into Google, then
+          <a href="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--gold);">open it directly in Google Drive ↗</a>
+        </p>
       </div>
     </div>
 
