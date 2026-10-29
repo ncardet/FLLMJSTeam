@@ -12,6 +12,16 @@ const SEASON = {
 // Dates are local (Pacific). Add venue / time / mapUrl when you have them.
 const EVENTS = [
   {
+    id: 'qualifier',
+    kind: 'Qualifying Event',
+    name: 'Qualifying Event',
+    date: '2026-11-15',
+    time: 'Arrive early — time TBA',
+    venue: '',
+    mapUrl: '',
+    note: 'Our first official event of the season! Three robot game matches (best score counts) plus a judging session.',
+  },
+  {
     id: 'practice',
     kind: 'Practice Competition',
     name: 'MJS Practice Competition',
@@ -19,7 +29,7 @@ const EVENTS = [
     time: 'After school',
     venue: '',
     mapUrl: '',
-    note: 'A full dress rehearsal: three timed matches, scoresheet scoring, and a practice judging session. Treat it exactly like the real thing.',
+    note: 'A dress rehearsal for the Regional: three timed matches, scoresheet scoring, and a practice judging session. Treat it exactly like the real thing.',
   },
   {
     id: 'regional',
@@ -29,17 +39,7 @@ const EVENTS = [
     time: 'Arrive early — time TBA',
     venue: '',
     mapUrl: '',
-    note: 'Our first official event of the season. Three robot game matches (best score counts) plus a judging session.',
-  },
-  {
-    id: 'qualifier',
-    kind: 'Qualifying Event',
-    name: 'Qualifying Event',
-    date: '2027-02-15',
-    time: 'Arrive early — time TBA',
-    venue: '',
-    mapUrl: '',
-    note: 'Bring everything we learned in December. Three matches, judging session, and our best robot yet.',
+    note: 'Bring everything we learned at the Qualifier. Three matches, a judging session, and our best robot yet.',
   },
 ];
 
