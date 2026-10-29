@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presentation Builder — Robotic Jones &amp; The Temple of LEGO</title>
+  <title>Presentation Builder — BIOGLOW Hub · MJS FLL</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ── Builder Layout ────────────────────────── */
@@ -28,8 +28,8 @@
 
     /* Progress */
     .progress-card {
-      background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(22,10,2,0.8));
-      border: 1px solid rgba(212,168,67,0.25);
+      background: linear-gradient(135deg, rgba(155,240,74,0.1), rgba(4,17,13,0.8));
+      border: 1px solid rgba(155,240,74,0.25);
       border-radius: var(--radius-lg);
       padding: 1rem 1.1rem;
     }
@@ -63,8 +63,8 @@
 
     /* Section nav */
     .section-nav {
-      background: linear-gradient(135deg, rgba(46,21,8,0.65), rgba(22,10,2,0.9));
-      border: 1px solid rgba(122,72,40,0.45);
+      background: linear-gradient(135deg, rgba(10,34,25,0.65), rgba(4,17,13,0.9));
+      border: 1px solid rgba(46,120,92,0.45);
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
@@ -74,7 +74,7 @@
       gap: 0.55rem;
       padding: 0.6rem 0.9rem;
       cursor: pointer;
-      border-bottom: 1px solid rgba(122,72,40,0.18);
+      border-bottom: 1px solid rgba(46,120,92,0.18);
       transition: background 0.2s, color 0.2s;
       font-size: 0.76rem;
       color: var(--stone-light);
@@ -82,9 +82,9 @@
       user-select: none;
     }
     .snav-item:last-child { border-bottom: none; }
-    .snav-item:hover { background: rgba(212,168,67,0.07); color: var(--tan-light); }
+    .snav-item:hover { background: rgba(155,240,74,0.07); color: var(--tan-light); }
     .snav-item.active {
-      background: rgba(212,168,67,0.1);
+      background: rgba(155,240,74,0.1);
       color: var(--gold-light);
       border-left: 3px solid var(--gold);
       padding-left: calc(0.9rem - 3px);
@@ -116,29 +116,29 @@
       transition: all 0.2s;
     }
     .sb-btn-log {
-      background: rgba(0,196,168,0.1);
-      border: 1px solid rgba(0,196,168,0.3);
+      background: rgba(61,242,224,0.1);
+      border: 1px solid rgba(61,242,224,0.3);
       color: var(--teal);
     }
-    .sb-btn-log:hover { background: rgba(0,196,168,0.2); }
+    .sb-btn-log:hover { background: rgba(61,242,224,0.2); }
     .sb-btn-export {
-      background: rgba(212,168,67,0.1);
-      border: 1px solid rgba(212,168,67,0.28);
+      background: rgba(155,240,74,0.1);
+      border: 1px solid rgba(155,240,74,0.28);
       color: var(--gold);
     }
-    .sb-btn-export:hover { background: rgba(212,168,67,0.18); }
+    .sb-btn-export:hover { background: rgba(155,240,74,0.18); }
     .sb-btn-clear {
       background: transparent;
-      border: 1px solid rgba(122,72,40,0.3);
+      border: 1px solid rgba(46,120,92,0.3);
       color: var(--stone);
       font-size: 0.6rem;
     }
-    .sb-btn-clear:hover { color: var(--red); border-color: rgba(204,34,34,0.3); }
+    .sb-btn-clear:hover { color: var(--red); border-color: rgba(255,92,138,0.3); }
 
     /* Docs reference */
     .docs-ref {
       background: rgba(0,0,0,0.2);
-      border: 1px solid rgba(122,72,40,0.3);
+      border: 1px solid rgba(46,120,92,0.3);
       border-radius: var(--radius);
       padding: 0.8rem;
     }
@@ -164,14 +164,14 @@
 
     /* ── Main Panel ────────────────────────────── */
     .section-panel {
-      background: linear-gradient(135deg, rgba(46,21,8,0.6), rgba(22,10,2,0.88));
-      border: 1px solid rgba(122,72,40,0.5);
+      background: linear-gradient(135deg, rgba(10,34,25,0.6), rgba(4,17,13,0.88));
+      border: 1px solid rgba(46,120,92,0.5);
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
     .sp-header {
-      background: linear-gradient(90deg, rgba(212,168,67,0.12), rgba(122,72,40,0.2));
-      border-bottom: 1px solid rgba(122,72,40,0.4);
+      background: linear-gradient(90deg, rgba(155,240,74,0.12), rgba(46,120,92,0.2));
+      border-bottom: 1px solid rgba(46,120,92,0.4);
       padding: 1.5rem 2rem;
     }
     .sp-step {
@@ -208,8 +208,8 @@
     }
     .q-num {
       display: inline-block;
-      background: rgba(212,168,67,0.13);
-      border: 1px solid rgba(212,168,67,0.28);
+      background: rgba(155,240,74,0.13);
+      border: 1px solid rgba(155,240,74,0.28);
       color: var(--gold);
       font-size: 0.58rem;
       font-family: var(--font-heading);
@@ -222,7 +222,7 @@
     .q-area {
       width: 100%;
       background: rgba(0,0,0,0.32);
-      border: 1px solid rgba(122,72,40,0.38);
+      border: 1px solid rgba(46,120,92,0.38);
       border-radius: var(--radius);
       padding: 0.7rem 0.9rem;
       color: var(--tan-light);
@@ -234,11 +234,11 @@
     }
     .q-area:focus {
       outline: none;
-      border-color: rgba(212,168,67,0.48);
+      border-color: rgba(155,240,74,0.48);
       background: rgba(0,0,0,0.42);
     }
     .q-area::placeholder { color: var(--stone); font-style: italic; }
-    .q-area.has-content { border-color: rgba(0,196,168,0.28); }
+    .q-area.has-content { border-color: rgba(61,242,224,0.28); }
 
     /* Hints */
     .hint-disc {
@@ -265,8 +265,8 @@
     .hint-disc[open] summary::before { transform: rotate(90deg); }
     .hint-disc summary:hover { color: var(--gold); }
     .hint-body {
-      background: rgba(212,168,67,0.05);
-      border: 1px solid rgba(212,168,67,0.14);
+      background: rgba(155,240,74,0.05);
+      border: 1px solid rgba(155,240,74,0.14);
       border-radius: var(--radius);
       padding: 0.7rem 1rem;
       margin-top: 0.5rem;
@@ -284,7 +284,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.1rem 2rem;
-      border-top: 1px solid rgba(122,72,40,0.28);
+      border-top: 1px solid rgba(46,120,92,0.28);
       flex-wrap: wrap;
       gap: 0.75rem;
     }
@@ -308,16 +308,16 @@
     .nbtn-ghost {
       background: transparent;
       color: var(--stone-light);
-      border: 1px solid rgba(122,72,40,0.38);
+      border: 1px solid rgba(46,120,92,0.38);
     }
     .nbtn-ghost:hover { color: var(--tan-light); border-color: var(--stone); }
     .nbtn:disabled { opacity: 0.28; cursor: not-allowed; }
     .nbtn-log {
-      background: rgba(0,196,168,0.08);
-      border: 1px solid rgba(0,196,168,0.25);
+      background: rgba(61,242,224,0.08);
+      border: 1px solid rgba(61,242,224,0.25);
       color: var(--teal);
     }
-    .nbtn-log:hover { background: rgba(0,196,168,0.15); }
+    .nbtn-log:hover { background: rgba(61,242,224,0.15); }
 
     /* ── Iteration Log Overlay ─────────────────── */
     .log-overlay {
@@ -339,7 +339,7 @@
       max-width: 800px;
       max-height: 88vh;
       background: linear-gradient(160deg, var(--brown-mid), var(--brown-dark));
-      border: 1px solid rgba(0,196,168,0.3);
+      border: 1px solid rgba(61,242,224,0.3);
       border-bottom: none;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
       display: flex;
@@ -354,7 +354,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 1.75rem;
-      border-bottom: 1px solid rgba(0,196,168,0.2);
+      border-bottom: 1px solid rgba(61,242,224,0.2);
       flex-shrink: 0;
     }
     .log-ph-left { display: flex; flex-direction: column; gap: 0.1rem; }
@@ -392,7 +392,7 @@
     /* Add entry form */
     .log-add-form {
       background: rgba(0,0,0,0.28);
-      border: 1px solid rgba(0,196,168,0.2);
+      border: 1px solid rgba(61,242,224,0.2);
       border-radius: var(--radius);
       padding: 1.15rem;
       flex-shrink: 0;
@@ -419,7 +419,7 @@
     .log-fld {
       width: 100%;
       background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(122,72,40,0.38);
+      border: 1px solid rgba(46,120,92,0.38);
       border-radius: var(--radius);
       padding: 0.5rem 0.75rem;
       color: var(--tan-light);
@@ -429,7 +429,7 @@
       resize: none;
       transition: border-color 0.2s;
     }
-    .log-fld:focus { outline: none; border-color: rgba(0,196,168,0.4); }
+    .log-fld:focus { outline: none; border-color: rgba(61,242,224,0.4); }
     .log-fld::placeholder { color: var(--stone); font-style: italic; }
     .log-form-grid {
       display: grid;
@@ -439,8 +439,8 @@
     .log-add-btn {
       margin-top: 0.85rem;
       padding: 0.58rem 1.4rem;
-      background: rgba(0,196,168,0.13);
-      border: 1px solid rgba(0,196,168,0.38);
+      background: rgba(61,242,224,0.13);
+      border: 1px solid rgba(61,242,224,0.38);
       border-radius: var(--radius);
       color: var(--teal);
       font-family: var(--font-heading);
@@ -449,12 +449,12 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .log-add-btn:hover { background: rgba(0,196,168,0.22); }
+    .log-add-btn:hover { background: rgba(61,242,224,0.22); }
 
     /* Log entry card */
     .log-entry {
       background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(0,196,168,0.15);
+      border: 1px solid rgba(61,242,224,0.15);
       border-left: 3px solid var(--teal-dark);
       border-radius: var(--radius);
       padding: 0.9rem 1rem;
@@ -466,8 +466,8 @@
       margin-bottom: 0.65rem;
     }
     .log-entry-num {
-      background: rgba(0,196,168,0.12);
-      border: 1px solid rgba(0,196,168,0.28);
+      background: rgba(61,242,224,0.12);
+      border: 1px solid rgba(61,242,224,0.28);
       border-radius: 3px;
       padding: 0.12rem 0.45rem;
       font-family: var(--font-heading);
@@ -558,7 +558,7 @@
       width: 100%;
       height: 240px;
       background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(122,72,40,0.4);
+      border: 1px solid rgba(46,120,92,0.4);
       border-radius: var(--radius);
       padding: 0.75rem;
       color: var(--tan-light);
@@ -585,7 +585,7 @@
     .export-close {
       padding: 0.58rem 1.3rem;
       background: transparent;
-      border: 1px solid rgba(122,72,40,0.4);
+      border: 1px solid rgba(46,120,92,0.4);
       border-radius: var(--radius);
       color: var(--stone-light);
       font-family: var(--font-heading);
@@ -600,8 +600,8 @@
       position: fixed;
       bottom: 1.5rem;
       right: 1.5rem;
-      background: rgba(0,196,168,0.12);
-      border: 1px solid rgba(0,196,168,0.28);
+      background: rgba(61,242,224,0.12);
+      border: 1px solid rgba(61,242,224,0.28);
       color: var(--teal);
       padding: 0.38rem 0.8rem;
       border-radius: var(--radius);
@@ -618,7 +618,7 @@
     /* ── Autosave note ─────────────────────────── */
     .autosave-note {
       background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(122,72,40,0.25);
+      border: 1px solid rgba(46,120,92,0.25);
       border-radius: var(--radius);
       padding: 0.6rem 1rem;
       font-size: 0.75rem;
@@ -629,8 +629,8 @@
 
     /* ── Completion banner ─────────────────────── */
     .done-banner {
-      background: linear-gradient(135deg, rgba(0,196,168,0.12), rgba(61,32,16,0.5));
-      border: 1px solid rgba(0,196,168,0.3);
+      background: linear-gradient(135deg, rgba(61,242,224,0.12), rgba(17,52,38,0.5));
+      border: 1px solid rgba(61,242,224,0.3);
       border-radius: var(--radius);
       padding: 1.25rem 1.5rem;
       text-align: center;
@@ -684,8 +684,8 @@
       width: 100%; font-family: var(--font-heading);
     }
     .team-card:hover { transform: translateY(-2px); filter: brightness(1.2); }
-    .team-card-chickens  { border-color:rgba(212,168,67,0.5);  background:rgba(212,168,67,0.06);  color:var(--gold-light); }
-    .team-card-mavericks { border-color:rgba(0,196,168,0.5);   background:rgba(0,196,168,0.06);   color:var(--teal); }
+    .team-card-chickens  { border-color:rgba(155,240,74,0.5);  background:rgba(155,240,74,0.06);  color:var(--gold-light); }
+    .team-card-mavericks { border-color:rgba(61,242,224,0.5);   background:rgba(61,242,224,0.06);   color:var(--teal); }
     .team-card-bolts     { border-color:rgba(74,144,217,0.5);  background:rgba(74,144,217,0.06);  color:#7ab8f5; }
     .team-card-icon { font-size: 2rem; flex-shrink: 0; }
     .team-card-info { flex: 1; }
@@ -694,8 +694,8 @@
 
     /* ── Team Badge (sidebar) ────────────────── */
     .team-badge {
-      background: linear-gradient(135deg,rgba(46,21,8,0.65),rgba(22,10,2,0.9));
-      border: 1px solid rgba(122,72,40,0.5);
+      background: linear-gradient(135deg,rgba(10,34,25,0.65),rgba(4,17,13,0.9));
+      border: 1px solid rgba(46,120,92,0.5);
       border-radius: var(--radius-lg);
       padding: 0.8rem 1rem;
       display: flex; align-items: center; gap: 0.6rem;
@@ -713,7 +713,7 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .team-badge-switch {
-      background: transparent; border: 1px solid rgba(122,72,40,0.35);
+      background: transparent; border: 1px solid rgba(46,120,92,0.35);
       border-radius: var(--radius); color: var(--stone-light);
       font-family: var(--font-heading); font-size: 0.55rem;
       letter-spacing: 0.08em; text-transform: uppercase;
@@ -736,7 +736,7 @@
       color: var(--stone-light); min-height: 0.9rem; transition: color 0.2s;
     }
     .sync-status.ok  { color: var(--teal); }
-    .sync-status.err { color: #e06060; }
+    .sync-status.err { color: #FF7AA2; }
 
     /* ── Mobile ────────────────────────────────── */
     @media (max-width: 780px) {
@@ -754,7 +754,7 @@
         padding: 0.55rem 0.45rem;
         gap: 0.2rem;
         border-bottom: none;
-        border-right: 1px solid rgba(122,72,40,0.18);
+        border-right: 1px solid rgba(46,120,92,0.18);
         font-size: 0.64rem;
       }
       .snav-item.active { border-left: none; border-bottom: 3px solid var(--gold); padding-left: 0.45rem; }
@@ -769,12 +769,12 @@
 </head>
 <body>
 
-<!-- ── Navigation ──────────────────────────────── -->
+<!-- ── Navigation ──────────────────────────────────── -->
 <nav class="navbar">
   <a href="index.html" class="nav-logo">
-    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-icon">🌿</span>
     <span class="nav-logo-text">
-      Robotic Jones
+      BIOGLOW Hub
       <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
     </span>
   </a>
@@ -784,6 +784,7 @@
     <li><a href="tips.html">Tips &amp; Tricks</a></li>
     <li><a href="schedule.html">Schedule</a></li>
     <li><a href="calculator.html">Score Calculator</a></li>
+    <li><a href="presentation.html" class="active">Presentation</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -792,7 +793,7 @@
 
 <!-- ── Page Header ─────────────────────────────── -->
 <div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3rem 2rem 2.5rem;text-align:center;">
-  <p class="eyebrow">🎤 Robot Design Presentation</p>
+  <p class="eyebrow">🎤 Robot Design Presentation · BIOGLOW</p>
   <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(1.7rem,4vw,3rem);">Presentation Builder</h1>
   <div class="section-divider"></div>
   <p class="section-desc" style="max-width:580px;margin:0 auto;">Work through your story one question at a time. There are no wrong answers — just <em>your</em> process, <em>your</em> ideas, and <em>your</em> team. Your work saves automatically.</p>
@@ -805,7 +806,7 @@
   <aside class="builder-sidebar">
 
     <div class="team-badge">
-      <span class="team-badge-icon" id="teamBadgeIcon">🤠</span>
+      <span class="team-badge-icon" id="teamBadgeIcon">🦜</span>
       <div class="team-badge-info">
         <div class="team-badge-label">Working as</div>
         <div class="team-badge-name" id="teamBadgeName">—</div>
@@ -886,17 +887,17 @@
 <!-- ── Team Picker Overlay ──────────────────────── -->
 <div class="team-picker-overlay" id="teamPickerOverlay">
   <div class="team-picker-box">
-    <div class="team-picker-icon">🤠</div>
+    <div class="team-picker-icon">🦜</div>
     <div class="team-picker-title">Choose Your Team</div>
     <div class="team-picker-sub">Pick your team to load your work. Each team's answers are saved separately.</div>
     <div class="team-picker-cards" id="teamPickerCards"></div>
   </div>
 </div>
 
-<!-- ── Footer ─────────────────────────────────── -->
+<!-- ── Footer ───────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
-  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-logo">🌿 MJS FLL · BIOGLOW™ 2026–27</div>
+  <div class="footer-sub">Mayfield Junior School · FIRST® LEGO® League Challenge · Founders Edition</div>
   <div class="footer-divider"></div>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -904,8 +905,9 @@
     <a href="tips.html">Tips &amp; Tricks</a>
     <a href="schedule.html">Schedule</a>
     <a href="calculator.html">Calculator</a>
+    <a href="presentation.html">Presentation</a>
   </div>
-  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+  <div class="footer-copy">Built for young scientists and engineers. &nbsp;·&nbsp; FIRST® LEGO® League and BIOGLOW™ are trademarks of FIRST® and the LEGO Group; this is an unofficial team site. &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
 </footer>
 
 <script>
@@ -932,7 +934,7 @@ const TEAM_KEY = 'fll_pres_team';
 const SECTIONS = [
   {
     id: 'team',
-    icon: '🤠',
+    icon: '🦜',
     title: 'Meet the Team',
     context: 'Before you can tell your story, judges need to know who is telling it. This section is about your team — who each of you are and how you work together.',
     questions: [
@@ -1271,8 +1273,8 @@ let logEntries  = [];
 let toastTimer  = null;
 let syncTimer   = null;
 
-function teamAnswerKey() { return 'fll_pres_answers_' + currentTeam + '_v1'; }
-function teamLogKey()    { return 'fll_pres_log_' + currentTeam + '_v1'; }
+function teamAnswerKey() { return 'fll_pres_answers_' + currentTeam + '_bioglow'; }
+function teamLogKey()    { return 'fll_pres_log_' + currentTeam + '_bioglow'; }
 
 function loadAll() {
   if (!currentTeam) return;
@@ -1337,7 +1339,7 @@ function switchTeam() {
 function updateTeamBadge() {
   if (!currentTeam) return;
   const t = TEAMS.find(x => x.id === currentTeam);
-  document.getElementById('teamBadgeIcon').textContent = t ? t.icon : '🤠';
+  document.getElementById('teamBadgeIcon').textContent = t ? t.icon : '🦜';
   document.getElementById('teamBadgeName').textContent = currentTeam;
 }
 

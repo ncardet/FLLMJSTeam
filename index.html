@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Competition Hub — Robotic Jones &amp; The Temple of LEGO</title>
+  <title>Competition Hub — BIOGLOW Hub · MJS FLL</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
     /* ── Competition Hub page styles ── */
     .hub-grid {
@@ -15,7 +16,7 @@
 
     /* Competition Date Banner */
     .comp-date-banner {
-      background: linear-gradient(135deg, rgba(212,168,67,0.15) 0%, rgba(61,32,16,0.6) 100%);
+      background: linear-gradient(135deg, rgba(155,240,74,0.15) 0%, rgba(17,52,38,0.6) 100%);
       border: 2px solid var(--gold-dark);
       border-radius: var(--radius-lg);
       padding: 2rem 2.5rem;
@@ -40,7 +41,7 @@
       font-size: 4rem;
       line-height: 1;
       color: var(--gold-light);
-      text-shadow: 0 0 20px rgba(212,168,67,0.5);
+      text-shadow: 0 0 20px rgba(155,240,74,0.5);
     }
     .comp-date-year {
       font-family: var(--font-heading);
@@ -69,7 +70,7 @@
       font-size: 0.85rem;
       color: var(--tan-light);
       background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(212,168,67,0.2);
+      border: 1px solid rgba(155,240,74,0.2);
       border-radius: 4px;
       padding: 0.35rem 0.75rem;
     }
@@ -83,7 +84,7 @@
     .comp-countdown-inline {
       text-align: center;
       background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(212,168,67,0.3);
+      border: 1px solid rgba(155,240,74,0.3);
       border-radius: var(--radius);
       padding: 0.75rem 1.25rem;
       min-width: 120px;
@@ -104,14 +105,14 @@
 
     /* Resource Cards */
     .resource-section {
-      background: linear-gradient(135deg, rgba(46,21,8,0.7) 0%, rgba(22,10,2,0.9) 100%);
-      border: 1px solid rgba(122,72,40,0.5);
+      background: linear-gradient(135deg, rgba(10,34,25,0.7) 0%, rgba(4,17,13,0.9) 100%);
+      border: 1px solid rgba(46,120,92,0.5);
       border-radius: var(--radius-lg);
       overflow: hidden;
     }
     .resource-section-header {
-      background: linear-gradient(90deg, rgba(212,168,67,0.12), rgba(122,72,40,0.2));
-      border-bottom: 1px solid rgba(122,72,40,0.5);
+      background: linear-gradient(90deg, rgba(155,240,74,0.12), rgba(46,120,92,0.2));
+      border-bottom: 1px solid rgba(46,120,92,0.5);
       padding: 1.25rem 1.75rem;
       display: flex;
       align-items: center;
@@ -134,8 +135,8 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--teal);
-      background: rgba(0,196,168,0.1);
-      border: 1px solid rgba(0,196,168,0.3);
+      background: rgba(61,242,224,0.1);
+      border: 1px solid rgba(61,242,224,0.3);
       border-radius: 4px;
       padding: 0.25rem 0.6rem;
     }
@@ -184,7 +185,7 @@
       align-items: center;
       gap: 1rem;
       background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(122,72,40,0.4);
+      border: 1px solid rgba(46,120,92,0.4);
       border-radius: var(--radius);
       padding: 1rem 1.25rem;
       text-decoration: none;
@@ -193,7 +194,7 @@
     }
     .resource-link-card:hover {
       border-color: var(--gold-dark);
-      background: rgba(212,168,67,0.07);
+      background: rgba(155,240,74,0.07);
       color: var(--gold-light);
       transform: translateY(-2px);
       box-shadow: var(--shadow-sm);
@@ -247,7 +248,7 @@
       flex-shrink: 0;
       width: 22px;
       height: 22px;
-      background: rgba(212,168,67,0.15);
+      background: rgba(155,240,74,0.15);
       border: 1px solid var(--gold-dark);
       border-radius: 50%;
       display: flex;
@@ -261,8 +262,8 @@
 
     /* Info callout box */
     .info-callout {
-      background: rgba(0,196,168,0.07);
-      border: 1px solid rgba(0,196,168,0.25);
+      background: rgba(61,242,224,0.07);
+      border: 1px solid rgba(61,242,224,0.25);
       border-radius: var(--radius);
       padding: 1rem 1.25rem;
       font-size: 0.85rem;
@@ -281,8 +282,8 @@
 
     /* Warning callout */
     .warn-callout {
-      background: rgba(212,168,67,0.07);
-      border: 1px solid rgba(212,168,67,0.3);
+      background: rgba(155,240,74,0.07);
+      border: 1px solid rgba(155,240,74,0.3);
       border-radius: var(--radius);
       padding: 1rem 1.25rem;
       font-size: 0.85rem;
@@ -309,7 +310,7 @@
     /* Official Q&A */
     .qa-callout {
       background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(0,196,168,0.2);
+      border: 1px solid rgba(61,242,224,0.2);
       border-left: 3px solid var(--teal-dark);
       border-radius: var(--radius);
       padding: 0.85rem 1rem;
@@ -326,7 +327,7 @@
     .qa-item + .qa-item {
       margin-top: 0.6rem;
       padding-top: 0.6rem;
-      border-top: 1px solid rgba(0,196,168,0.1);
+      border-top: 1px solid rgba(61,242,224,0.1);
     }
     .qa-q { font-size: 0.8rem; color: var(--stone-light); line-height: 1.5; margin-bottom: 0.2rem; }
     .qa-a { font-size: 0.8rem; color: var(--teal); line-height: 1.5; }
@@ -340,8 +341,8 @@
       gap: 1rem;
     }
     .qa-topic-card {
-      background: linear-gradient(135deg, rgba(46,21,8,0.5), rgba(22,10,2,0.8));
-      border: 1px solid rgba(122,72,40,0.4);
+      background: linear-gradient(135deg, rgba(10,34,25,0.5), rgba(4,17,13,0.8));
+      border: 1px solid rgba(46,120,92,0.4);
       border-radius: var(--radius);
       padding: 1.25rem;
     }
@@ -353,6 +354,14 @@
       color: var(--gold);
       margin-bottom: 0.75rem;
     }
+  
+    .glance-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+    .glance-card { background:rgba(0,0,0,0.25); border:1px solid rgba(46,120,92,0.45); border-radius:var(--radius); padding:1.1rem 1.2rem; }
+    .glance-icon { font-size:1.6rem; }
+    .glance-title { font-family:var(--font-heading); font-weight:700; color:var(--gold); margin:.35rem 0 .3rem; }
+    .glance-pct { font-family:var(--font-display); color:var(--teal); font-size:.85rem; }
+    .glance-desc { font-size:.84rem; color:var(--tan-light); line-height:1.55; }
+    .timeline-note { font-size:.8rem; color:var(--stone-light); margin-top:.75rem; line-height:1.5; }
   </style>
 </head>
 <body>
@@ -360,9 +369,9 @@
 <!-- ── Navigation ──────────────────────────────────── -->
 <nav class="navbar">
   <a href="index.html" class="nav-logo">
-    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-icon">🌿</span>
     <span class="nav-logo-text">
-      Robotic Jones
+      BIOGLOW Hub
       <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
     </span>
   </a>
@@ -372,6 +381,7 @@
     <li><a href="tips.html">Tips &amp; Tricks</a></li>
     <li><a href="schedule.html">Schedule</a></li>
     <li><a href="calculator.html">Score Calculator</a></li>
+    <li><a href="presentation.html">Presentation</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -379,159 +389,209 @@
 </nav>
 
 <!-- ── Page Header ──────────────────────────────────── -->
-<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
-  <p class="eyebrow">🏆 Everything You Need</p>
-  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Competition Hub</h1>
+<div class="page-hero">
+  <p class="eyebrow">🌿 BIOGLOW™ · 2026–27 Season</p>
+  <h1 class="section-title">Competition Hub</h1>
   <div class="section-divider"></div>
-  <p class="section-desc">Your one-stop resource for competition day — board setup, presentations, rules, and the rubric. Get ready to win!</p>
+  <p class="section-desc">Everything for our Founders Edition Challenge season — event dates, field setup, judging, and the official rules. Rainforest, here we come!</p>
 </div>
 
 <div class="page-container">
   <div class="hub-grid">
 
-    <!-- ── Competition Date ────────────────────────────── -->
-    <div class="comp-date-banner">
+    <!-- ── Next Event Banner ─────────────────────────── -->
+    <div class="comp-date-banner" id="nextBanner">
       <div class="comp-date-big">
-        <div class="comp-date-month">May</div>
-        <div class="comp-date-day">17</div>
-        <div class="comp-date-year">2026</div>
+        <div class="comp-date-month" id="nbMonth">—</div>
+        <div class="comp-date-day" id="nbDay">—</div>
+        <div class="comp-date-year" id="nbYear">—</div>
       </div>
       <div class="comp-date-info">
-        <div class="comp-date-title">Spring Showdown 2026</div>
-        <p style="font-size:0.9rem;color:var(--stone-light);line-height:1.6;">Our big competition day is almost here! This is everything we have been working toward — three official rounds, judges watching, and the whole team giving it everything.</p>
-        <div class="comp-date-meta">
-          <div class="comp-meta-item">📅 Sunday, May 17, 2026</div>
-          <div class="comp-meta-item">⏰ Arrive Early</div>
-          <div class="comp-meta-item">📍 <a href="https://maps.app.goo.gl/ngwDeNgpP8jHwD8F7" target="_blank" rel="noopener">View Venue on Maps ↗</a></div>
-          <div class="comp-meta-item">🔁 3 Official Rounds</div>
-        </div>
+        <div class="event-kind" id="nbKind">Up next</div>
+        <div class="comp-date-title" id="nbName">—</div>
+        <p style="font-size:0.9rem;color:var(--stone-light);line-height:1.6;" id="nbNote"></p>
+        <div class="comp-date-meta" id="nbMeta"></div>
       </div>
       <div class="comp-countdown-inline">
         <div class="comp-countdown-num" id="countdownNum">—</div>
-        <div class="comp-countdown-label">Days to Go</div>
+        <div class="comp-countdown-label" id="countdownLabel">Days to Go</div>
       </div>
     </div>
 
-    <!-- ── Board Setup ─────────────────────────────────── -->
+    <!-- ── Season Events ─────────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">📅</span>
+        <span class="resource-section-title">Our Season Events</span>
+        <span class="resource-section-tag">3 Events</span>
+      </div>
+      <div class="resource-section-body">
+        <div class="event-strip" id="eventStrip"></div>
+        <p class="timeline-note">At each official event we play <strong style="color:var(--teal);">three 2½-minute robot game matches</strong> and only our <strong style="color:var(--teal);">best score</strong> counts. We also have one judging session where we present our Innovation Project and Robot Design. See the <a href="schedule.html">meeting schedule</a> for how we get ready.</p>
+      </div>
+    </div>
+
+    <!-- ── Season at a Glance ────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">🦋</span>
+        <span class="resource-section-title">BIOGLOW at a Glance</span>
+        <span class="resource-section-tag">Founders Edition · Challenge</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          This season takes us into the rainforest to explore <strong style="color:var(--gold);">biodiversity and habitat recovery</strong>. Our robot will complete missions modeled on real ecological processes — seed dispersal, fungal networks, canopy research, habitat protection, and species conservation. Our Innovation Project asks us to <strong style="color:var(--gold);">find a problem that puts biodiversity at risk and design a solution</strong> that could help.
+        </p>
+        <div class="glance-grid">
+          <div class="glance-card">
+            <div class="glance-icon">🤖</div>
+            <div class="glance-title">Robot Game</div>
+            <div class="glance-pct">25%</div>
+            <div class="glance-desc">15 missions on the rainforest field. 2½ minutes, fully autonomous, best of three matches counts.</div>
+          </div>
+          <div class="glance-card">
+            <div class="glance-icon">🛠️</div>
+            <div class="glance-title">Robot Design</div>
+            <div class="glance-pct">25%</div>
+            <div class="glance-desc">Explain how we planned, built, coded, tested, and improved our SPIKE Prime robot.</div>
+          </div>
+          <div class="glance-card">
+            <div class="glance-icon">💡</div>
+            <div class="glance-title">Innovation Project</div>
+            <div class="glance-pct">25%</div>
+            <div class="glance-desc">Pick a real biodiversity problem, research it, design a solution, and share it with others.</div>
+          </div>
+          <div class="glance-card">
+            <div class="glance-icon">🤝</div>
+            <div class="glance-title">Core Values</div>
+            <div class="glance-pct">25%</div>
+            <div class="glance-desc">Discovery, Innovation, Impact, Inclusion, Teamwork, Fun — judged in everything we do, including at the robot table.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Field Setup ───────────────────────────────── -->
     <div class="resource-section">
       <div class="resource-section-header">
         <span class="resource-section-icon">🗺️</span>
-        <span class="resource-section-title">Setting Up the Competition Board</span>
+        <span class="resource-section-title">Setting Up the BIOGLOW Field</span>
         <span class="resource-section-tag">Setup Guide</span>
       </div>
       <div class="resource-section-body">
         <p class="resource-desc">
-          Before every practice run, the board needs to be set up exactly the same way. Consistent setup means consistent results — small differences in model placement can throw off your entire program!
+          Before every practice run, the field needs to be set up exactly the same way. Consistent setup means consistent results — small differences in model placement can throw off an entire program!
         </p>
         <div class="steps-list">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>Open the board setup guide below and study each mission model's starting position carefully.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>Place the mat flat on a stable table — no bumps or overhangs on the edges.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>Build and place each model exactly as shown — check angles, color alignment, and which hole it snaps into.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">4</span>
-            <span>Double-check your Launch area — your robot and all attachments must fit with nothing touching the black border.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">5</span>
-            <span>Have a second person verify the setup before starting a timed run.</span>
-          </div>
+          <div class="step-item"><span class="step-num">1</span><span>Watch the official Field Set-Up video below and keep the Field Set-Up Reference Guide open while you work.</span></div>
+          <div class="step-item"><span class="step-num">2</span><span>Lay the mat flat on the table, pushed against the south wall and centered side to side — no bumps or wrinkles.</span></div>
+          <div class="step-item"><span class="step-num">3</span><span>Place every mission model exactly as shown. Watch for models with a <strong style="color:var(--teal);">random starting position</strong> (like the katydid in M04) — practice from all of them.</span></div>
+          <div class="step-item"><span class="step-num">4</span><span>Decide which dock (<strong style="color:var(--gold);">Mine, City, or Farm</strong>) each dock mission (M13, M14, M15) goes on. Your choice changes the M15 Environmental Bonus — write it down so setup is the same every time.</span></div>
+          <div class="step-item"><span class="step-num">5</span><span>Check the launch area: robot, attachments, and your keystone species model must all fit in <strong>one launch area</strong> under <strong>12 in. (305 mm)</strong>.</span></div>
+          <div class="step-item"><span class="step-num">6</span><span>Have a second person verify the setup before a timed run.</span></div>
         </div>
         <div class="warn-callout">
           <span class="info-callout-icon">⚠️</span>
-          <span><strong style="color:var(--gold);">Important:</strong> At competition, referees set up the board. But in practice, always reset to the official starting positions between runs — otherwise your scores won't reflect real competition conditions.</span>
-        </div>
-        <div class="qa-callout">
-          <div class="qa-header">📋 Official Q&amp;A — Field Setup</div>
-          <div class="qa-item">
-            <div class="qa-q">Are the barricades dual locked onto the map?</div>
-            <div class="qa-a">Yes, they are dual locked down. If a model used dual lock in the fall season, it is dual locked down this season.</div>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">How should we align the mat on our FLL table?</div>
-            <div class="qa-a">Centered on the table against the south wall.</div>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">The map is very uneven — is that intentional or did we get a bad printout?</div>
-            <div class="qa-a">The map is a bit uneven this year.</div>
-          </div>
+          <span><strong style="color:var(--gold);">Important:</strong> At events, referees set up the field. In practice, always reset to the official starting positions between runs — otherwise your practice scores won't match competition conditions.</span>
         </div>
         <div class="video-embed-wrap">
-          <iframe
-            src="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/preview"
-            allow="autoplay"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/wDan0826cn0" title="BIOGLOW Field Set-Up Video" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="video-fallback-note">
-          Video not loading? Make sure you're signed into Google, then
-          <a href="https://drive.google.com/file/d/1ZRfxyRHeTiQYLHYhLX620ZPJtC4x_glF/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--gold);">open it directly in Google Drive ↗</a>
-        </p>
-      </div>
-    </div>
-
-    <!-- ── Robotics Presentation ───────────────────────── -->
-    <div class="resource-section">
-      <div class="resource-section-header">
-        <span class="resource-section-icon">🎤</span>
-        <span class="resource-section-title">Robotics Presentation</span>
-        <span class="resource-section-tag">Team Project</span>
-      </div>
-      <div class="resource-section-body">
-        <p class="resource-desc">
-          The Robotics Presentation is one of the judged segments of competition — you will present your team's robot design process, explain key decisions, and show off what makes your solution unique. Judges are looking for clear communication, teamwork, and evidence of the engineering process.
-        </p>
-        <div class="info-callout">
-          <span class="info-callout-icon">💡</span>
-          <span>You have <strong style="color:var(--teal);">two documents</strong> to help you prepare. The first is your team's working presentation guide — use it to plan what each person will say. The second is a reference document with additional details and talking points.</span>
-        </div>
-        <div class="steps-list">
-          <div class="step-item">
-            <span class="step-num">1</span>
-            <span>Read through both documents below so you know the full scope of the presentation.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">2</span>
-            <span>Decide who will cover which part — every team member should have a speaking role.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">3</span>
-            <span>Practice saying your part out loud at least five times before competition day.</span>
-          </div>
-          <div class="step-item">
-            <span class="step-num">4</span>
-            <span>Run through the full presentation as a team during the Apr 9 Mock Competition meeting.</span>
-          </div>
-        </div>
+        <p class="video-fallback-note">Video not loading? <a href="https://youtu.be/wDan0826cn0" target="_blank" rel="noopener" style="color:var(--gold);">Open the Field Set-Up video on YouTube ↗</a></p>
         <div class="resource-links">
-          <a href="https://docs.google.com/document/d/1apH3niU3LqC7jzeksgItDY4hBRi0bTe033a8nE4goSw/edit?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
-            <span class="resource-link-file-icon">📝</span>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-field-setup-reference-guide.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📐</span>
             <div class="resource-link-info">
-              <div class="resource-link-name">Robotics Presentation — Part 1</div>
-              <div class="resource-link-type">Google Docs · Team Guide</div>
+              <div class="resource-link-name">Field Set-Up Reference Guide</div>
+              <div class="resource-link-type">FIRST · PDF</div>
             </div>
             <span class="resource-link-arrow">↗</span>
           </a>
-          <a href="https://docs.google.com/document/d/1TMB_FdjnpF4MyU4wpnH-HfN-izaSJJc7hC1rxfyF744/edit?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
-            <span class="resource-link-file-icon">📄</span>
+          <a href="https://youtu.be/uhZZ8O1StiQ" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🎬</span>
             <div class="resource-link-info">
-              <div class="resource-link-name">Robotics Presentation — Part 2</div>
-              <div class="resource-link-type">Google Docs · Reference</div>
+              <div class="resource-link-name">Robot Game Missions Video</div>
+              <div class="resource-link-type">FIRST · YouTube</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://www.firstinspires.org/resources/library/fll/season-materials" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🧱</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Mission Model Building Instructions</div>
+              <div class="resource-link-type">FIRST · 13 model books</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-table-building-instructions.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🪚</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Robot Game Table Instructions</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Judging Session ───────────────────────────── -->
+    <div class="resource-section">
+      <div class="resource-section-header">
+        <span class="resource-section-icon">🎤</span>
+        <span class="resource-section-title">Judging Session</span>
+        <span class="resource-section-tag">Innovation + Robot Design</span>
+      </div>
+      <div class="resource-section-body">
+        <p class="resource-desc">
+          At each event we meet with judges to present our <strong style="color:var(--gold);">Innovation Project</strong> and explain our <strong style="color:var(--gold);">Robot Design</strong>. Judges use the rubrics to score us, and they watch for Core Values the whole time. The flowchart shows the order of the session.
+        </p>
+        <div class="info-callout">
+          <span class="info-callout-icon">💡</span>
+          <span>Use the <strong style="color:var(--teal);">Presentation Builder</strong> to work through your Robot Design story one question at a time. It saves as you go, and you can export your notes into slides.</span>
+        </div>
+        <div class="steps-list">
+          <div class="step-item"><span class="step-num">1</span><span>Read the rubrics together so everyone knows what "Exceeds" looks like.</span></div>
+          <div class="step-item"><span class="step-num">2</span><span>Decide who covers which part — every team member should have a speaking role.</span></div>
+          <div class="step-item"><span class="step-num">3</span><span>Practice out loud at least five times before an event.</span></div>
+          <div class="step-item"><span class="step-num">4</span><span>Do a full run-through with a mock judge at the <strong style="color:var(--teal);">Dec 3 Practice Competition</strong>.</span></div>
+        </div>
+        <div class="resource-links">
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-rubrics-color.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">⚖️</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Judging Rubrics (Color)</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-judging-session-flowchart.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🧭</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Judging Session Flowchart</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-en.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📓</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Engineering Notebook</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-awards.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🏅</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Awards Overview</div>
+              <div class="resource-link-type">FIRST · PDF</div>
             </div>
             <span class="resource-link-arrow">↗</span>
           </a>
         </div>
         <div style="margin-top:1.2rem; text-align:center;">
-          <a href="presentation.html" class="resource-link-card" style="display:inline-flex; max-width:360px; background:linear-gradient(135deg,var(--teal),#1a6a6a); border-color:var(--teal);">
+          <a href="presentation.html" class="resource-link-card" style="display:inline-flex; max-width:360px; background:linear-gradient(135deg,var(--teal-dark),#0d6b62); border-color:var(--teal);">
             <span class="resource-link-file-icon">🛠️</span>
             <div class="resource-link-info">
               <div class="resource-link-name" style="color:#fff;">Open Presentation Builder</div>
@@ -543,165 +603,90 @@
       </div>
     </div>
 
-    <!-- ── Game Rules & Rubric ─────────────────────────── -->
+    <!-- ── Rules & Official Docs ─────────────────────── -->
     <div class="resource-section">
       <div class="resource-section-header">
         <span class="resource-section-icon">📜</span>
-        <span class="resource-section-title">Game Rules &amp; Judging Rubric</span>
+        <span class="resource-section-title">Robot Game Rules &amp; Scoring</span>
         <span class="resource-section-tag">Official Docs</span>
       </div>
       <div class="resource-section-body">
         <p class="resource-desc">
-          Know the rules cold — referees enforce them exactly at competition. The rulebook covers everything from equipment inspection to how each mission is scored. The rubric tells you exactly what judges are looking for in every judged category.
+          Know the rules cold — referees enforce them exactly. The Robot Game Rulebook covers every mission, the launch areas, interruptions, and equipment rules. <strong style="color:var(--gold);">Always check the Challenge Updates</strong> — they can change how a mission is scored.
         </p>
         <div class="info-callout">
           <span class="info-callout-icon">📖</span>
-          <span>Read the rulebook <em>at least twice</em> before competition. Pay close attention to the <strong style="color:var(--teal);">precise conditions</strong> for each mission — small wording details like "completely" or "at least one" can mean the difference between scoring and not.</span>
+          <span>Watch for the <strong style="color:#FFB0C8;">No Equipment Constraint</strong> symbol: on those missions the model scores <em>nothing</em> if your robot or attachment is still touching it when the match ends. Our <a href="missions.html">Missions page</a> marks every one.</span>
         </div>
-        <div class="two-col">
-          <div>
-            <p style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:0.75rem;">ROBOT GAME RULES</p>
-            <div class="steps-list">
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>All 16 missions and their scoring conditions</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>Equipment inspection requirements</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>What counts as an interruption (costs a Supply Cache!)</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>What robots can and cannot touch during a run</span>
-              </div>
+        <div class="resource-links">
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-rgr.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📋</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Robot Game Rulebook</div>
+              <div class="resource-link-type">FIRST · PDF</div>
             </div>
-            <a href="https://drive.google.com/file/d/17nYCXdE8ERAJbczAQq89z5wcQMX-wI0r/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
-              <span class="resource-link-file-icon">📋</span>
-              <div class="resource-link-info">
-                <div class="resource-link-name">Official Game Rules</div>
-                <div class="resource-link-type">Google Drive · PDF</div>
-              </div>
-              <span class="resource-link-arrow">↗</span>
-            </a>
-          </div>
-          <div>
-            <p style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);letter-spacing:0.08em;margin-bottom:0.75rem;">JUDGING RUBRIC</p>
-            <div class="steps-list">
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>Robotics Design judging criteria</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>Core Values assessment breakdown</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>What "Exceeds Expectations" looks like</span>
-              </div>
-              <div class="step-item">
-                <span class="step-num">✓</span>
-                <span>How judges score your presentation</span>
-              </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/interactive-rgr/index.html" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🖱️</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Interactive Rulebook</div>
+              <div class="resource-link-type">FIRST · Web</div>
             </div>
-            <a href="https://drive.google.com/file/d/17_2N-emRCjW5AcCkhS9bQD0hPHGGgd4o/view?usp=sharing" target="_blank" rel="noopener" class="resource-link-card">
-              <span class="resource-link-file-icon">⚖️</span>
-              <div class="resource-link-info">
-                <div class="resource-link-name">Judging Rubric</div>
-                <div class="resource-link-type">Google Drive · PDF</div>
-              </div>
-              <span class="resource-link-arrow">↗</span>
-            </a>
-          </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-updates.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🆕</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Challenge Updates</div>
+              <div class="resource-link-type">FIRST · Updated 10/14/26</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-software-scoresheet.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🧾</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Official Scoresheet</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://eventhub.firstinspires.org/scoresheet" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">🧮</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Official Score Calculator</div>
+              <div class="resource-link-type">FIRST Event Hub</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
+          <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-participation-rules.pdf" target="_blank" rel="noopener" class="resource-link-card">
+            <span class="resource-link-file-icon">📑</span>
+            <div class="resource-link-info">
+              <div class="resource-link-name">Participation Rules</div>
+              <div class="resource-link-type">FIRST · PDF</div>
+            </div>
+            <span class="resource-link-arrow">↗</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- ── Official Q&A ───────────────────────────────── -->
-    <div class="resource-section">
-      <div class="resource-section-header">
-        <span class="resource-section-icon">💬</span>
-        <span class="resource-section-title">Official Q&amp;A from the CA Southern Spring Showdown</span>
-        <span class="resource-section-tag">Confirmed Rules</span>
-      </div>
-      <div class="resource-section-body">
-        <p class="resource-desc">
-          These are real questions submitted by teams — and answered by the competition admins. Read every answer carefully: they clarify rules that are easy to misread in the rulebook.
-        </p>
-        <div class="qa-section-grid">
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">🏁 Competition Format</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">How many matches will each team get on competition day?</div>
-              <div class="qa-a">1 Practice round, 3 performance rounds, 2 On The Spot rounds.</div>
-            </div>
-          </div>
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">🤖 Robot Starting Position</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">Can we run our robot from the black home area to do a mission, or does it have to start from the other home area?</div>
-              <div class="qa-a">All robots must start from the Launch area — the 2 quarter circles on the sides of the field. All rules from the Fall still hold unless expressly stated.</div>
-            </div>
-          </div>
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">⏱️ Scoring</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">If we complete a mission but it gets undone during the run, does it still count?</div>
-              <div class="qa-a">All scoring is done at the end of the match — if something gets undone, it will not count.</div>
-            </div>
-          </div>
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">🤝 On-The-Spot — Alliances</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">Does "random draw" mean our whole team pairs up with another team, or are individual members mixed into new alliances?</div>
-              <div class="qa-a">Random draw will be whole teams partnering up with other teams.</div>
-            </div>
-            <div class="qa-item">
-              <div class="qa-q">During preparation, is the whole team allowed to collaborate, or only the selected operators?</div>
-              <div class="qa-a">All team members are involved in the planning and practice process. We will restrict the number of operators at the table, but that doesn't exclude the others from participating.</div>
-            </div>
-          </div>
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">🔢 Max Score</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">What is the maximum possible score?</div>
-              <div class="qa-a">The max score is 360 points.</div>
-            </div>
-          </div>
-
-          <div class="qa-topic-card">
-            <div class="qa-topic-label">🤖 Robot Design</div>
-            <div class="qa-item" style="margin-top:0;">
-              <div class="qa-q">Is a small robot (e.g., Driving Base 1 Lego Spike) allowed at competition?</div>
-              <div class="qa-a">You can use any Spike Prime robot design. You cannot use Spike Prime Essentials though.</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ── Competition Day Checklist ───────────────────── -->
-    <div style="padding:1.75rem;background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(61,32,16,0.4));border:1px solid rgba(212,168,67,0.25);border-radius:var(--radius-lg);">
-      <p class="eyebrow" style="margin-bottom:0.75rem;">🎒 Competition Day Checklist</p>
+    <!-- ── Event Day Checklist ───────────────────────── -->
+    <div style="padding:1.75rem;background:linear-gradient(135deg,rgba(155,240,74,0.08),rgba(17,52,38,0.4));border:1px solid rgba(155,240,74,0.25);border-radius:var(--radius-lg);">
+      <p class="eyebrow" style="margin-bottom:0.75rem;">🎒 Event Day Checklist</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.5rem;">
         <div style="font-size:0.82rem;color:var(--tan-light);">🤖 Robot (fully charged battery!)</div>
         <div style="font-size:0.82rem;color:var(--tan-light);">🔌 SPIKE Prime hub + USB cable</div>
         <div style="font-size:0.82rem;color:var(--tan-light);">🧩 All attachments (labeled!)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🦜 Our keystone species model (M13)</div>
         <div style="font-size:0.82rem;color:var(--tan-light);">💻 Laptop with programs backed up</div>
         <div style="font-size:0.82rem;color:var(--tan-light);">📓 Engineering notebook</div>
-        <div style="font-size:0.82rem;color:var(--tan-light);">🔧 Repair kit (spare parts, tool)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">💡 Innovation Project prototype &amp; poster</div>
         <div style="font-size:0.82rem;color:var(--tan-light);">📋 Printed presentation notes</div>
-        <div style="font-size:0.82rem;color:var(--tan-light);">🧠 Confidence &amp; team spirit!</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🔧 Repair kit (spare parts, tools)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">📝 Dock plan (which model on which dock)</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">🥪 Water &amp; snacks</div>
+        <div style="font-size:0.82rem;color:var(--tan-light);">✨ Gracious Professionalism!</div>
       </div>
     </div>
 
@@ -710,8 +695,8 @@
 
 <!-- ── Footer ───────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
-  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-logo">🌿 MJS FLL · BIOGLOW™ 2026–27</div>
+  <div class="footer-sub">Mayfield Junior School · FIRST® LEGO® League Challenge · Founders Edition</div>
   <div class="footer-divider"></div>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -719,30 +704,55 @@
     <a href="tips.html">Tips &amp; Tricks</a>
     <a href="schedule.html">Schedule</a>
     <a href="calculator.html">Calculator</a>
+    <a href="presentation.html">Presentation</a>
   </div>
-  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+  <div class="footer-copy">Built for young scientists and engineers. &nbsp;·&nbsp; FIRST® LEGO® League and BIOGLOW™ are trademarks of FIRST® and the LEGO Group; this is an unofficial team site. &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
 </footer>
 
+<script src="season.js"></script>
 <script>
-  // Mobile nav toggle
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-  // Countdown to May 17, 2026
-  const compDate = new Date('2026-05-17T08:00:00');
-  function updateCountdown() {
-    const now  = new Date();
-    const diff = compDate - now;
-    if (diff <= 0) {
+  (function () {
+    const ev = nextEvent();
+    const banner = document.getElementById('nextBanner');
+    if (!ev) {
+      document.getElementById('nbName').textContent = 'Season complete — what a run!';
       document.getElementById('countdownNum').textContent = '🏆';
+      document.getElementById('countdownLabel').textContent = 'Well done';
     } else {
-      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('countdownNum').textContent = days;
+      const d = eventDate(ev);
+      document.getElementById('nbMonth').textContent = d.toLocaleDateString('en-US', { month: 'short' });
+      document.getElementById('nbDay').textContent = d.getDate();
+      document.getElementById('nbYear').textContent = d.getFullYear();
+      document.getElementById('nbKind').textContent = 'Up next · ' + ev.kind;
+      document.getElementById('nbName').textContent = ev.name;
+      document.getElementById('nbNote').textContent = ev.note;
+      const meta = [
+        '📅 ' + formatEventDate(ev),
+        '⏰ ' + ev.time,
+        ev.mapUrl ? '📍 <a href="' + ev.mapUrl + '" target="_blank" rel="noopener">' + (ev.venue || 'View venue') + ' ↗</a>'
+                  : '📍 ' + (ev.venue || 'Venue TBA'),
+        '🔁 3 matches · best score counts',
+      ];
+      document.getElementById('nbMeta').innerHTML = meta.map(m => '<div class="comp-meta-item">' + m + '</div>').join('');
+      const n = daysUntil(ev);
+      document.getElementById('countdownNum').textContent = n === 0 ? '🎉' : n;
+      document.getElementById('countdownLabel').textContent = n === 0 ? 'Today!' : (n === 1 ? 'Day to Go' : 'Days to Go');
     }
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
+
+    const next = nextEvent();
+    document.getElementById('eventStrip').innerHTML = EVENTS.map(e => {
+      const n = daysUntil(e);
+      const cls = (next && e.id === next.id) ? 'is-next' : (n < 0 ? 'is-past' : '');
+      return '<div class="event-card ' + cls + '">' +
+        ((next && e.id === next.id) ? '<span class="event-next-flag">Next up</span>' : '') +
+        '<div class="event-kind">' + e.kind + '</div>' +
+        '<div class="event-name">' + e.name + '</div>' +
+        '<div class="event-date">' + formatEventDate(e, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + e.time + '</div>' +
+        '<div class="event-note">' + (e.venue ? '📍 ' + e.venue : '📍 Venue TBA') + '</div>' +
+        '<div class="event-days">' + daysLabel(n) + '</div>' +
+      '</div>';
+    }).join('');
+  })();
 </script>
 </body>
 </html>

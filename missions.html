@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Missions — Robotic Jones &amp; The Temple of LEGO</title>
+  <title>Missions — BIOGLOW Hub · MJS FLL</title>
   <link rel="stylesheet" href="style.css" />
+
   <style>
     .qa-callout {
       background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(0,196,168,0.2);
+      border: 1px solid rgba(61,242,224,0.2);
       border-left: 3px solid var(--teal-dark);
       border-radius: var(--radius);
       padding: 0.85rem 1rem;
@@ -25,7 +26,7 @@
     .qa-item + .qa-item {
       margin-top: 0.6rem;
       padding-top: 0.6rem;
-      border-top: 1px solid rgba(0,196,168,0.1);
+      border-top: 1px solid rgba(61,242,224,0.1);
     }
     .qa-q { font-size: 0.8rem; color: var(--stone-light); line-height: 1.5; margin-bottom: 0.2rem; }
     .qa-a { font-size: 0.8rem; color: var(--teal); line-height: 1.5; }
@@ -38,9 +39,9 @@
 <!-- ── Navigation ──────────────────────────────────── -->
 <nav class="navbar">
   <a href="index.html" class="nav-logo">
-    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-icon">🌿</span>
     <span class="nav-logo-text">
-      Robotic Jones
+      BIOGLOW Hub
       <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
     </span>
   </a>
@@ -50,6 +51,7 @@
     <li><a href="tips.html">Tips &amp; Tricks</a></li>
     <li><a href="schedule.html">Schedule</a></li>
     <li><a href="calculator.html">Score Calculator</a></li>
+    <li><a href="presentation.html">Presentation</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -57,424 +59,478 @@
 </nav>
 
 <!-- ── Page Header ──────────────────────────────────── -->
-<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
-  <p class="eyebrow">📜 Spring Showdown 2026</p>
-  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Mission Dossier</h1>
+<div class="page-hero">
+  <p class="eyebrow">🌿 BIOGLOW™ · Founders Edition Challenge</p>
+  <h1 class="section-title">Mission Field Guide</h1>
   <div class="section-divider"></div>
-  <p class="section-desc">All 16 missions from <em>Robotic Jones &amp; The Temple of LEGO</em>. Study each objective, memorize the scoring, and plan your 150-second run.</p>
+  <p class="section-desc">All 15 robot game missions, plus Equipment Inspection and Precision Tokens. Study each objective, memorize the scoring, and plan your 150-second match.</p>
 </div>
 
-<!-- ── Total Max Points Banner ──────────────────────── -->
-<div style="max-width:1200px;margin:2rem auto;padding:0 2rem;">
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;background:linear-gradient(135deg,var(--brown-warm),var(--brown-mid));border:1px solid var(--gold-dark);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-gold);">
+<!-- ── Stats Banner ──────────────────────── -->
+<div style="max-width:1200px;margin:2rem auto;padding:0 2rem;position:relative;z-index:1;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem;background:linear-gradient(135deg,var(--brown-warm),var(--brown-mid));border:1px solid var(--gold-dark);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-gold);">
     <div style="text-align:center;">
-      <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);">365+</div>
-      <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Max Points</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);">530</div>
+      <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Max Points*</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--font-display);font-size:2rem;color:var(--teal);">16</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--teal);">15</div>
       <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Missions</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);">150</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);">150</div>
       <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Seconds</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--font-display);font-size:2rem;color:var(--red);">12"</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--red);">12"</div>
       <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Height Limit</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold);">6</div>
-      <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Supply Caches</div>
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--teal);">6</div>
+      <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Precision Tokens</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);">3</div>
+      <div style="font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--tan);margin-top:0.2rem;">Docks</div>
     </div>
   </div>
+  <p style="font-size:.75rem;color:var(--stone-light);margin-top:.6rem;text-align:center;">*Includes both M07 connection bonuses, which need the team on the other table to fully extend their plant root. Gracious Professionalism is scored separately (2–4) and isn’t part of the match score.</p>
 </div>
 
-<!-- ── Missions Grid ─────────────────────────────────── -->
 <div class="page-container" style="padding-top:1rem;">
 
   <!-- Legend -->
-  <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem;align-items:center;">
+  <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;align-items:center;">
     <span style="font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tan);">Legend:</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--red-dark);border-radius:1px;display:inline-block;flex-shrink:0;"></span> Primary Points</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--gold-dark);border-radius:1px;display:inline-block;flex-shrink:0;"></span> Bonus Points</span>
-    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--teal-dark);border-radius:1px;display:inline-block;flex-shrink:0;"></span> Tiered / Best Score</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--red-dark);border-radius:1px;display:inline-block;"></span> Primary Points</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--gold-dark);border-radius:1px;display:inline-block;"></span> Bonus Points</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--tan-light);"><span style="width:10px;height:10px;background:var(--teal-dark);border-radius:1px;display:inline-block;"></span> Pick One</span>
+  </div>
+  <div class="info-callout" style="margin-bottom:2rem;">
+    <span class="info-callout-icon">⛔</span>
+    <span><strong style="color:#FFB0C8;">No Equipment Constraint:</strong> on missions with this tag, a model can’t earn points if your equipment is touching it at the end of the match. Program a small back-away move after you finish those missions! <br><strong style="color:var(--teal);">Dock missions</strong> (M13–M15) go on one of the three docks — Mine, City, or Farm. Your team chooses, and the choice affects the M15 bonus.</span>
   </div>
 
   <div class="missions-grid">
 
-    <!-- ── Mission 00 ── -->
-    <div class="mission-card">
+    <!-- ── EI ── -->
+    <div class="mission-card" id="ei">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 00</span>
+        <span class="mission-badge">🔍 Inspection</span>
         <span class="mission-name">Equipment Inspection</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">Before the match begins, the referee inspects your robot. Everything must fit in one Launch area and be under the height limit.</p>
+        <p class="mission-desc">Before the match, the referee checks that your robot and all your equipment fit in a single launch area and are under the height limit.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Robot &amp; all equipment fit in Launch area, under 12 in. (305 mm) height</span>
+            <span class="point-label">Robot and all equipment fit completely in <strong>one</strong> launch area, under 12 in. (305 mm)</span>
             <span class="point-value">20 pts</span>
           </div>
         </div>
         <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 01 ── -->
-    <div class="mission-card">
+    <!-- ── M01 ── -->
+    <div class="mission-card" id="m01">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 01</span>
-        <span class="mission-name">The Great Escape</span>
+        <span class="mission-badge">🛸 Mission 01</span>
+        <span class="mission-name">Drone Survey</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">You are in a mine cart being chased by bad guys! Push the mine cart through the arch so it rests on the other side — and keep it on the track.</p>
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+        <p class="mission-desc">Drones fly above the canopy and send back data in real time. Help the pilot launch the drone so it can build a LiDAR map of the rainforest.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Mine cart is through the arch</span>
-            <span class="point-value">10 pts</span>
-          </div>
-          <div class="point-row">
-            <span class="point-label">Mine cart is still on the track, not touching the mat</span>
-            <span class="point-value">10 pts</span>
-          </div>
-        </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
-        <div class="qa-callout">
-          <div class="qa-header">📋 Official Q&amp;A</div>
-          <div class="qa-item">
-            <div class="qa-q">The instructions say "push." Must it be pushed, or can it be pulled or the track lifted to move the mine cart?</div>
-            <div class="qa-a">You can accomplish the mission in any legal way.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── Mission 02 ── -->
-    <div class="mission-card">
-      <div class="mission-card-header">
-        <span class="mission-badge">Mission 02</span>
-        <span class="mission-name">Restore the Cave</span>
-      </div>
-      <div class="mission-card-body">
-        <p class="mission-desc">The cave is about to collapse! Place a boulder inside the cave without knocking the walls over. Hit the orange circle for bonus points.</p>
-        <div class="points-list">
-          <div class="point-row">
-            <span class="point-label">Boulder is inside the cave and walls are still up</span>
+            <span class="point-label">Drone is no longer touching the mat</span>
             <span class="point-value">20 pts</span>
           </div>
           <div class="point-row bonus">
-            <span class="point-label">Bonus: Boulder is on the orange circle</span>
-            <span class="point-value gold">10 pts</span>
+            <span class="point-label">Bonus: LiDAR map is completely flipped over, with the scan marker at least partly in the survey area</span>
+            <span class="point-value gold">+10 pts</span>
           </div>
         </div>
         <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
-        <div class="qa-callout">
-          <div class="qa-header">📋 Official Q&amp;A</div>
-          <div class="qa-item">
-            <div class="qa-q">Are there any points if the boulder is inside the cave, but the walls are knocked down?</div>
-            <div class="qa-a">No, the walls must be up to score points.</div>
-          </div>
-        </div>
       </div>
     </div>
-
-    <!-- ── Mission 03 ── -->
-    <div class="mission-card">
+    <!-- ── M02 ── -->
+    <div class="mission-card" id="m02">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 03</span>
-        <span class="mission-name">Trailblazers</span>
+        <span class="mission-badge">💥 Mission 02</span>
+        <span class="mission-name">Exploding Seeds</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">You've discovered ancient ruins — mark the location! Place markers on the side of the mountain so they're not touching the mat.</p>
+        <div class="mission-tags"><span class="mtag mtag-link">🔗 Feeds M14</span></div>
+        <p class="mission-desc">Some trees fling their seeds to new ground. Release the seeds from the seed pod.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Each marker on the mountain, not touching the mat (max 2)</span>
+            <span class="point-label">Each seed no longer touching the stalk (3 seeds)</span>
             <span class="point-value">10 pts ea.</span>
           </div>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 These seeds can be collected and delivered to M14 Seeds of Renewal.</p>
+      </div>
+    </div>
+    <!-- ── M03 ── -->
+    <div class="mission-card" id="m03">
+      <div class="mission-card-header">
+        <span class="mission-badge">🪨 Mission 03</span>
+        <span class="mission-name">Flip the Rock</span>
+      </div>
+      <div class="mission-card-body">
+        <p class="mission-desc">Lots of creatures live just under the surface. Flip the rock to see what is underneath — then leave no trace by putting it back.</p>
+        <div class="points-list">
+          <div class="point-row">
+            <span class="point-label">The research flag is down</span>
+            <span class="point-value">20 pts</span>
+          </div>
+          <div class="point-row bonus">
+            <span class="point-label">Bonus: the rock has been returned to its original starting position</span>
+            <span class="point-value gold">+10 pts</span>
+          </div>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
+      </div>
+    </div>
+    <!-- ── M04 ── -->
+    <div class="mission-card" id="m04">
+      <div class="mission-card-header">
+        <span class="mission-badge">🦗 Mission 04</span>
+        <span class="mission-name">Lucky Leaves</span>
+      </div>
+      <div class="mission-card-body">
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-link">🎲 Random Start</span></div>
+        <p class="mission-desc">The katydid hides in plain sight among the leaves. Collect leaves from the nest without disturbing this master of camouflage.</p>
+        <div class="points-list">
+          <div class="point-row">
+            <span class="point-label">One leaf is completely removed, no longer touching the nest</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row bonus">
+            <span class="point-label">Bonus: the second leaf is also removed, with the katydid in its original starting position</span>
+            <span class="point-value gold">+20 pts</span>
+          </div>
           <div class="point-row note">
-            <span class="point-label">Markers cannot be combined in any way</span>
+            <span class="point-label">If the katydid is ever completely outside the leaf habitat during the match, the bonus is lost</span>
+            <span class="point-value">Rule</span>
+          </div>
+          <div class="point-row note">
+            <span class="point-label">The katydid must end the match completely inside the leaf habitat, or this mission scores 0</span>
+            <span class="point-value">Rule</span>
+          </div>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
+      </div>
+    </div>
+    <!-- ── M05 ── -->
+    <div class="mission-card" id="m05">
+      <div class="mission-card-header">
+        <span class="mission-badge">🌱 Mission 05</span>
+        <span class="mission-name">Reaching Roots</span>
+      </div>
+      <div class="mission-card-body">
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-coop">🤝 Coopertition</span></div>
+        <p class="mission-desc">Help a plant root grow across the forest boundary to find a partner for symbiosis.</p>
+        <div class="points-list">
+          <div class="point-row tier">
+            <span class="point-label">Plant root is partially extended</span>
+            <span class="point-value teal">10 pts</span>
+          </div>
+          <div class="point-row tier">
+            <span class="point-label">Plant root is completely extended</span>
+            <span class="point-value teal">20 pts</span>
+          </div>
+          <div class="point-row note">
+            <span class="point-label">Only one of these can score</span>
             <span class="point-value">Rule</span>
           </div>
         </div>
         <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 A fully extended root also lets the team on the other table earn the M07 connection bonus.</p>
       </div>
     </div>
-
-    <!-- ── Mission 04 ── -->
-    <div class="mission-card">
+    <!-- ── M06 ── -->
+    <div class="mission-card" id="m06">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 04</span>
-        <span class="mission-name">Replace the Relic</span>
+        <span class="mission-badge">🐜 Mission 06</span>
+        <span class="mission-name">Leafcutter Frenzy</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">An ancient relic has been found! Remove it safely by replacing it with a fake idol. Precision placement earns the highest reward.</p>
+        <p class="mission-desc">Leafcutter ants carry leaves home to feed their underground fungus garden. Guide the ant back to the nest — go too fast and the leaf fragments scatter.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Relic removed from pedestal</span>
-            <span class="point-value">10 pts</span>
+            <span class="point-label">Ant is touching the nest, and each leaf fragment is contained within the nest (up to 4)</span>
+            <span class="point-value">10 pts ea.</span>
           </div>
-          <div class="point-row tier">
-            <span class="point-label">Idol leaning on pedestal</span>
-            <span class="point-value teal">10 pts</span>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">40 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 No points for fragments unless the ant is touching the nest.</p>
+      </div>
+    </div>
+    <!-- ── M07 ── -->
+    <div class="mission-card" id="m07">
+      <div class="mission-card-header">
+        <span class="mission-badge">🍄 Mission 07</span>
+        <span class="mission-name">Humongous Fungus</span>
+      </div>
+      <div class="mission-card-body">
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-coop">🤝 Coopertition</span></div>
+        <p class="mission-desc">Mycelium is the huge underground fungal network under the forest floor. Form a new connection between the mycelium and a neighboring tree root.</p>
+        <div class="points-list">
+          <div class="point-row">
+            <span class="point-label">Mycelium is completely extended</span>
+            <span class="point-value">20 pts</span>
           </div>
-          <div class="point-row tier">
-            <span class="point-label">Idol on the pedestal</span>
-            <span class="point-value teal">20 pts</span>
-          </div>
-          <div class="point-row tier">
-            <span class="point-label">Idol in center of the pedestal (best!)</span>
-            <span class="point-value teal">30 pts</span>
+          <div class="point-row bonus">
+            <span class="point-label">Bonus: a connection forms between one team’s extended mycelium and the other team’s fully extended plant root — two bonuses possible</span>
+            <span class="point-value gold">+10 pts ea.</span>
           </div>
           <div class="point-row note">
-            <span class="point-label">Idol tiers are exclusive — only highest achieved counts</span>
+            <span class="point-label">The mycelium and root don’t need to touch. If both are fully extended, both teams earn the bonus.</span>
+            <span class="point-value">Rule</span>
+          </div>
+          <div class="point-row note">
+            <span class="point-label">Bonus isn’t possible without an opposing team (e.g., remote events)</span>
             <span class="point-value">Rule</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (relic + idol center)</span><span class="max-value">40 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">40 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 05 ── -->
-    <div class="mission-card">
+    <!-- ── M08 ── -->
+    <div class="mission-card" id="m08">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 05</span>
-        <span class="mission-name">Light the Way</span>
+        <span class="mission-badge">🌿 Mission 08</span>
+        <span class="mission-name">Tangled</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">A hidden secret will be revealed if light shines on the reflective panel. Move the lantern to the right spot — and face it the right way for bonus points!</p>
+        <p class="mission-desc">Vines have wrapped around a tree. Untangle them so the tree has room and sunlight to grow.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Lantern is standing in the oval in front of the metallic panel</span>
-            <span class="point-value">10 pts</span>
-          </div>
-          <div class="point-row bonus">
-            <span class="point-label">Bonus: Lantern is facing the metallic panel</span>
-            <span class="point-value gold">5 pts</span>
+            <span class="point-label">Vine is touching the mat</span>
+            <span class="point-value">30 pts</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">15 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 06 ── -->
-    <div class="mission-card">
+    <!-- ── M09 ── -->
+    <div class="mission-card" id="m09">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 06</span>
-        <span class="mission-name">Hide the Relics</span>
+        <span class="mission-badge">📷 Mission 09</span>
+        <span class="mission-name">Research Platform</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">You've found a cave full of valuable relics — now hide them from rival adventurers! Tip the table completely over to protect the treasures.</p>
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-link">🔗 Feeds M14</span></div>
+        <p class="mission-desc">Scientists deploy equipment high in the trees to watch canopy wildlife. Set up the research station.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Table is tipped over completely</span>
+            <span class="point-label">Research platform is raised</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row">
+            <span class="point-label">Camera trap is deployed</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row">
+            <span class="point-label">Seed is no longer touching the tree</span>
             <span class="point-value">10 pts</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">10 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 This seed can also be delivered to M14 Seeds of Renewal.</p>
       </div>
     </div>
-
-    <!-- ── Mission 07 ── -->
-    <div class="mission-card">
+    <!-- ── M10 ── -->
+    <div class="mission-card" id="m10">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 07</span>
-        <span class="mission-name">Boulder Dash</span>
+        <span class="mission-badge">🕷️ Mission 10</span>
+        <span class="mission-name">Fragile Microhabitats</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">Boulders are rolling everywhere! Release them from the ramp and redirect them to the quarry. Up to 3 boulders can be scored — but they can't be attached to each other.</p>
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+        <p class="mission-desc">Explore protected ecosystems without damaging the homes of the tiny creatures that live there.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Release the boulders so they are not touching the ramp</span>
+            <span class="point-label">Spider habitat is in its original starting position</span>
             <span class="point-value">10 pts</span>
           </div>
-          <div class="point-row bonus">
-            <span class="point-label">Each complete boulder placed in the quarry (max 3)</span>
-            <span class="point-value gold">5 pts ea.</span>
-          </div>
-          <div class="point-row note">
-            <span class="point-label">Boulders may not be attached to each other</span>
-            <span class="point-value">Rule</span>
+          <div class="point-row">
+            <span class="point-label">Snail habitat is in its original starting position</span>
+            <span class="point-value">10 pts</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (release + 3 in quarry)</span><span class="max-value">25 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 These start as points — you keep them by NOT bumping the habitats.</p>
       </div>
     </div>
-
-    <!-- ── Mission 08 ── -->
-    <div class="mission-card">
+    <!-- ── M11 ── -->
+    <div class="mission-card" id="m11">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 08</span>
-        <span class="mission-name">Bridge the Gap</span>
+        <span class="mission-badge">🪟 Mission 11</span>
+        <span class="mission-name">Window to the Past</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">"Duplo... why does it always have to be Duplo?" Lower the bridge over the river to escape from the Duplo bricks chasing you!</p>
+        <p class="mission-desc">Open the root window to study and record the rainforest’s history.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Lower the bridge (completely lowered)</span>
+            <span class="point-label">Root cover is down, touching the mat</span>
             <span class="point-value">20 pts</span>
           </div>
         </div>
         <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 09 ── -->
-    <div class="mission-card">
+    <!-- ── M12 ── -->
+    <div class="mission-card" id="m12">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 09</span>
-        <span class="mission-name">Reflect the Light</span>
+        <span class="mission-badge">🌳 Mission 12</span>
+        <span class="mission-name">Forest Elder</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">To open the ancient temple gates, reflect light from the lantern onto the gates to trigger the opening mechanism. Lower the grey reflective panel!</p>
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+        <p class="mission-desc">An old tree is bending under its own weight. Help stabilize it.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Lower the grey reflective panel to catch the light</span>
-            <span class="point-value">15 pts</span>
+            <span class="point-label">Cane is completely raised, touching the tree</span>
+            <span class="point-value">20 pts</span>
+          </div>
+          <div class="point-row">
+            <span class="point-label">Support tie is around the post</span>
+            <span class="point-value">10 pts</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">15 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 10 ── -->
-    <div class="mission-card">
+    <!-- ── M13 ── -->
+    <div class="mission-card" id="m13">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 10</span>
-        <span class="mission-name">Claim Territory</span>
+        <span class="mission-badge">🦜 Mission 13</span>
+        <span class="mission-name">Keystone Species</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">Many archaeologists are competing for dig sites! Place markers on any green panel or in the grey divot to claim your territory. Markers cannot touch the mat.</p>
+        <div class="mission-tags"><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+        <p class="mission-desc">Design and build your own keystone species model, then deliver it to a protected habitat on the restoration platform.</p>
         <div class="points-list">
           <div class="point-row">
-            <span class="point-label">Each marker placed on a dig site (green panel or grey divot), not touching mat</span>
-            <span class="point-value">10 pts ea.</span>
+            <span class="point-label">Our keystone species is on the restoration platform, and the young trees are raised</span>
+            <span class="point-value">30 pts</span>
+          </div>
+          <div class="point-row note">
+            <span class="point-label">Build the species from the bricks in bag 20. It counts as equipment and must pass the pre-match inspection.</span>
+            <span class="point-value">Rule</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (2 markers, one per dig site)</span><span class="max-value">20 pts</span></div>
-        <div class="qa-callout">
-          <div class="qa-header">📋 Official Q&amp;A</div>
-          <div class="qa-item">
-            <div class="qa-q">Can we put all the site markers on one dig site (e.g., all 3 on one green dig site spot)?</div>
-            <div class="qa-a">Only two markers will count, and there needs to be one at each dig site.</div>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Does the term "grey divot" refer to the small recessed/sunken (trapezoid-shaped) area of the grey model?</div>
-            <div class="qa-a">Yes — the grey divot does refer to the recessed area on the grey model.</div>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Does the marker on the green divot have to be standing, or can it tip over and still count?</div>
-            <div class="qa-a">As long as it is completely on the divot, it will count.</div>
-          </div>
-        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">30 pts</span></div>
       </div>
     </div>
-
-    <!-- ── Mission 11 ── -->
-    <div class="mission-card">
+    <!-- ── M14 ── -->
+    <div class="mission-card" id="m14">
       <div class="mission-card-header">
-        <span class="mission-badge">Mission 11</span>
-        <span class="mission-name">Retrieve the Lost LEGOlith</span>
+        <span class="mission-badge">🌰 Mission 14</span>
+        <span class="mission-name">Seeds of Renewal</span>
       </div>
       <div class="mission-card-body">
-        <p class="mission-desc">A LEGOlith has been discovered in the Temple of LEGO! Retrieve this ancient artifact without disturbing the walls of the ancient room. Careful — more walls standing = more points!</p>
+        <div class="mission-tags"><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+        <p class="mission-desc">A thriving rainforest needs plant diversity. Plant the seeds your team collected so they can take root.</p>
+        <div class="points-list">
+          <div class="point-row">
+            <span class="point-label">Each seed contained within the replantation station (up to 4)</span>
+            <span class="point-value">5 pts ea.</span>
+          </div>
+          <div class="point-row bonus">
+            <span class="point-label">Bonus: each of those seeds is also touching the mat</span>
+            <span class="point-value gold">+5 pts ea.</span>
+          </div>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">40 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 Seeds come from M02 (3 seeds) and M09 (1 seed).</p>
+      </div>
+    </div>
+    <!-- ── M15 ── -->
+    <div class="mission-card" id="m15">
+      <div class="mission-card-header">
+        <span class="mission-badge">🏡 Mission 15</span>
+        <span class="mission-name">Biocentric Architecture</span>
+      </div>
+      <div class="mission-card-body">
+        <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+        <p class="mission-desc">Upgrade a building so it gives wildlife a home, restores the soil, and lets in natural light.</p>
+        <div class="points-list">
+          <div class="point-row">
+            <span class="point-label">Nesting canopy is raised</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row">
+            <span class="point-label">Garden skylight is completely in</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row">
+            <span class="point-label">Compost hatch is completely opened, touching the mat</span>
+            <span class="point-value">10 pts</span>
+          </div>
+          <div class="point-row bonus">
+            <span class="point-label">Environmental Bonus: complete the greatest need for the dock this model is on — Mine → nesting canopy · City → garden skylight · Farm → compost hatch</span>
+            <span class="point-value gold">+10 pts</span>
+          </div>
+        </div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">40 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 Only one Environmental Bonus is possible, and it depends on which dock you choose.</p>
+      </div>
+    </div>
+    <!-- ── PT ── -->
+    <div class="mission-card" id="pt">
+      <div class="mission-card-header">
+        <span class="mission-badge">🎯 Precision Tokens</span>
+        <span class="mission-name">Precision Tokens</span>
+      </div>
+      <div class="mission-card-body">
+        <p class="mission-desc">You start with six precision tokens. The referee removes one every time you interrupt the robot when it is outside home.</p>
         <div class="points-list">
           <div class="point-row tier">
-            <span class="point-label">LEGOlith is in home with <strong>both</strong> walls still standing</span>
+            <span class="point-label">6 tokens left</span>
+            <span class="point-value teal">50 pts</span>
+          </div>
+          <div class="point-row tier">
+            <span class="point-label">5 tokens left</span>
+            <span class="point-value teal">50 pts</span>
+          </div>
+          <div class="point-row tier">
+            <span class="point-label">4 tokens left</span>
+            <span class="point-value teal">35 pts</span>
+          </div>
+          <div class="point-row tier">
+            <span class="point-label">3 tokens left</span>
             <span class="point-value teal">25 pts</span>
           </div>
           <div class="point-row tier">
-            <span class="point-label">LEGOlith retrieved with <strong>one</strong> wall still standing</span>
+            <span class="point-label">2 tokens left</span>
             <span class="point-value teal">15 pts</span>
           </div>
           <div class="point-row tier">
-            <span class="point-label">LEGOlith retrieved with <strong>no</strong> walls standing</span>
+            <span class="point-label">1 token left</span>
             <span class="point-value teal">10 pts</span>
           </div>
-        </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (both walls)</span><span class="max-value">25 pts</span></div>
-      </div>
-    </div>
-
-    <!-- ── Mission 12 ── -->
-    <div class="mission-card">
-      <div class="mission-card-header">
-        <span class="mission-badge">Mission 12</span>
-        <span class="mission-name">Reveal the Secret Passage</span>
-      </div>
-      <div class="mission-card-body">
-        <p class="mission-desc">A secret passage has been found leading to an ancient burial site. Move the barrier completely out of the way to reveal the hidden entrance.</p>
-        <div class="points-list">
-          <div class="point-row">
-            <span class="point-label">Passage completely uncovered (barrier fully moved)</span>
-            <span class="point-value">20 pts</span>
+          <div class="point-row tier">
+            <span class="point-label">0 tokens left</span>
+            <span class="point-value teal">0 pts</span>
           </div>
         </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
-      </div>
-    </div>
-
-    <!-- ── Mission 13 ── -->
-    <div class="mission-card">
-      <div class="mission-card-header">
-        <span class="mission-badge">Mission 13</span>
-        <span class="mission-name">Looting</span>
-      </div>
-      <div class="mission-card-body">
-        <p class="mission-desc">An ancient treasure ship has been found! Lower the ship so you can access the incredible treasures stored within.</p>
-        <div class="points-list">
-          <div class="point-row">
-            <span class="point-label">Ship is completely lowered</span>
-            <span class="point-value">20 pts</span>
-          </div>
-        </div>
-        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">20 pts</span></div>
-      </div>
-    </div>
-
-    <!-- ── Mission 14 ── -->
-    <div class="mission-card">
-      <div class="mission-card-header">
-        <span class="mission-badge">Mission 14</span>
-        <span class="mission-name">Disarm the Trap</span>
-      </div>
-      <div class="mission-card-body">
-        <p class="mission-desc">The temple is booby-trapped! Disarm it by removing the gears from the inner workings. Get all 3 out for maximum points — but each one removed counts!</p>
-        <div class="points-list">
-          <div class="point-row">
-            <span class="point-label">Each gear removed from the trap (max 3)</span>
-            <span class="point-value">5 pts ea.</span>
-          </div>
-        </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (3 gears)</span><span class="max-value">15 pts</span></div>
-      </div>
-    </div>
-
-    <!-- ── Mission 15 ── -->
-    <div class="mission-card">
-      <div class="mission-card-header">
-        <span class="mission-badge">Mission 15</span>
-        <span class="mission-name">Supplies Caches</span>
-      </div>
-      <div class="mission-card-body">
-        <p class="mission-desc">You start with 6 supply caches. Every time the robot is interrupted <em>outside of home</em>, the referee removes one cache. Preserve your caches to earn big end-of-match points!</p>
-        <div class="points-list">
-          <div class="point-row tier"><span class="point-label">6 caches remaining</span><span class="point-value teal">50 pts</span></div>
-          <div class="point-row tier"><span class="point-label">5 caches remaining</span><span class="point-value teal">50 pts</span></div>
-          <div class="point-row tier"><span class="point-label">4 caches remaining</span><span class="point-value teal">40 pts</span></div>
-          <div class="point-row tier"><span class="point-label">3 caches remaining</span><span class="point-value teal">30 pts</span></div>
-          <div class="point-row tier"><span class="point-label">2 caches remaining</span><span class="point-value teal">20 pts</span></div>
-          <div class="point-row tier"><span class="point-label">1 cache remaining</span><span class="point-value teal">10 pts</span></div>
-          <div class="point-row tier"><span class="point-label">0 caches remaining</span><span class="point-value teal">0 pts</span></div>
-        </div>
-        <div class="point-max-bar"><span class="max-label">Max possible (5-6 caches)</span><span class="max-value">50 pts</span></div>
+        <div class="point-max-bar"><span class="max-label">Max possible</span><span class="max-value">50 pts</span></div>
+        <p class="mission-note" style="font-size:.8rem;color:var(--teal);margin-top:.6rem;line-height:1.5;">💡 Your first interruption is “free” (still 50) — every one after that costs points.</p>
       </div>
     </div>
 
   </div><!-- end missions-grid -->
 
+  <div class="warn-callout" style="margin-top:2rem;">
+    <span class="info-callout-icon">📖</span>
+    <span>This page is our team’s summary. The <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-rgr.pdf" target="_blank" rel="noopener">official Robot Game Rulebook</a> and the <a href="https://firstinspires.blob.core.windows.net/fll/challenge/2026-27/fll-challenge-bioglow-updates.pdf" target="_blank" rel="noopener">Challenge Updates</a> always win if anything here disagrees.</span>
+  </div>
+
   <!-- CTA -->
-  <div style="text-align:center;margin-top:3rem;padding:2rem;background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(61,32,16,0.3));border:1px solid rgba(212,168,67,0.2);border-radius:var(--radius-lg);">
+  <div style="text-align:center;margin-top:3rem;padding:2rem;background:linear-gradient(135deg,rgba(155,240,74,0.08),rgba(17,52,38,0.3));border:1px solid rgba(155,240,74,0.2);border-radius:var(--radius-lg);">
     <p class="eyebrow">🧮 Ready to Plan Your Run?</p>
     <h2 class="section-title" style="font-size:1.8rem;margin:0.5rem 0;">Calculate Your Score</h2>
     <p style="color:var(--tan);font-style:italic;font-size:0.9rem;margin-bottom:1.5rem;">Use the interactive calculator to plan which missions to target and see your potential score.</p>
@@ -485,8 +541,8 @@
 
 <!-- ── Footer ───────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
-  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-logo">🌿 MJS FLL · BIOGLOW™ 2026–27</div>
+  <div class="footer-sub">Mayfield Junior School · FIRST® LEGO® League Challenge · Founders Edition</div>
   <div class="footer-divider"></div>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -494,14 +550,12 @@
     <a href="tips.html">Tips &amp; Tricks</a>
     <a href="schedule.html">Schedule</a>
     <a href="calculator.html">Calculator</a>
+    <a href="presentation.html">Presentation</a>
   </div>
-  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+  <div class="footer-copy">Built for young scientists and engineers. &nbsp;·&nbsp; FIRST® LEGO® League and BIOGLOW™ are trademarks of FIRST® and the LEGO Group; this is an unofficial team site. &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
 </footer>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-</script>
+<script src="season.js"></script>
+
 </body>
 </html>

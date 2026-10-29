@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meeting Schedule — Robotic Jones &amp; The Temple of LEGO</title>
+  <title>Meeting Schedule — BIOGLOW Hub · MJS FLL</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .meeting-item.off { opacity:.6; border-style:dashed; }
+    .meeting-item.off .meeting-title { color:var(--stone-light); }
+    .meeting-item.is-past { opacity:.5; }
+    .milestone { font-size:0.8rem; color:var(--tan-light); padding:0.4rem 0; border-bottom:1px solid rgba(46,120,92,0.3); }
+    .milestone b { font-family:var(--font-heading); font-size:0.7rem; display:block; margin-bottom:0.15rem; font-weight:600; }
+  </style>
 </head>
 <body>
 
 <!-- ── Navigation ──────────────────────────────────── -->
 <nav class="navbar">
   <a href="index.html" class="nav-logo">
-    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-icon">🌿</span>
     <span class="nav-logo-text">
-      Robotic Jones
+      BIOGLOW Hub
       <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
     </span>
   </a>
@@ -23,6 +30,7 @@
     <li><a href="tips.html">Tips &amp; Tricks</a></li>
     <li><a href="schedule.html" class="active">Schedule</a></li>
     <li><a href="calculator.html">Score Calculator</a></li>
+    <li><a href="presentation.html">Presentation</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -30,341 +38,356 @@
 </nav>
 
 <!-- ── Page Header ──────────────────────────────────── -->
-<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
-  <p class="eyebrow">📅 Season 2026</p>
-  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Meeting Schedule</h1>
+<div class="page-hero">
+  <p class="eyebrow">📅 BIOGLOW Season · Nov – Feb</p>
+  <h1 class="section-title">Meeting Schedule</h1>
   <div class="section-divider"></div>
-  <p class="section-desc">Every meeting brings us closer to glory. Attend, practice, and build something amazing together.</p>
+  <p class="section-desc">Our plan from now through the Qualifying Event. Every meeting gets us closer — attend, practice, and grow something amazing together.</p>
 </div>
 
 <div class="page-container">
   <div class="schedule-grid">
 
-    <!-- ── Sidebar ──────────────────────────────────── -->
     <aside class="schedule-sidebar">
-
-      <div class="sidebar-title">🏆 Competition Countdown</div>
-
+      <div class="sidebar-title">⏳ Next Event Countdown</div>
       <div class="countdown-box">
-        <div class="countdown-label">Days Until Spring Showdown</div>
+        <div class="countdown-label" id="cdLabel">Days Until</div>
         <div class="countdown-num" id="countdownNum">—</div>
-        <div class="countdown-unit">Days Remaining</div>
-        <div class="competition-date" style="margin-top:0.75rem;">
-          📅 Spring Showdown 2026<br>
-          <span style="color:var(--gold);font-family:var(--font-heading);font-size:0.9rem;">May 17, 2026</span>
-        </div>
+        <div class="countdown-unit" id="cdUnit">Days Remaining</div>
+        <div class="competition-date" style="margin-top:0.75rem;" id="cdWhen"></div>
       </div>
 
       <div class="sidebar-title" style="margin-top:1.25rem;">📌 Club Info</div>
       <div class="info-list">
-        <div class="info-row">
-          <span class="info-icon">🏫</span>
-          <div>
-            <span class="info-label">School</span>
-            Mayfield Junior School
-          </div>
-        </div>
-        <div class="info-row">
-          <span class="info-icon">📍</span>
-          <div>
-            <span class="info-label">Location</span>
-            Science / Robotics Room<br>
-            <span style="color:var(--stone-light);font-size:0.78rem;font-style:italic;">(confirm with your teacher)</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <span class="info-icon">🗓️</span>
-          <div>
-            <span class="info-label">Meeting Day</span>
-            Wednesdays (weekly)
-          </div>
-        </div>
-        <div class="info-row">
-          <span class="info-icon">⏰</span>
-          <div>
-            <span class="info-label">Meeting Time</span>
-            3:30 PM – 5:00 PM
-          </div>
-        </div>
-        <div class="info-row">
-          <span class="info-icon">👥</span>
-          <div>
-            <span class="info-label">Team Size</span>
-            Up to 10 members
-          </div>
-        </div>
+        <div class="info-row"><span class="info-icon">🏫</span><div><span class="info-label">School</span>Mayfield Junior School</div></div>
+        <div class="info-row"><span class="info-icon">📍</span><div><span class="info-label">Location</span>Science / Robotics Room<br><span style="color:var(--stone-light);font-size:0.78rem;font-style:italic;">(confirm with your teacher)</span></div></div>
+        <div class="info-row"><span class="info-icon">🗓️</span><div><span class="info-label">Meeting Day</span>Wednesdays (weekly)</div></div>
+        <div class="info-row"><span class="info-icon">⏰</span><div><span class="info-label">Meeting Time</span>3:30 PM – 5:00 PM</div></div>
+        <div class="info-row"><span class="info-icon">🧩</span><div><span class="info-label">Program</span>FLL Challenge · Founders Edition (Grades 4–8)</div></div>
       </div>
 
       <div class="sidebar-title" style="margin-top:1.25rem;">🌡️ Key Milestones</div>
       <div style="display:flex;flex-direction:column;gap:0.5rem;">
-        <div style="font-size:0.8rem;color:var(--tan-light);padding:0.4rem 0;border-bottom:1px solid rgba(122,72,40,0.3);">
-          <span style="color:var(--teal);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">Feb 5</span>
-          Season Kickoff
-        </div>
-        <div style="font-size:0.8rem;color:var(--tan-light);padding:0.4rem 0;border-bottom:1px solid rgba(122,72,40,0.3);">
-          <span style="color:var(--teal);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">Mar 5</span>
-          Robot Base Locked In
-        </div>
-        <div style="font-size:0.8rem;color:var(--tan-light);padding:0.4rem 0;border-bottom:1px solid rgba(122,72,40,0.3);">
-          <span style="color:var(--teal);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">Mar 26</span>
-          Full Run Dress Rehearsal
-        </div>
-        <div style="font-size:0.8rem;color:var(--tan-light);padding:0.4rem 0;border-bottom:1px solid rgba(122,72,40,0.3);">
-          <span style="color:var(--gold);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">Apr 9</span>
-          Mock Competition Day
-        </div>
-        <div style="font-size:0.8rem;color:var(--tan-light);padding:0.4rem 0;border-bottom:1px solid rgba(122,72,40,0.3);">
-          <span style="color:var(--red);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">Apr 16</span>
-          Final Freeze (no more changes)
-        </div>
-        <div style="font-size:0.8rem;color:#FF8888;font-weight:bold;padding:0.4rem 0;">
-          <span style="color:var(--red);font-family:var(--font-heading);font-size:0.7rem;display:block;margin-bottom:0.15rem;">May 17 🏆</span>
-          SPRING SHOWDOWN!
-        </div>
+        <div class="milestone"><b style="color:var(--gold);">Dec 3</b>Practice Competition</div>
+        <div class="milestone"><b style="color:var(--red);">Dec 9</b>Regional code freeze</div>
+        <div class="milestone"><b style="color:var(--red);">Dec 13 🏆</b><strong style="color:#FF9DBB;">REGIONAL EVENT</strong></div>
+        <div class="milestone"><b style="color:var(--teal);">Jan 6</b>Dock missions begin</div>
+        <div class="milestone"><b style="color:var(--gold);">Feb 3</b>Mock Qualifier</div>
+        <div class="milestone"><b style="color:var(--red);">Feb 10</b>Final code freeze</div>
+        <div class="milestone"><b style="color:var(--red);">Feb 15 🏆</b><strong style="color:#FF9DBB;">QUALIFYING EVENT</strong></div>
       </div>
-
     </aside>
 
-    <!-- ── Meeting List ──────────────────────────────── -->
     <main>
       <div class="meeting-list">
 
-        <!-- Week 1 -->
-        <div class="meeting-item special">
+        <div class="meeting-item" data-date="2026-11-04">
           <div class="meeting-date-col">
-            <div class="meeting-month">Feb</div>
-            <div class="meeting-day">5</div>
+            <div class="meeting-month">Nov</div>
+            <div class="meeting-day">4</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">Season Kickoff — Meet Robotic Jones!</div>
+            <div class="meeting-title">BIOGLOW Mission Deep Dive</div>
             <div class="meeting-details">
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">Introduction to the Spring Showdown 2026 challenge. Read through all 16 missions together. Assign team roles and discuss initial strategy.</div>
+            <div class="meeting-desc">Watch the Robot Game Missions video together and read the rulebook mission pages. Use the score calculator to pick our first set of target missions. Note every mission with the No Equipment Constraint.</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Orientation</span>
               <span class="focus-tag">Mission Review</span>
-              <span class="focus-tag">Team Roles</span>
+              <span class="focus-tag">Strategy</span>
+              <span class="focus-tag">Rulebook</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 2 -->
-        <div class="meeting-item">
+        <div class="meeting-item" data-date="2026-11-11">
           <div class="meeting-date-col">
-            <div class="meeting-month">Feb</div>
-            <div class="meeting-day">12</div>
+            <div class="meeting-month">Nov</div>
+            <div class="meeting-day">11</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">Robot Base Design &amp; Build</div>
+            <div class="meeting-title">Drive Base Check + Anchor Missions</div>
             <div class="meeting-details">
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">Design and begin construction of the drive base. Focus on compact size, stability, and staying under 12-inch height. Test basic movement on the field.</div>
+            <div class="meeting-desc">Confirm the robot fits in one launch area under 12 in. Build and test attachments for reliable, nearby points: M08 Tangled, M11 Window to the Past, and M12 Forest Elder.</div>
             <div class="meeting-focus">
               <span class="focus-tag">Building</span>
-              <span class="focus-tag">Drive Base</span>
-              <span class="focus-tag">Height Check</span>
+              <span class="focus-tag">M08</span>
+              <span class="focus-tag">M11</span>
+              <span class="focus-tag">M12</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 3 -->
-        <div class="meeting-item">
+        <div class="meeting-item" data-date="2026-11-18">
           <div class="meeting-date-col">
-            <div class="meeting-month">Feb</div>
-            <div class="meeting-day">19</div>
+            <div class="meeting-month">Nov</div>
+            <div class="meeting-day">18</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">Basic Navigation Programming</div>
+            <div class="meeting-title">Roots &amp; Fungus + Innovation Kickoff</div>
             <div class="meeting-details">
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">Program the robot to move in straight lines, turn accurately, and return to home. Calibrate gyro sensor. Write sub-run 1 program for Mission 00 equipment inspection.</div>
+            <div class="meeting-desc">Robot crew: M05 Reaching Roots and M07 Humongous Fungus (practice backing away cleanly). Project crew: choose a real problem that puts rainforest biodiversity at risk and start research.</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Programming</span>
-              <span class="focus-tag">Navigation</span>
-              <span class="focus-tag">Gyro Calibration</span>
+              <span class="focus-tag">M05</span>
+              <span class="focus-tag">M07</span>
+              <span class="focus-tag">Innovation Project</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 4 -->
-        <div class="meeting-item">
+        <div class="meeting-item off" data-date="2026-11-25">
           <div class="meeting-date-col">
-            <div class="meeting-month">Feb</div>
-            <div class="meeting-day">26</div>
+            <div class="meeting-month">Nov</div>
+            <div class="meeting-day">25</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">First Mission Attempts: M01 &amp; M08</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
-            </div>
-            <div class="meeting-desc">Design and test attachments for Mission 01 (Great Escape - mine cart) and Mission 08 (Bridge the Gap). Record success rates for each attempt.</div>
+            <div class="meeting-title">No Meeting — Thanksgiving Week</div>
+            <div class="meeting-desc">Enjoy the break! If you can, read one article about your Innovation Project topic and bring a fact to share.</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Attachments</span>
-              <span class="focus-tag">M01 Mine Cart</span>
-              <span class="focus-tag">M08 Bridge</span>
+              <span class="focus-tag">Break</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 5 -->
-        <div class="meeting-item">
+        <div class="meeting-item" data-date="2026-12-02">
           <div class="meeting-date-col">
-            <div class="meeting-month">Mar</div>
-            <div class="meeting-day">5</div>
-            <div class="meeting-dow">Wed</div>
-          </div>
-          <div class="meeting-divider"></div>
-          <div class="meeting-info">
-            <div class="meeting-title">Robot Base Locked In + M02 &amp; M07</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
-            </div>
-            <div class="meeting-desc">Finalize the robot base — no more major changes after this! Begin work on Mission 02 (Restore the Cave) and Mission 07 (Boulder Dash). Test boulder placement.</div>
-            <div class="meeting-focus">
-              <span class="focus-tag">M02 Cave</span>
-              <span class="focus-tag">M07 Boulders</span>
-              <span class="focus-tag">Base Final</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Week 6 -->
-        <div class="meeting-item">
-          <div class="meeting-date-col">
-            <div class="meeting-month">Mar</div>
-            <div class="meeting-day">12</div>
-            <div class="meeting-dow">Wed</div>
-          </div>
-          <div class="meeting-divider"></div>
-          <div class="meeting-info">
-            <div class="meeting-title">High-Value Missions: M04 &amp; M11</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
-            </div>
-            <div class="meeting-desc">Focus on the two hardest, highest-reward missions: M04 (Replace the Relic - up to 40 pts) and M11 (Retrieve the LEGOlith - up to 25 pts). Design precision attachments.</div>
-            <div class="meeting-focus">
-              <span class="focus-tag">M04 Relic</span>
-              <span class="focus-tag">M11 LEGOlith</span>
-              <span class="focus-tag">Precision</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Week 7 -->
-        <div class="meeting-item">
-          <div class="meeting-date-col">
-            <div class="meeting-month">Mar</div>
-            <div class="meeting-day">19</div>
-            <div class="meeting-dow">Wed</div>
-          </div>
-          <div class="meeting-divider"></div>
-          <div class="meeting-info">
-            <div class="meeting-title">Route Planning &amp; Sub-Run Strategy</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
-            </div>
-            <div class="meeting-desc">Map out the full 150-second run. Decide which missions to attempt and in what order. Identify sub-runs and attachment swap points. Use the score calculator to optimize.</div>
-            <div class="meeting-focus">
-              <span class="focus-tag">Strategy</span>
-              <span class="focus-tag">Route Map</span>
-              <span class="focus-tag">Timing</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Week 8 — Special -->
-        <div class="meeting-item special">
-          <div class="meeting-date-col">
-            <div class="meeting-month">Mar</div>
-            <div class="meeting-day">26</div>
-            <div class="meeting-dow">Wed</div>
-          </div>
-          <div class="meeting-divider"></div>
-          <div class="meeting-info">
-            <div class="meeting-title">Full Run Dress Rehearsal</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
-            </div>
-            <div class="meeting-desc">First complete timed run! Record score and analyze performance. Identify the biggest bottlenecks. Every member observes and takes notes on what can improve.</div>
-            <div class="meeting-focus">
-              <span class="focus-tag">Full Run</span>
-              <span class="focus-tag">Timed</span>
-              <span class="focus-tag">Score Tracking</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Week 9 -->
-        <div class="meeting-item">
-          <div class="meeting-date-col">
-            <div class="meeting-month">Apr</div>
+            <div class="meeting-month">Dec</div>
             <div class="meeting-day">2</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">Refinement &amp; Reliability Testing</div>
+            <div class="meeting-title">Practice Competition Prep</div>
             <div class="meeting-details">
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">Fix issues found during rehearsal. Test each mission 10 times and log success rates. Drop any mission below 60% reliability. Focus on consistent 5-run totals.</div>
+            <div class="meeting-desc">Timed full runs with a referee and scoresheet. First full run-through of our judging session. Pack the robot kit for tomorrow.</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Reliability</span>
-              <span class="focus-tag">Testing</span>
-              <span class="focus-tag">Refinement</span>
+              <span class="focus-tag">Full Runs</span>
+              <span class="focus-tag">Judging Practice</span>
+              <span class="focus-tag">Packing</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 10 — Mock Competition -->
-        <div class="meeting-item special">
+        <div class="meeting-item special" data-date="2026-12-03">
           <div class="meeting-date-col">
-            <div class="meeting-month">Apr</div>
+            <div class="meeting-month">Dec</div>
+            <div class="meeting-day">3</div>
+            <div class="meeting-dow">Thu</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">🎉 Practice Competition</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ After school</span>
+              <span class="meeting-detail">📍 MJS</span>
+            </div>
+            <div class="meeting-desc">Our dress rehearsal! Three timed matches with official rules, plus a practice judging session. Celebrate what works and write down what doesn’t.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Practice Competition</span>
+              <span class="focus-tag">3 Matches</span>
+              <span class="focus-tag">Mock Judging</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2026-12-09">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Dec</div>
             <div class="meeting-day">9</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">🎉 Mock Competition Day!</div>
+            <div class="meeting-title">Fix It &amp; Freeze It</div>
             <div class="meeting-details">
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">Full competition simulation! 3 official timed runs, referee-style rules enforced. Celebrate scores, debrief on Strategy, and build confidence for the real thing. Refreshments provided!</div>
+            <div class="meeting-desc">Fix the biggest problems from the practice competition. Then code freeze for the Regional — no big changes after today. Back up all programs and pack.</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Mock Competition</span>
-              <span class="focus-tag">3 Rounds</span>
-              <span class="focus-tag">Full Rules</span>
-              <span class="focus-tag">Celebration</span>
+              <span class="focus-tag">Debrief</span>
+              <span class="focus-tag">Code Freeze</span>
+              <span class="focus-tag">Packing</span>
             </div>
           </div>
         </div>
-
-        <!-- Week 11 -->
-        <div class="meeting-item">
+        <div class="meeting-item competition" data-date="2026-12-13">
           <div class="meeting-date-col">
-            <div class="meeting-month">Apr</div>
+            <div class="meeting-month">Dec</div>
+            <div class="meeting-day">13</div>
+            <div class="meeting-dow">Sun</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">🏆 Regional Event</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ Arrive early</span>
+              <span class="meeting-detail">📍 Venue TBA</span>
+            </div>
+            <div class="meeting-desc">Our first official event! Trust the practice, help each other, and show Gracious Professionalism at every table.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">Regional</span>
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">3 Matches</span>
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">Judging</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2026-12-16">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Dec</div>
             <div class="meeting-day">16</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">Regional Debrief &amp; Goal Setting</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Read our judging feedback and match scores together. Set goals for February: which missions to add, what to improve in the project and presentation.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Feedback</span>
+              <span class="focus-tag">Goals</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item off" data-date="2026-12-23">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Dec</div>
+            <div class="meeting-day">23</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">No Meetings — Winter Break</div>
+            <div class="meeting-desc">No meetings Dec 23 or Dec 30. Rest up and come back ready for the second half of the season!</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Break</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2027-01-06">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Jan</div>
+            <div class="meeting-day">6</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">Dock Missions: M13, M14, M15</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Build and test our keystone species model (M13). Plan the seed route from M02 and M09 into M14. Choose our docks and test M15 Biocentric Architecture for the Environmental Bonus.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">M13</span>
+              <span class="focus-tag">M14</span>
+              <span class="focus-tag">M15</span>
+              <span class="focus-tag">Docks</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2027-01-13">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Jan</div>
+            <div class="meeting-day">13</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">Innovation Project: Prototype &amp; Share</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Build or improve our solution prototype. Share it with an expert or another audience and record their feedback for the judges.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Innovation Project</span>
+              <span class="focus-tag">Prototype</span>
+              <span class="focus-tag">Expert Feedback</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2027-01-20">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Jan</div>
+            <div class="meeting-day">20</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">Route Optimization &amp; Reliability</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Map the whole 150-second match. Run each mission 10 times and log success rates. Drop or redesign anything below 60% reliable.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Strategy</span>
+              <span class="focus-tag">Testing</span>
+              <span class="focus-tag">Timing</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2027-01-27">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Jan</div>
+            <div class="meeting-day">27</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">Robot Design Story</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Update the iteration log and work through the Presentation Builder. Every team member practices their speaking part.</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Presentation</span>
+              <span class="focus-tag">Iteration Log</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item special" data-date="2027-02-03">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Feb</div>
+            <div class="meeting-day">3</div>
+            <div class="meeting-dow">Wed</div>
+          </div>
+          <div class="meeting-divider"></div>
+          <div class="meeting-info">
+            <div class="meeting-title">🎉 Mock Qualifier</div>
+            <div class="meeting-details">
+              <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
+              <span class="meeting-detail">📍 Robotics Room</span>
+            </div>
+            <div class="meeting-desc">Full simulation: three timed matches with referee rules and a mock judging session with a guest judge. Refreshments!</div>
+            <div class="meeting-focus">
+              <span class="focus-tag">Mock Event</span>
+              <span class="focus-tag">3 Matches</span>
+              <span class="focus-tag">Mock Judging</span>
+            </div>
+          </div>
+        </div>
+        <div class="meeting-item" data-date="2027-02-10">
+          <div class="meeting-date-col">
+            <div class="meeting-month">Feb</div>
+            <div class="meeting-day">10</div>
             <div class="meeting-dow">Wed</div>
           </div>
           <div class="meeting-divider"></div>
@@ -374,7 +397,7 @@
               <span class="meeting-detail">⏰ 3:30 – 5:00 PM</span>
               <span class="meeting-detail">📍 Robotics Room</span>
             </div>
-            <div class="meeting-desc">No more major changes! Final tweaks only. Backup all code. Verify equipment inspection pass. Review competition-day procedures, travel plan, and team roles. Pack everything needed.</div>
+            <div class="meeting-desc">Final tweaks only. Back up all code, check inspection fit with the keystone species, and pack everything for Monday.</div>
             <div class="meeting-focus">
               <span class="focus-tag">Code Freeze</span>
               <span class="focus-tag">Packing</span>
@@ -382,76 +405,49 @@
             </div>
           </div>
         </div>
-
-        <!-- Week 12 — Pre-comp -->
-        <div class="meeting-item">
+        <div class="meeting-item competition" data-date="2027-02-15">
           <div class="meeting-date-col">
-            <div class="meeting-month">Apr</div>
-            <div class="meeting-day">23</div>
-            <div class="meeting-dow">Wed</div>
+            <div class="meeting-month">Feb</div>
+            <div class="meeting-day">15</div>
+            <div class="meeting-dow">Mon</div>
           </div>
           <div class="meeting-divider"></div>
           <div class="meeting-info">
-            <div class="meeting-title">Pre-Competition Confidence Run</div>
+            <div class="meeting-title">🏆 Qualifying Event</div>
             <div class="meeting-details">
-              <span class="meeting-detail">⏰ 3:30 – 4:30 PM</span>
-              <span class="meeting-detail">📍 Robotics Room</span>
+              <span class="meeting-detail">⏰ Arrive early</span>
+              <span class="meeting-detail">📍 Venue TBA</span>
             </div>
-            <div class="meeting-desc">Light practice session. 2 confidence runs only — no changes. Mental prep, team pep talk, and review competition-day schedule. Go home early and get a good night's sleep!</div>
+            <div class="meeting-desc">This is what we’ve been building toward all season. Stay calm, trust your training, and have fun!</div>
             <div class="meeting-focus">
-              <span class="focus-tag">Confidence Run</span>
-              <span class="focus-tag">Mental Prep</span>
-              <span class="focus-tag">Rest Up!</span>
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">Qualifier</span>
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">3 Matches</span>
+              <span class="focus-tag" style="border-color:rgba(255,92,138,0.4);color:#FF9DBB;background:rgba(255,92,138,0.08);">Judging</span>
             </div>
           </div>
         </div>
 
-        <!-- COMPETITION DAY -->
-        <div class="meeting-item competition">
-          <div class="meeting-date-col">
-            <div class="meeting-month">May</div>
-            <div class="meeting-day">17</div>
-            <div class="meeting-dow">Sun</div>
-          </div>
-          <div class="meeting-divider"></div>
-          <div class="meeting-info">
-            <div class="meeting-title">🏆 SPRING SHOWDOWN 2026 — COMPETITION DAY!</div>
-            <div class="meeting-details">
-              <span class="meeting-detail">⏰ Arrive Early</span>
-              <span class="meeting-detail">📍 <a href="https://maps.app.goo.gl/ngwDeNgpP8jHwD8F7" target="_blank" rel="noopener" style="color:var(--gold);">View Venue ↗</a></span>
-            </div>
-            <div class="meeting-desc">This is what we've been building toward! Stay focused, trust your training, and have fun. You've worked hard — now go show them what Robotic Jones can do. Fortune and glory!</div>
-            <div class="meeting-focus">
-              <span class="focus-tag" style="border-color:rgba(204,34,34,0.4);color:#FF8888;background:rgba(204,34,34,0.08);">Competition</span>
-              <span class="focus-tag" style="border-color:rgba(204,34,34,0.4);color:#FF8888;background:rgba(204,34,34,0.08);">3 Official Rounds</span>
-              <span class="focus-tag" style="border-color:rgba(204,34,34,0.4);color:#FF8888;background:rgba(204,34,34,0.08);">Let's Gooo!</span>
-            </div>
-          </div>
-        </div>
+      </div>
 
-      </div><!-- end meeting-list -->
-
-      <!-- What to bring -->
-      <div style="margin-top:2rem;padding:1.75rem;background:linear-gradient(135deg,rgba(212,168,67,0.08),rgba(61,32,16,0.4));border:1px solid rgba(212,168,67,0.25);border-radius:var(--radius-lg);">
+      <div style="margin-top:2rem;padding:1.75rem;background:linear-gradient(135deg,rgba(155,240,74,0.08),rgba(17,52,38,0.4));border:1px solid rgba(155,240,74,0.25);border-radius:var(--radius-lg);">
         <p class="eyebrow" style="margin-bottom:0.75rem;">📦 What to Bring Every Week</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;">
           <div style="font-size:0.82rem;color:var(--tan-light);">📓 Engineering notebook</div>
           <div style="font-size:0.82rem;color:var(--tan-light);">💻 Laptop / tablet (charged)</div>
           <div style="font-size:0.82rem;color:var(--tan-light);">🔋 Robot battery (charged!)</div>
-          <div style="font-size:0.82rem;color:var(--tan-light);">🧠 A positive attitude</div>
+          <div style="font-size:0.82rem;color:var(--tan-light);">💡 Innovation Project research</div>
           <div style="font-size:0.82rem;color:var(--tan-light);">✏️ Pencil for notes</div>
-          <div style="font-size:0.82rem;color:var(--tan-light);">👟 Comfortable clothes</div>
+          <div style="font-size:0.82rem;color:var(--tan-light);">🧠 A positive attitude</div>
         </div>
       </div>
-
     </main>
-  </div><!-- end schedule-grid -->
+  </div>
 </div>
 
 <!-- ── Footer ───────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
-  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-logo">🌿 MJS FLL · BIOGLOW™ 2026–27</div>
+  <div class="footer-sub">Mayfield Junior School · FIRST® LEGO® League Challenge · Founders Edition</div>
   <div class="footer-divider"></div>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -459,30 +455,34 @@
     <a href="tips.html">Tips &amp; Tricks</a>
     <a href="schedule.html">Schedule</a>
     <a href="calculator.html">Calculator</a>
+    <a href="presentation.html">Presentation</a>
   </div>
-  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+  <div class="footer-copy">Built for young scientists and engineers. &nbsp;·&nbsp; FIRST® LEGO® League and BIOGLOW™ are trademarks of FIRST® and the LEGO Group; this is an unofficial team site. &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
 </footer>
 
+<script src="season.js"></script>
 <script>
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-  // Countdown to May 17, 2026
-  const compDate = new Date('2026-05-17T08:00:00');
-  function updateCountdown() {
-    const now  = new Date();
-    const diff = compDate - now;
-    if (diff <= 0) {
+  (function () {
+    const ev = nextEvent();
+    if (!ev) {
       document.getElementById('countdownNum').textContent = '🏆';
+      document.getElementById('cdLabel').textContent = 'Season complete';
+      document.getElementById('cdUnit').textContent = 'Amazing work!';
     } else {
-      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('countdownNum').textContent = days;
+      const n = daysUntil(ev);
+      document.getElementById('cdLabel').textContent = 'Days Until ' + ev.kind;
+      document.getElementById('countdownNum').textContent = n === 0 ? '🎉' : n;
+      document.getElementById('cdUnit').textContent = n === 0 ? 'It’s today!' : (n === 1 ? 'Day Remaining' : 'Days Remaining');
+      document.getElementById('cdWhen').innerHTML = '📅 ' + ev.name + '<br><span style="color:var(--gold);font-family:var(--font-heading);font-size:0.9rem;">' +
+        formatEventDate(ev, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) + '</span>';
     }
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
+    // dim meetings that have already happened
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    document.querySelectorAll('.meeting-item[data-date]').forEach(el => {
+      const [y, m, d] = el.dataset.date.split('-').map(Number);
+      if (new Date(y, m - 1, d) < today) el.classList.add('is-past');
+    });
+  })();
 </script>
 </body>
 </html>

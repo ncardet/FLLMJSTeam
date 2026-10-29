@@ -3,17 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Score Calculator — Robotic Jones &amp; The Temple of LEGO</title>
+  <title>Score Calculator — BIOGLOW Hub · MJS FLL</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .calc-count { display:flex; align-items:center; gap:.75rem; padding:.5rem .75rem; background:rgba(0,0,0,0.15); border-radius:var(--radius); margin-bottom:.4rem; }
+    .calc-count label { font-size:.83rem; color:var(--tan-light); flex:1; }
+    .stepper { display:flex; align-items:center; gap:.25rem; }
+    .stepper button { width:30px; height:30px; border-radius:6px; border:1px solid rgba(46,120,92,.6); background:rgba(0,0,0,.3); color:var(--gold); font-size:1.1rem; cursor:pointer; line-height:1; }
+    .stepper button:hover { border-color:var(--gold); }
+    .stepper input { width:46px; padding:.3rem .2rem; background:rgba(0,0,0,0.3); border:1px solid rgba(46,120,92,0.5); border-radius:4px; color:var(--gold); font-family:var(--font-heading); font-size:1rem; text-align:center; }
+    .calc-select { width:100%; padding:.45rem .6rem; background:rgba(0,0,0,0.3); border:1px solid rgba(46,120,92,0.6); border-radius:6px; color:var(--tan-light); font-family:var(--font-body); font-size:.85rem; }
+    .calc-option.disabled { opacity:.4; pointer-events:none; }
+    .calc-count.disabled { opacity:.4; }
+    .calc-option.penalty .opt-pts { color:#FFB0C8; }
+    .calc-mission .mission-tags { margin: 0 0 .4rem; }
+  </style>
 </head>
 <body>
 
 <!-- ── Navigation ──────────────────────────────────── -->
 <nav class="navbar">
   <a href="index.html" class="nav-logo">
-    <span class="nav-logo-icon">🤠</span>
+    <span class="nav-logo-icon">🌿</span>
     <span class="nav-logo-text">
-      Robotic Jones
+      BIOGLOW Hub
       <span class="nav-logo-sub">Mayfield Junior School FLL Club</span>
     </span>
   </a>
@@ -23,6 +36,7 @@
     <li><a href="tips.html">Tips &amp; Tricks</a></li>
     <li><a href="schedule.html">Schedule</a></li>
     <li><a href="calculator.html" class="active">Score Calculator</a></li>
+    <li><a href="presentation.html">Presentation</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -30,388 +44,445 @@
 </nav>
 
 <!-- ── Page Header ──────────────────────────────────── -->
-<div style="background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));border-bottom:2px solid var(--gold-dark);padding:3.5rem 2rem 3rem;text-align:center;">
+<div class="page-hero">
   <p class="eyebrow">🧮 Interactive Tool</p>
-  <h1 class="section-title" style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);">Score Calculator</h1>
+  <h1 class="section-title">Score Calculator</h1>
   <div class="section-divider"></div>
-  <p class="section-desc">Check off what your robot achieves and watch your score update in real time. Plan the perfect run!</p>
+  <p class="section-desc">Check off what your robot achieves and watch your score update live. Bonuses unlock only when their base condition is met — just like the real scoresheet.</p>
 </div>
 
 <div class="page-container">
   <div class="calculator-layout">
 
-    <!-- ── Mission Inputs ─────────────────────────── -->
     <div class="calc-missions" id="calcMissions">
 
-      <!-- M00 -->
-      <div class="calc-mission" id="m00">
+      <!-- ei -->
+      <div class="calc-mission" id="ei">
         <div class="calc-mission-header">
-          <span class="calc-badge">Mission 00</span>
+          <span class="calc-badge">Inspection</span>
           <span class="calc-mission-name">Equipment Inspection</span>
-          <span class="calc-mission-pts" id="pts-m00">0 pts</span>
+          <span class="calc-mission-pts" id="pts-ei">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m00-a" data-pts="20" data-mission="m00" />
-            <label for="m00-a">Robot fits in launch area, under 12 in. height</label>
+          
+          <label class="calc-option" id="wrap-ei-a">
+            <input type="checkbox" id="ei-a" />
+            <span class="calc-opt-label">Robot + all equipment fit in one launch area, under 12 in.</span>
             <span class="opt-pts">20 pts</span>
           </label>
         </div>
       </div>
 
-      <!-- M01 -->
+      <!-- m01 -->
       <div class="calc-mission" id="m01">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 01</span>
-          <span class="calc-mission-name">The Great Escape</span>
+          <span class="calc-mission-name">Drone Survey</span>
           <span class="calc-mission-pts" id="pts-m01">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m01-a" data-pts="10" data-mission="m01" />
-            <label for="m01-a">Mine cart is through the arch</label>
-            <span class="opt-pts">10 pts</span>
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option" id="wrap-m01-a">
+            <input type="checkbox" id="m01-a" />
+            <span class="calc-opt-label">Drone is no longer touching the mat</span>
+            <span class="opt-pts">20 pts</span>
           </label>
-          <label class="calc-option">
-            <input type="checkbox" id="m01-b" data-pts="10" data-mission="m01" />
-            <label for="m01-b">Mine cart still on track, not touching the mat</label>
-            <span class="opt-pts">10 pts</span>
+          <label class="calc-option bonus" id="wrap-m01-b">
+            <input type="checkbox" id="m01-b" />
+            <span class="calc-opt-label">Bonus: LiDAR map flipped, scan marker at least partly in survey area</span>
+            <span class="opt-pts">+10 pts</span>
           </label>
         </div>
       </div>
 
-      <!-- M02 -->
+      <!-- m02 -->
       <div class="calc-mission" id="m02">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 02</span>
-          <span class="calc-mission-name">Restore the Cave</span>
+          <span class="calc-mission-name">Exploding Seeds</span>
           <span class="calc-mission-pts" id="pts-m02">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m02-a" data-pts="20" data-mission="m02" />
-            <label for="m02-a">Boulder inside the cave, walls still up</label>
-            <span class="opt-pts">20 pts</span>
-          </label>
-          <label class="calc-option bonus">
-            <input type="checkbox" id="m02-b" data-pts="10" data-mission="m02" />
-            <label for="m02-b">Bonus: Boulder is on the orange circle</label>
-            <span class="opt-pts">+10 pts</span>
-          </label>
-          <div class="calc-note">Bonus requires boulder to be inside cave (above condition must be checked).</div>
-        </div>
-      </div>
-
-      <!-- M03 -->
-      <div class="calc-mission" id="m03">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 03</span>
-          <span class="calc-mission-name">Trailblazers</span>
-          <span class="calc-mission-pts" id="pts-m03">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m03-a" data-pts="10" data-mission="m03" />
-            <label for="m03-a">Marker 1 on the mountain, not touching mat</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="checkbox" id="m03-b" data-pts="10" data-mission="m03" />
-            <label for="m03-b">Marker 2 on the mountain, not touching mat</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <div class="calc-note">Markers cannot be combined. Max 2 markers scored.</div>
-        </div>
-      </div>
-
-      <!-- M04 -->
-      <div class="calc-mission" id="m04">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 04</span>
-          <span class="calc-mission-name">Replace the Relic</span>
-          <span class="calc-mission-pts" id="pts-m04">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m04-a" data-pts="10" data-mission="m04" />
-            <label for="m04-a">Relic removed from pedestal</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <div class="calc-note">Choose the highest idol position achieved (only one counts):</div>
-          <label class="calc-option">
-            <input type="radio" name="m04-idol" id="m04-b" value="10" data-mission="m04-idol" />
-            <label for="m04-b">Idol leaning on pedestal</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m04-idol" id="m04-c" value="20" data-mission="m04-idol" />
-            <label for="m04-c">Idol on the pedestal</label>
-            <span class="opt-pts">20 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m04-idol" id="m04-d" value="30" data-mission="m04-idol" />
-            <label for="m04-d">Idol in center of the pedestal</label>
-            <span class="opt-pts">30 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m04-idol" id="m04-none" value="0" data-mission="m04-idol" checked />
-            <label for="m04-none">Idol not placed</label>
-            <span class="opt-pts">0 pts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- M05 -->
-      <div class="calc-mission" id="m05">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 05</span>
-          <span class="calc-mission-name">Light the Way</span>
-          <span class="calc-mission-pts" id="pts-m05">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m05-a" data-pts="10" data-mission="m05" />
-            <label for="m05-a">Lantern standing in oval in front of metallic panel</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <label class="calc-option bonus">
-            <input type="checkbox" id="m05-b" data-pts="5" data-mission="m05" />
-            <label for="m05-b">Bonus: Lantern is facing the metallic panel</label>
-            <span class="opt-pts">+5 pts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- M06 -->
-      <div class="calc-mission" id="m06">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 06</span>
-          <span class="calc-mission-name">Hide the Relics</span>
-          <span class="calc-mission-pts" id="pts-m06">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m06-a" data-pts="10" data-mission="m06" />
-            <label for="m06-a">Table is tipped over completely</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- M07 -->
-      <div class="calc-mission" id="m07">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 07</span>
-          <span class="calc-mission-name">Boulder Dash</span>
-          <span class="calc-mission-pts" id="pts-m07">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m07-a" data-pts="10" data-mission="m07" />
-            <label for="m07-a">Boulders released, not touching the ramp</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <label class="calc-option bonus">
-            <input type="checkbox" id="m07-b" data-pts="5" data-mission="m07" />
-            <label for="m07-b">Boulder 1 placed in quarry</label>
-            <span class="opt-pts">+5 pts</span>
-          </label>
-          <label class="calc-option bonus">
-            <input type="checkbox" id="m07-c" data-pts="5" data-mission="m07" />
-            <label for="m07-c">Boulder 2 placed in quarry</label>
-            <span class="opt-pts">+5 pts</span>
-          </label>
-          <label class="calc-option bonus">
-            <input type="checkbox" id="m07-d" data-pts="5" data-mission="m07" />
-            <label for="m07-d">Boulder 3 placed in quarry</label>
-            <span class="opt-pts">+5 pts</span>
-          </label>
-          <div class="calc-note">Boulders may not be attached to each other (max 3 in quarry).</div>
-        </div>
-      </div>
-
-      <!-- M08 -->
-      <div class="calc-mission" id="m08">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 08</span>
-          <span class="calc-mission-name">Bridge the Gap</span>
-          <span class="calc-mission-pts" id="pts-m08">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m08-a" data-pts="20" data-mission="m08" />
-            <label for="m08-a">Bridge is completely lowered</label>
-            <span class="opt-pts">20 pts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- M09 -->
-      <div class="calc-mission" id="m09">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 09</span>
-          <span class="calc-mission-name">Reflect the Light</span>
-          <span class="calc-mission-pts" id="pts-m09">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m09-a" data-pts="15" data-mission="m09" />
-            <label for="m09-a">Grey reflective panel lowered to catch the light</label>
-            <span class="opt-pts">15 pts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- M10 -->
-      <div class="calc-mission" id="m10">
-        <div class="calc-mission-header">
-          <span class="calc-badge">Mission 10</span>
-          <span class="calc-mission-name">Claim Territory</span>
-          <span class="calc-mission-pts" id="pts-m10">0 pts</span>
-        </div>
-        <div class="calc-mission-body">
-          <div class="calc-note" style="margin-bottom:0.5rem;">Each marker on a dig site = 10 pts. Enter number of markers placed:</div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:0.5rem 0.75rem;background:rgba(0,0,0,0.15);border-radius:var(--radius);">
-            <label style="font-size:0.83rem;color:var(--tan-light);flex:1;" for="m10-count">Markers placed on green panel / grey divot:</label>
-            <input type="number" id="m10-count" min="0" max="20" value="0"
-              style="width:60px;padding:0.35rem 0.5rem;background:rgba(0,0,0,0.3);border:1px solid rgba(122,72,40,0.5);border-radius:4px;color:var(--gold);font-family:var(--font-heading);font-size:1rem;text-align:center;" />
-            <span class="opt-pts" style="min-width:55px;text-align:right;">10 ea.</span>
+          
+          <div class="calc-count" id="wrap-m02-n">
+            <label for="m02-n">Seeds no longer touching the stalk</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" data-for="m02-n" aria-label="minus">−</button>
+              <input type="number" id="m02-n" min="0" max="3" value="0" inputmode="numeric" />
+              <button type="button" data-step="1" data-for="m02-n" aria-label="plus">+</button>
+            </div>
+            <span class="opt-pts" style="min-width:58px;text-align:right;">10 ea.</span>
           </div>
         </div>
       </div>
 
-      <!-- M11 -->
+      <!-- m03 -->
+      <div class="calc-mission" id="m03">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 03</span>
+          <span class="calc-mission-name">Flip the Rock</span>
+          <span class="calc-mission-pts" id="pts-m03">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          
+          <label class="calc-option" id="wrap-m03-a">
+            <input type="checkbox" id="m03-a" />
+            <span class="calc-opt-label">Research flag is down</span>
+            <span class="opt-pts">20 pts</span>
+          </label>
+          <label class="calc-option bonus" id="wrap-m03-b">
+            <input type="checkbox" id="m03-b" />
+            <span class="calc-opt-label">Bonus: rock returned to its original starting position</span>
+            <span class="opt-pts">+10 pts</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- m04 -->
+      <div class="calc-mission" id="m04">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 04</span>
+          <span class="calc-mission-name">Lucky Leaves</span>
+          <span class="calc-mission-pts" id="pts-m04">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option" id="wrap-m04-a">
+            <input type="checkbox" id="m04-a" />
+            <span class="calc-opt-label">One leaf completely removed from the nest</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option bonus" id="wrap-m04-b">
+            <input type="checkbox" id="m04-b" />
+            <span class="calc-opt-label">Bonus: second leaf removed, katydid in its original starting position</span>
+            <span class="opt-pts">+20 pts</span>
+          </label>
+          <label class="calc-option penalty" id="wrap-m04-x">
+            <input type="checkbox" id="m04-x" />
+            <span class="calc-opt-label">Katydid was completely outside the leaf habitat at some point (no bonus)</span>
+            <span class="opt-pts">no bonus</span>
+          </label>
+          <label class="calc-option penalty" id="wrap-m04-z">
+            <input type="checkbox" id="m04-z" />
+            <span class="calc-opt-label">Katydid ended the match NOT completely in the leaf habitat</span>
+            <span class="opt-pts">mission = 0</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- m05 -->
+      <div class="calc-mission" id="m05">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 05</span>
+          <span class="calc-mission-name">Reaching Roots</span>
+          <span class="calc-mission-pts" id="pts-m05">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option">
+            <input type="radio" name="m05" id="m05-0" value="0" checked />
+            <span class="calc-opt-label">Not extended</span>
+            <span class="opt-pts">0 pts</span>
+          </label>
+          <label class="calc-option">
+            <input type="radio" name="m05" id="m05-1" value="10" />
+            <span class="calc-opt-label">Plant root partially extended</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option">
+            <input type="radio" name="m05" id="m05-2" value="20" />
+            <span class="calc-opt-label">Plant root completely extended</span>
+            <span class="opt-pts">20 pts</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- m06 -->
+      <div class="calc-mission" id="m06">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 06</span>
+          <span class="calc-mission-name">Leafcutter Frenzy</span>
+          <span class="calc-mission-pts" id="pts-m06">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          
+          <label class="calc-option" id="wrap-m06-a">
+            <input type="checkbox" id="m06-a" />
+            <span class="calc-opt-label">Ant is touching the nest</span>
+            <span class="opt-pts">required</span>
+          </label>
+          <div class="calc-count" id="wrap-m06-n">
+            <label for="m06-n">Leaf fragments contained within the nest</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" data-for="m06-n" aria-label="minus">−</button>
+              <input type="number" id="m06-n" min="0" max="4" value="0" inputmode="numeric" />
+              <button type="button" data-step="1" data-for="m06-n" aria-label="plus">+</button>
+            </div>
+            <span class="opt-pts" style="min-width:58px;text-align:right;">10 ea.</span>
+          </div>
+          <div class="calc-note">Fragments only score if the ant is touching the nest.</div>
+        </div>
+      </div>
+
+      <!-- m07 -->
+      <div class="calc-mission" id="m07">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 07</span>
+          <span class="calc-mission-name">Humongous Fungus</span>
+          <span class="calc-mission-pts" id="pts-m07">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-coop">🤝 Coopertition</span></div>
+          <label class="calc-option" id="wrap-m07-a">
+            <input type="checkbox" id="m07-a" />
+            <span class="calc-opt-label">Mycelium is completely extended</span>
+            <span class="opt-pts">20 pts</span>
+          </label>
+          <div class="calc-count" id="wrap-m07-n">
+            <label for="m07-n">Connection bonuses with the other team (0–2)</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" data-for="m07-n" aria-label="minus">−</button>
+              <input type="number" id="m07-n" min="0" max="2" value="0" inputmode="numeric" />
+              <button type="button" data-step="1" data-for="m07-n" aria-label="plus">+</button>
+            </div>
+            <span class="opt-pts" style="min-width:58px;text-align:right;">+10 ea.</span>
+          </div>
+          <div class="calc-note">A connection needs one team’s extended mycelium and the other team’s fully extended plant root. Not possible without an opposing team.</div>
+        </div>
+      </div>
+
+      <!-- m08 -->
+      <div class="calc-mission" id="m08">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 08</span>
+          <span class="calc-mission-name">Tangled</span>
+          <span class="calc-mission-pts" id="pts-m08">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          
+          <label class="calc-option" id="wrap-m08-a">
+            <input type="checkbox" id="m08-a" />
+            <span class="calc-opt-label">Vine is touching the mat</span>
+            <span class="opt-pts">30 pts</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- m09 -->
+      <div class="calc-mission" id="m09">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 09</span>
+          <span class="calc-mission-name">Research Platform</span>
+          <span class="calc-mission-pts" id="pts-m09">0 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option" id="wrap-m09-a">
+            <input type="checkbox" id="m09-a" />
+            <span class="calc-opt-label">Research platform is raised</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m09-b">
+            <input type="checkbox" id="m09-b" />
+            <span class="calc-opt-label">Camera trap is deployed</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m09-c">
+            <input type="checkbox" id="m09-c" />
+            <span class="calc-opt-label">Seed is no longer touching the tree</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- m10 -->
+      <div class="calc-mission" id="m10">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Mission 10</span>
+          <span class="calc-mission-name">Fragile Microhabitats</span>
+          <span class="calc-mission-pts" id="pts-m10">20 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option" id="wrap-m10-a">
+            <input type="checkbox" id="m10-a" checked />
+            <span class="calc-opt-label">Spider habitat still in its original position</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m10-b">
+            <input type="checkbox" id="m10-b" checked />
+            <span class="calc-opt-label">Snail habitat still in its original position</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <div class="calc-note">These start checked — uncheck one if the robot bumps it out of place.</div>
+        </div>
+      </div>
+
+      <!-- m11 -->
       <div class="calc-mission" id="m11">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 11</span>
-          <span class="calc-mission-name">Retrieve the Lost LEGOlith</span>
+          <span class="calc-mission-name">Window to the Past</span>
           <span class="calc-mission-pts" id="pts-m11">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <div class="calc-note" style="margin-bottom:0.5rem;">Choose the best result achieved:</div>
-          <label class="calc-option">
-            <input type="radio" name="m11" id="m11-a" value="25" data-mission="m11" />
-            <label for="m11-a">LEGOlith in home, both walls standing</label>
-            <span class="opt-pts">25 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m11" id="m11-b" value="15" data-mission="m11" />
-            <label for="m11-b">LEGOlith retrieved, one wall standing</label>
-            <span class="opt-pts">15 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m11" id="m11-c" value="10" data-mission="m11" />
-            <label for="m11-c">LEGOlith retrieved, no walls standing</label>
-            <span class="opt-pts">10 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="radio" name="m11" id="m11-none" value="0" data-mission="m11" checked />
-            <label for="m11-none">Not completed</label>
-            <span class="opt-pts">0 pts</span>
+          
+          <label class="calc-option" id="wrap-m11-a">
+            <input type="checkbox" id="m11-a" />
+            <span class="calc-opt-label">Root cover is down, touching the mat</span>
+            <span class="opt-pts">20 pts</span>
           </label>
         </div>
       </div>
 
-      <!-- M12 -->
+      <!-- m12 -->
       <div class="calc-mission" id="m12">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 12</span>
-          <span class="calc-mission-name">Reveal the Secret Passage</span>
+          <span class="calc-mission-name">Forest Elder</span>
           <span class="calc-mission-pts" id="pts-m12">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m12-a" data-pts="20" data-mission="m12" />
-            <label for="m12-a">Passage completely uncovered</label>
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span></div>
+          <label class="calc-option" id="wrap-m12-a">
+            <input type="checkbox" id="m12-a" />
+            <span class="calc-opt-label">Cane completely raised, touching the tree</span>
             <span class="opt-pts">20 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m12-b">
+            <input type="checkbox" id="m12-b" />
+            <span class="calc-opt-label">Support tie is around the post</span>
+            <span class="opt-pts">10 pts</span>
           </label>
         </div>
       </div>
 
-      <!-- M13 -->
+      <!-- m13 -->
       <div class="calc-mission" id="m13">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 13</span>
-          <span class="calc-mission-name">Looting</span>
+          <span class="calc-mission-name">Keystone Species</span>
           <span class="calc-mission-pts" id="pts-m13">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m13-a" data-pts="20" data-mission="m13" />
-            <label for="m13-a">Ship is completely lowered</label>
-            <span class="opt-pts">20 pts</span>
+          <div class="mission-tags"><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+          <label class="calc-option" id="wrap-m13-a">
+            <input type="checkbox" id="m13-a" />
+            <span class="calc-opt-label">Our keystone species on the restoration platform, young trees raised</span>
+            <span class="opt-pts">30 pts</span>
           </label>
         </div>
       </div>
 
-      <!-- M14 -->
+      <!-- m14 -->
       <div class="calc-mission" id="m14">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 14</span>
-          <span class="calc-mission-name">Disarm the Trap</span>
+          <span class="calc-mission-name">Seeds of Renewal</span>
           <span class="calc-mission-pts" id="pts-m14">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <label class="calc-option">
-            <input type="checkbox" id="m14-a" data-pts="5" data-mission="m14" />
-            <label for="m14-a">Gear 1 removed from trap</label>
-            <span class="opt-pts">5 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="checkbox" id="m14-b" data-pts="5" data-mission="m14" />
-            <label for="m14-b">Gear 2 removed from trap</label>
-            <span class="opt-pts">5 pts</span>
-          </label>
-          <label class="calc-option">
-            <input type="checkbox" id="m14-c" data-pts="5" data-mission="m14" />
-            <label for="m14-c">Gear 3 removed from trap</label>
-            <span class="opt-pts">5 pts</span>
-          </label>
+          <div class="mission-tags"><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+          <div class="calc-count" id="wrap-m14-n">
+            <label for="m14-n">Seeds contained within the replantation station</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" data-for="m14-n" aria-label="minus">−</button>
+              <input type="number" id="m14-n" min="0" max="4" value="0" inputmode="numeric" />
+              <button type="button" data-step="1" data-for="m14-n" aria-label="plus">+</button>
+            </div>
+            <span class="opt-pts" style="min-width:58px;text-align:right;">5 ea.</span>
+          </div>
+          <div class="calc-count" id="wrap-m14-m">
+            <label for="m14-m">Bonus: of those, seeds also touching the mat</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" data-for="m14-m" aria-label="minus">−</button>
+              <input type="number" id="m14-m" min="0" max="4" value="0" inputmode="numeric" />
+              <button type="button" data-step="1" data-for="m14-m" aria-label="plus">+</button>
+            </div>
+            <span class="opt-pts" style="min-width:58px;text-align:right;">+5 ea.</span>
+          </div>
+          <div class="calc-note">Seeds come from M02 (3) and M09 (1). Bonus can’t be more than the seeds in the station.</div>
         </div>
       </div>
 
-      <!-- M15 -->
+      <!-- m15 -->
       <div class="calc-mission" id="m15">
         <div class="calc-mission-header">
           <span class="calc-badge">Mission 15</span>
-          <span class="calc-mission-name">Supplies Caches</span>
-          <span class="calc-mission-pts" id="pts-m15">50 pts</span>
+          <span class="calc-mission-name">Biocentric Architecture</span>
+          <span class="calc-mission-pts" id="pts-m15">0 pts</span>
         </div>
         <div class="calc-mission-body">
-          <div class="calc-note" style="margin-bottom:0.5rem;">You start with 6 caches. Each robot interrupt outside home removes one. Select how many remain:</div>
+          <div class="mission-tags"><span class="mtag mtag-nec">⛔ No Equipment Constraint</span><span class="mtag mtag-dock">⚓ Dock Mission</span></div>
+          <div class="calc-count"><label for="m15-dock">Which dock is this model on?</label>
+            <select id="m15-dock" class="calc-select" style="max-width:190px;">
+              <option value="">— choose dock —</option>
+              <option value="mine">Mine dock (needs nesting canopy)</option>
+              <option value="city">City dock (needs garden skylight)</option>
+              <option value="farm">Farm dock (needs compost hatch)</option>
+            </select></div>
+          <label class="calc-option" id="wrap-m15-a">
+            <input type="checkbox" id="m15-a" />
+            <span class="calc-opt-label">Nesting canopy is raised</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m15-b">
+            <input type="checkbox" id="m15-b" />
+            <span class="calc-opt-label">Garden skylight is completely in</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <label class="calc-option" id="wrap-m15-c">
+            <input type="checkbox" id="m15-c" />
+            <span class="calc-opt-label">Compost hatch completely opened, touching the mat</span>
+            <span class="opt-pts">10 pts</span>
+          </label>
+          <div class="calc-note"><span id="m15-bonus-note">Choose a dock to see if you earn the +10 Environmental Bonus.</span></div>
+        </div>
+      </div>
+
+      <!-- pt -->
+      <div class="calc-mission" id="pt">
+        <div class="calc-mission-header">
+          <span class="calc-badge">Tokens</span>
+          <span class="calc-mission-name">Precision Tokens</span>
+          <span class="calc-mission-pts" id="pts-pt">50 pts</span>
+        </div>
+        <div class="calc-mission-body">
+          
+          <div class="calc-note">You start with 6. Each interruption outside home costs one. How many are left?</div>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-6" value="50" data-mission="m15" checked />
-            <label for="m15-6">6 caches (no interrupts)</label>
+            <input type="radio" name="pt" id="pt-6" value="50" checked />
+            <span class="calc-opt-label">6 tokens left (no interruptions)</span>
             <span class="opt-pts">50 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-5" value="50" data-mission="m15" />
-            <label for="m15-5">5 caches (1 interrupt)</label>
+            <input type="radio" name="pt" id="pt-5" value="50" />
+            <span class="calc-opt-label">5 tokens left</span>
             <span class="opt-pts">50 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-4" value="40" data-mission="m15" />
-            <label for="m15-4">4 caches (2 interrupts)</label>
-            <span class="opt-pts">40 pts</span>
+            <input type="radio" name="pt" id="pt-4" value="35" />
+            <span class="calc-opt-label">4 tokens left</span>
+            <span class="opt-pts">35 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-3" value="30" data-mission="m15" />
-            <label for="m15-3">3 caches (3 interrupts)</label>
-            <span class="opt-pts">30 pts</span>
+            <input type="radio" name="pt" id="pt-3" value="25" />
+            <span class="calc-opt-label">3 tokens left</span>
+            <span class="opt-pts">25 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-2" value="20" data-mission="m15" />
-            <label for="m15-2">2 caches (4 interrupts)</label>
-            <span class="opt-pts">20 pts</span>
+            <input type="radio" name="pt" id="pt-2" value="15" />
+            <span class="calc-opt-label">2 tokens left</span>
+            <span class="opt-pts">15 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-1" value="10" data-mission="m15" />
-            <label for="m15-1">1 cache (5 interrupts)</label>
+            <input type="radio" name="pt" id="pt-1" value="10" />
+            <span class="calc-opt-label">1 token left</span>
             <span class="opt-pts">10 pts</span>
           </label>
           <label class="calc-option">
-            <input type="radio" name="m15" id="m15-0" value="0" data-mission="m15" />
-            <label for="m15-0">0 caches (6+ interrupts)</label>
+            <input type="radio" name="pt" id="pt-0" value="0" />
+            <span class="calc-opt-label">0 tokens left</span>
             <span class="opt-pts">0 pts</span>
           </label>
         </div>
@@ -419,64 +490,52 @@
 
     </div><!-- end calc-missions -->
 
-    <!-- ── Score Panel ─────────────────────────────── -->
     <aside class="score-panel">
-
       <div class="score-panel-title">🏆 Live Score Tracker</div>
-
       <div class="total-score">
         <div class="total-label">Your Total Score</div>
-        <div class="total-num" id="totalScore">50</div>
-        <div class="total-max">out of <span id="maxPossible">365+</span> possible</div>
+        <div class="total-num" id="totalScore">0</div>
+        <div class="total-max">out of <span id="maxPossible">530</span> possible</div>
       </div>
-
       <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span>Progress to Max</span>
-          <span id="progressPct">14%</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill" style="width:14%"></div>
-        </div>
+        <div class="progress-label"><span>Progress to Max</span><span id="progressPct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
       </div>
-
       <div class="score-breakdown" id="scoreBreakdown">
-        <div class="score-row" id="row-m00"><span>M00 Equip. Inspection</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m01"><span>M01 Great Escape</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m02"><span>M02 Restore Cave</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m03"><span>M03 Trailblazers</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m04"><span>M04 Replace Relic</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m05"><span>M05 Light the Way</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m06"><span>M06 Hide Relics</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m07"><span>M07 Boulder Dash</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m08"><span>M08 Bridge the Gap</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m09"><span>M09 Reflect Light</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m10"><span>M10 Claim Territory</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m11"><span>M11 LEGOlith</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m12"><span>M12 Secret Passage</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m13"><span>M13 Looting</span><span>0 pts</span></div>
-        <div class="score-row" id="row-m14"><span>M14 Disarm Trap</span><span>0 pts</span></div>
-        <div class="score-row active" id="row-m15"><span>M15 Supply Caches</span><span>50 pts</span></div>
+        <div class="score-row" id="row-ei"><span>Equipment Inspection</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m01"><span>M01 Drone Survey</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m02"><span>M02 Exploding Seeds</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m03"><span>M03 Flip the Rock</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m04"><span>M04 Lucky Leaves</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m05"><span>M05 Reaching Roots</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m06"><span>M06 Leafcutter Frenzy</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m07"><span>M07 Humongous Fungus</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m08"><span>M08 Tangled</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m09"><span>M09 Research Platform</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m10"><span>M10 Fragile Microhabitats</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m11"><span>M11 Window to the Past</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m12"><span>M12 Forest Elder</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m13"><span>M13 Keystone Species</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m14"><span>M14 Seeds of Renewal</span><span>0 pts</span></div>
+        <div class="score-row" id="row-m15"><span>M15 Biocentric Architecture</span><span>0 pts</span></div>
+        <div class="score-row" id="row-pt"><span>Precision Tokens</span><span>0 pts</span></div>
       </div>
-
-      <!-- Performance rating -->
-      <div id="ratingBox" style="text-align:center;padding:0.9rem;background:rgba(0,0,0,0.25);border-radius:var(--radius);border:1px solid rgba(122,72,40,0.4);margin-bottom:1rem;">
-        <div style="font-size:1.5rem;" id="ratingEmoji">🗿</div>
-        <div style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);margin-top:0.25rem;" id="ratingLabel">Start Exploring!</div>
-        <div style="font-size:0.72rem;color:var(--tan);font-style:italic;margin-top:0.2rem;" id="ratingDesc">Check off completed missions above</div>
+      <div id="ratingBox" style="text-align:center;padding:0.9rem;background:rgba(0,0,0,0.25);border-radius:var(--radius);border:1px solid rgba(46,120,92,0.4);margin-bottom:1rem;">
+        <div style="font-size:1.5rem;" id="ratingEmoji">🌱</div>
+        <div style="font-family:var(--font-heading);font-size:0.8rem;color:var(--gold);margin-top:0.25rem;" id="ratingLabel">Plant the First Seed!</div>
+        <div style="font-size:0.72rem;color:var(--tan);font-style:italic;margin-top:0.2rem;" id="ratingDesc">Check off completed missions</div>
       </div>
-
       <button class="reset-btn" id="resetBtn">↺ Reset All Missions</button>
-
+      <p style="font-size:.7rem;color:var(--stone-light);margin-top:.75rem;line-height:1.5;">Unofficial practice tool. For event scoring, referees use the <a href="https://eventhub.firstinspires.org/scoresheet" target="_blank" rel="noopener">official calculator</a>.</p>
     </aside>
 
-  </div><!-- end calculator-layout -->
+  </div>
 </div>
 
 <!-- ── Footer ───────────────────────────────────────── -->
 <footer>
-  <div class="footer-logo">🤠 Robotic Jones &amp; The Temple of LEGO</div>
-  <div class="footer-sub">Mayfield Junior School · First LEGO League Club · Spring Showdown 2026</div>
+  <div class="footer-logo">🌿 MJS FLL · BIOGLOW™ 2026–27</div>
+  <div class="footer-sub">Mayfield Junior School · FIRST® LEGO® League Challenge · Founders Edition</div>
   <div class="footer-divider"></div>
   <div class="footer-links">
     <a href="index.html">Home</a>
@@ -484,150 +543,115 @@
     <a href="tips.html">Tips &amp; Tricks</a>
     <a href="schedule.html">Schedule</a>
     <a href="calculator.html">Calculator</a>
+    <a href="presentation.html">Presentation</a>
   </div>
-  <div class="footer-copy">Built with ❤️ for young explorers. "Fortune and glory, kid. Fortune and glory." &nbsp;·&nbsp; FLL Spring Showdown 2026 &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
+  <div class="footer-copy">Built for young scientists and engineers. &nbsp;·&nbsp; FIRST® LEGO® League and BIOGLOW™ are trademarks of FIRST® and the LEGO Group; this is an unofficial team site. &nbsp;·&nbsp; Built with <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--stone-light);">Claude Code</a></div>
 </footer>
 
+<script src="season.js"></script>
 <script>
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-  // ── Score Calculator Logic ─────────────────────────────
-  const MAX_SCORE = 365; // approximate max (without M10 which is unlimited)
-
-  function getMissionScore(missionId) {
-    let pts = 0;
-    // Handle checkboxes
-    document.querySelectorAll(`input[type="checkbox"][data-mission="${missionId}"]`).forEach(cb => {
-      if (cb.checked) pts += parseInt(cb.dataset.pts);
-    });
-    // Handle radio groups
-    const radioGroup = missionId + '-idol'; // m04-idol special case
-    const checkedRadio = document.querySelector(`input[type="radio"][name="${missionId}"]:checked`);
-    if (checkedRadio) pts += parseInt(checkedRadio.value);
-    const checkedIdol = document.querySelector(`input[type="radio"][name="m04-idol"]:checked`);
-    if (missionId === 'm04' && checkedIdol) pts += parseInt(checkedIdol.value);
-    return pts;
+  const MAX_SCORE = 530;
+  const $ = id => document.getElementById(id);
+  const on = id => $(id).checked;
+  const num = id => { const el = $(id); let v = parseInt(el.value, 10) || 0; v = Math.max(0, Math.min(parseInt(el.max, 10), v)); return v; };
+  const radioVal = name => { const r = document.querySelector('input[name="' + name + '"]:checked'); return r ? parseInt(r.value, 10) : 0; };
+  function gate(id, allowed) {
+    const wrap = $('wrap-' + id) || $(id).closest('.calc-option');
+    wrap.classList.toggle('disabled', !allowed);
+    const el = $(id);
+    if (!allowed) { if (el.type === 'checkbox') el.checked = false; else el.value = 0; }
+    if (el.type !== 'checkbox') wrap.querySelectorAll('input,button').forEach(x => x.disabled = !allowed);
   }
 
-  function getM10Score() {
-    const count = parseInt(document.getElementById('m10-count').value) || 0;
-    return count * 10;
-  }
+  function score() {
+    // gating rules (a bonus never scores without its base condition)
+    gate('m01-b', on('m01-a'));
+    gate('m03-b', on('m03-a'));
+    gate('m04-b', on('m04-a') && !on('m04-x') && !on('m04-z'));
+    gate('m06-n', on('m06-a'));
+    gate('m07-n', on('m07-a'));
+    $('m14-m').max = num('m14-n');
+    if ((parseInt($('m14-m').value, 10) || 0) > num('m14-n')) $('m14-m').value = num('m14-n');
+    gate('m14-m', num('m14-n') > 0);
 
-  function getM11Score() {
-    const r = document.querySelector('input[name="m11"]:checked');
-    return r ? parseInt(r.value) : 0;
-  }
+    const dock = $('m15-dock').value;
+    const need = { mine: 'm15-a', city: 'm15-b', farm: 'm15-c' }[dock];
+    const envBonus = need && on(need) ? 10 : 0;
+    const needName = { mine: 'nesting canopy', city: 'garden skylight', farm: 'compost hatch' }[dock];
+    $('m15-bonus-note').textContent = !dock ? 'Choose a dock to see if you earn the +10 Environmental Bonus.'
+      : (envBonus ? '✅ Environmental Bonus +10 — the ' + needName + ' is done!' : 'Complete the ' + needName + ' to earn the +10 Environmental Bonus.');
 
-  function getM15Score() {
-    const r = document.querySelector('input[name="m15"]:checked');
-    return r ? parseInt(r.value) : 50;
-  }
-
-  function updateScore() {
-    const missions = {
-      m00: getMissionScore('m00'),
-      m01: getMissionScore('m01'),
-      m02: getMissionScore('m02'),
-      m03: getMissionScore('m03'),
-      m04: (() => {
-        let pts = 0;
-        const cbA = document.getElementById('m04-a');
-        if (cbA && cbA.checked) pts += 10;
-        const idol = document.querySelector('input[name="m04-idol"]:checked');
-        if (idol) pts += parseInt(idol.value);
-        return pts;
-      })(),
-      m05: getMissionScore('m05'),
-      m06: getMissionScore('m06'),
-      m07: getMissionScore('m07'),
-      m08: getMissionScore('m08'),
-      m09: getMissionScore('m09'),
-      m10: getM10Score(),
-      m11: getM11Score(),
-      m12: getMissionScore('m12'),
-      m13: getMissionScore('m13'),
-      m14: getMissionScore('m14'),
-      m15: getM15Score(),
+    const s = {
+      ei:  on('ei-a') ? 20 : 0,
+      m01: (on('m01-a') ? 20 : 0) + (on('m01-b') ? 10 : 0),
+      m02: num('m02-n') * 10,
+      m03: (on('m03-a') ? 20 : 0) + (on('m03-b') ? 10 : 0),
+      m04: on('m04-z') ? 0 : (on('m04-a') ? 10 : 0) + (on('m04-b') ? 20 : 0),
+      m05: radioVal('m05'),
+      m06: on('m06-a') ? num('m06-n') * 10 : 0,
+      m07: on('m07-a') ? 20 + num('m07-n') * 10 : 0,
+      m08: on('m08-a') ? 30 : 0,
+      m09: ['m09-a','m09-b','m09-c'].filter(on).length * 10,
+      m10: ['m10-a','m10-b'].filter(on).length * 10,
+      m11: on('m11-a') ? 20 : 0,
+      m12: (on('m12-a') ? 20 : 0) + (on('m12-b') ? 10 : 0),
+      m13: on('m13-a') ? 30 : 0,
+      m14: num('m14-n') * 5 + Math.min(num('m14-m'), num('m14-n')) * 5,
+      m15: ['m15-a','m15-b','m15-c'].filter(on).length * 10 + envBonus,
+      pt:  radioVal('pt'),
     };
 
     let total = 0;
-    Object.entries(missions).forEach(([key, pts]) => {
+    for (const [k, pts] of Object.entries(s)) {
       total += pts;
-      // Update per-mission display
-      const ptsEl = document.getElementById(`pts-${key}`);
-      if (ptsEl) ptsEl.textContent = pts + ' pts';
-      // Update card highlight
-      const card = document.getElementById(key);
-      if (card) card.classList.toggle('has-points', pts > 0);
-      // Update breakdown row
-      const rowEl = document.getElementById(`row-${key}`);
-      if (rowEl) {
-        rowEl.querySelector('span:last-child').textContent = pts + ' pts';
-        rowEl.classList.toggle('active', pts > 0);
-      }
-    });
-
-    // Update total
-    document.getElementById('totalScore').textContent = total;
-
-    // Progress bar
-    const pct = Math.min(100, Math.round((total / MAX_SCORE) * 100));
-    document.getElementById('progressPct').textContent = pct + '%';
-    document.getElementById('progressFill').style.width = pct + '%';
-
-    // Rating
-    let emoji, label, desc;
-    if (total === 0) {
-      emoji = '🗿'; label = 'Start Exploring!'; desc = 'Check off completed missions above';
-    } else if (total < 50) {
-      emoji = '🪨'; label = 'Just Getting Started'; desc = 'Every adventure begins with one step!';
-    } else if (total < 100) {
-      emoji = '🗺️'; label = 'Apprentice Explorer'; desc = 'You\'re finding your footing. Keep going!';
-    } else if (total < 150) {
-      emoji = '⛏️'; label = 'Journeyman Adventurer'; desc = 'You\'re making progress in the temple!';
-    } else if (total < 200) {
-      emoji = '🔦'; label = 'Seasoned Explorer'; desc = 'The artifacts are within your reach!';
-    } else if (total < 250) {
-      emoji = '🏺'; label = 'Relic Hunter'; desc = 'Impressive! The temple yields its secrets.';
-    } else if (total < 300) {
-      emoji = '💎'; label = 'Master Archaeologist'; desc = 'Extraordinary! Indy would be proud.';
-    } else {
-      emoji = '🤠'; label = 'ROBOTIC JONES!'; desc = '"Fortune and glory, kid. Fortune and glory."';
+      $('pts-' + k).textContent = pts + ' pts';
+      $(k).classList.toggle('has-points', pts > 0);
+      const row = $('row-' + k);
+      row.querySelector('span:last-child').textContent = pts + ' pts';
+      row.classList.toggle('active', pts > 0);
     }
-    document.getElementById('ratingEmoji').textContent = emoji;
-    document.getElementById('ratingLabel').textContent = label;
-    document.getElementById('ratingDesc').textContent = desc;
+    $('totalScore').textContent = total;
+    const pct = Math.min(100, Math.round(total / MAX_SCORE * 100));
+    $('progressPct').textContent = pct + '%';
+    $('progressFill').style.width = pct + '%';
+
+    const tiers = [
+      [0,   '🌱', 'Plant the First Seed!', 'Check off completed missions'],
+      [1,   '🌰', 'Seedling',              'Every rainforest starts with one seed.'],
+      [100, '🌿', 'Sprouting',             'Roots are taking hold — keep growing!'],
+      [175, '🐜', 'Busy as a Leafcutter',  'The whole colony is working together.'],
+      [250, '🦋', 'Canopy Climber',        'You’re rising above the forest floor!'],
+      [325, '🍄', 'Mycelium Master',       'Your network is connecting everything.'],
+      [400, '🦜', 'Keystone Team',         'The whole ecosystem depends on you!'],
+      [460, '✨', 'FULL BIOGLOW!',         'The rainforest is glowing. Incredible run!'],
+    ];
+    let t = tiers[0];
+    for (const tier of tiers) if (total >= tier[0]) t = tier;
+    if (total === 0) t = tiers[0];
+    $('ratingEmoji').textContent = t[1]; $('ratingLabel').textContent = t[2]; $('ratingDesc').textContent = t[3];
   }
 
-  // Attach listeners to all checkboxes
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', updateScore);
+  document.querySelectorAll('#calcMissions input, #calcMissions select').forEach(el => {
+    el.addEventListener(el.type === 'number' ? 'input' : 'change', score);
   });
-  // Attach listeners to all radios
-  document.querySelectorAll('input[type="radio"]').forEach(rb => {
-    rb.addEventListener('change', updateScore);
-  });
-  // M10 counter
-  document.getElementById('m10-count').addEventListener('input', updateScore);
+  document.querySelectorAll('.stepper button').forEach(b => b.addEventListener('click', () => {
+    const el = $(b.dataset.for);
+    if (el.disabled) return;
+    el.value = Math.max(0, Math.min(parseInt(el.max, 10), (parseInt(el.value, 10) || 0) + parseInt(b.dataset.step, 10)));
+    score();
+  }));
+  document.querySelectorAll('#calcMissions input[type=number]').forEach(el => el.addEventListener('blur', () => { el.value = num(el.id); score(); }));
 
-  // Reset button
-  document.getElementById('resetBtn').addEventListener('click', () => {
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    document.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
-    // Re-set default radios
-    document.getElementById('m04-none').checked = true;
-    document.getElementById('m11-none').checked = true;
-    document.getElementById('m15-6').checked = true;
-    document.getElementById('m10-count').value = 0;
-    updateScore();
+  $('resetBtn').addEventListener('click', () => {
+    document.querySelectorAll('#calcMissions input[type=checkbox]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('#calcMissions input[type=number]').forEach(n => n.value = 0);
+    $('m10-a').checked = true; $('m10-b').checked = true;
+    $('m05-0').checked = true; $('pt-6').checked = true;
+    $('m15-dock').value = '';
+    score();
   });
 
-  // Initial calculation
-  updateScore();
+  score();
 </script>
 </body>
 </html>
