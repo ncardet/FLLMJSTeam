@@ -32,6 +32,49 @@
     .qa-a { font-size: 0.8rem; color: var(--teal); line-height: 1.5; }
     .qa-q::before { content: "Q  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--tan); letter-spacing: 0.1em; }
     .qa-a::before { content: "A  "; font-family: var(--font-heading); font-size: 0.6rem; color: var(--teal-dark); letter-spacing: 0.1em; }
+  
+    /* ── Robot Game Playbook table ── */
+    .playbook-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid rgba(46,120,92,.5); border-radius:var(--radius-lg); background:linear-gradient(145deg,rgba(17,52,38,.6),rgba(4,17,13,.9)); }
+    table.playbook { width:100%; border-collapse:collapse; min-width:820px; font-size:.84rem; }
+    table.playbook th { font-family:var(--font-heading); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); text-align:left; padding:.85rem .9rem; background:rgba(155,240,74,.07); border-bottom:1px solid rgba(46,120,92,.6); position:sticky; top:0; }
+    table.playbook td { padding:.75rem .9rem; border-bottom:1px solid rgba(46,120,92,.25); color:var(--tan-light); vertical-align:top; line-height:1.55; }
+    table.playbook tr:last-child td { border-bottom:none; }
+    table.playbook tr:hover td { background:rgba(61,242,224,.04); }
+    .pb-mission { font-family:var(--font-heading); font-weight:600; color:var(--parchment); white-space:nowrap; }
+    .pb-mission .mtag { display:inline-block; margin-top:.3rem; }
+    .pb-pts { font-family:var(--font-heading); color:var(--teal); white-space:nowrap; }
+    .pb-diff { display:inline-block; font-family:var(--font-heading); font-size:.72rem; font-weight:600; padding:.18rem .55rem; border-radius:999px; border:1px solid; white-space:nowrap; }
+    .pb-d1 { color:var(--gold-light); border-color:rgba(155,240,74,.45); background:rgba(155,240,74,.08); }
+    .pb-d2 { color:var(--teal); border-color:rgba(61,242,224,.4); background:rgba(61,242,224,.07); }
+    .pb-d3 { color:#FFB0C8; border-color:rgba(255,92,138,.45); background:rgba(255,92,138,.08); }
+    .pb-run { font-size:.78rem; color:var(--stone-light); white-space:nowrap; }
+    @media (max-width: 760px) {
+      .playbook-notes { grid-template-columns:1fr; }
+      table.playbook { min-width:0; }
+      table.playbook thead { display:none; }
+      table.playbook, table.playbook tbody, table.playbook tr, table.playbook td { display:block; width:100%; }
+      table.playbook tr { padding:.9rem 1rem; border-bottom:1px solid rgba(46,120,92,.35); }
+      table.playbook td { border:none; padding:.2rem 0; }
+      table.playbook td[data-label]::before { content:attr(data-label); display:block; font-family:var(--font-heading); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-dark); margin-top:.35rem; }
+      .pb-mission { white-space:normal; font-size:1rem; }
+      .pb-mission br { display:none; }
+      .pb-mission .mtag { margin-left:.4rem; vertical-align:middle; }
+    }
+
+    .playbook-notes { display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); gap:1.25rem; margin-top:2rem; }
+    .pb-note { background:linear-gradient(135deg,rgba(17,52,38,.7),rgba(4,17,13,.9)); border:1px solid rgba(46,120,92,.5); border-radius:var(--radius-lg); padding:1.4rem 1.5rem; }
+    .pb-note h3 { font-family:var(--font-heading); font-size:1.05rem; color:var(--gold-light); margin:0 0 .75rem; display:flex; gap:.5rem; align-items:center; }
+    .pb-note ul, .pb-note ol { margin:0; padding-left:1.15rem; }
+    .pb-note li { font-size:.86rem; color:var(--tan-light); line-height:1.6; margin-bottom:.45rem; }
+    .pb-note li strong { color:var(--teal); }
+    .pb-note .pb-script { margin-top:.6rem; padding:.75rem .9rem; border-left:3px solid var(--gold); background:rgba(155,240,74,.06); border-radius:6px; font-size:.86rem; color:var(--parchment); font-style:italic; }
+    .pb-note.wide { grid-column:1 / -1; }
+    .pb-runs { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.75rem; margin-top:.25rem; }
+    .pb-runcard { background:rgba(0,0,0,.25); border:1px solid rgba(46,120,92,.45); border-radius:var(--radius); padding:.9rem 1rem; }
+    .pb-runnum { font-family:var(--font-display); font-size:.8rem; color:var(--teal); }
+    .pb-runname { font-family:var(--font-heading); font-weight:600; color:var(--gold); margin:.2rem 0 .35rem; }
+    .pb-rundesc { font-size:.82rem; color:var(--tan-light); line-height:1.55; }
+    .pb-caveat { font-size:.78rem; color:var(--stone-light); line-height:1.6; margin-top:1.25rem; }
   </style>
 </head>
 <body>
@@ -219,6 +262,207 @@
     </div>
 
   </div>
+
+  <div class="rope-divider"><div class="rope-divider-gem"></div></div>
+
+  <!-- ───────────────────────────────────────────────── -->
+  <!-- SECTION: Robot Game Playbook -->
+  <!-- ───────────────────────────────────────────────── -->
+  <div class="section-header" id="playbook">
+    <p class="eyebrow">🗺️ Robot Game Playbook</p>
+    <h2 class="section-title">Mission-by-Mission Table</h2>
+    <div class="section-divider"></div>
+    <p class="section-desc">Points, difficulty, quick tips, and which run each mission fits in. <strong>NEC</strong> = No Equipment Constraint — back off at the end of the mission!</p>
+  </div>
+
+  <div class="playbook-wrap">
+    <table class="playbook">
+      <thead>
+        <tr><th>Mission</th><th>Max pts</th><th>Difficulty</th><th>Kid-friendly tips</th><th>Suggested run</th></tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="pb-mission">Equipment Inspection</td>
+            <td class="pb-pts" data-label="Max pts">20</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy</span></td>
+            <td data-label="Tips">Practice packing everything — robot, every attachment, and our keystone animal — into ONE launch area under 12 in.</td>
+            <td class="pb-run" data-label="Suggested run">Before match</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">Precision Tokens</td>
+            <td class="pb-pts" data-label="Max pts">50</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy–Med</span></td>
+            <td data-label="Tips">Don’t grab the robot outside home. Square every launch with a jig and let the robot come home on its own.</td>
+            <td class="pb-run" data-label="Suggested run">All runs</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M01 Drone Survey<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">20 + 10 bonus</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d2">Med (drone) / Hard (bonus)</span></td>
+            <td data-label="Tips">Launch from the left. Use the wall or gyro to reach the red scan marker and push it to lift the drone. The bonus needs the LiDAR map flipped with the marker under it, and there’s very little clearance — skip the bonus at first.</td>
+            <td class="pb-run" data-label="Suggested run">Left run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M02 Exploding Seeds</td>
+            <td class="pb-pts" data-label="Max pts">30 (3 seeds × 10)</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d2">Med</span></td>
+            <td data-label="Tips">A small fork from above or the side pulls the seed rings free. Add a basket bigger than the rings to keep the seeds for M14.</td>
+            <td class="pb-run" data-label="Suggested run">Left / seed run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M03 Flip the Rock</td>
+            <td class="pb-pts" data-label="Max pts">20 + 10 bonus</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy (flag) / Hard (rock back)</span></td>
+            <td data-label="Tips">Fast option: an aligner plus a sticking-out axle pokes the research flag down, then drive home. Putting the rock back takes a “pull twice” mechanism.</td>
+            <td class="pb-run" data-label="Suggested run">Left run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M04 Lucky Leaves<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">10 + 20 bonus</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d3">Med–Hard</span></td>
+            <td data-label="Tips">The katydid is RANDOM. Use a fork or latches that lift only the leaves, and never pull the katydid out of the habitat or you get 0. Test from several starting positions.</td>
+            <td class="pb-run" data-label="Suggested run">Left run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M05 Reaching Roots<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">10 partial / 20 full</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy</span></td>
+            <td data-label="Tips">One quick turning swipe can fully extend it. A full extension also helps the other team’s M07 bonus.</td>
+            <td class="pb-run" data-label="Suggested run">Left run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M06 Leafcutter Frenzy</td>
+            <td class="pb-pts" data-label="Max pts">10 per fragment (up to 4)</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d2">Med</span></td>
+            <td data-label="Tips">Push slowly so the leaves don’t jump out, add a “roof” cover, or turn the big gear from the left using the wall. The ant must touch the nest.</td>
+            <td class="pb-run" data-label="Suggested run">Left run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M07 Humongous Fungus<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">20 + 10 bonus (up to 2 bonuses)</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d2">Med</span></td>
+            <td data-label="Tips">Pull the lever, or block it and lift the mycelium. Watch that the chain doesn’t snag. The bonus needs both tables to fully extend (see Coopertition below).</td>
+            <td class="pb-run" data-label="Suggested run">Middle run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M08 Tangled</td>
+            <td class="pb-pts" data-label="Max pts">30</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy</span></td>
+            <td data-label="Tips">Lift the vine off its hook, then nudge it toward the blue home so it doesn’t block your M09 approach.</td>
+            <td class="pb-run" data-label="Suggested run">Right / tree run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M09 Research Platform<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">30 (3 × 10)</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d3">Med–Hard</span></td>
+            <td data-label="Tips">Raise the heavy platform all the way. That deploys the camera trap and pushes the black lever that drops the seed. Use a strong two-sided lift close to the tree, and catch the seed in a basket for M14.</td>
+            <td class="pb-run" data-label="Suggested run">Right / tree run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M10 Fragile Microhabitats<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">20</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy</span></td>
+            <td data-label="Tips">“Don’t touch!” Plan every route and attachment to stay clear of the spider and snail habitats.</td>
+            <td class="pb-run" data-label="Suggested run">Every run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M11 Window to the Past</td>
+            <td class="pb-pts" data-label="Max pts">20</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy</span></td>
+            <td data-label="Tips">Push or pull the top of the root cover down — easier from the right. FLLCasts notes there’s a collectible seed on the left side.</td>
+            <td class="pb-run" data-label="Suggested run">Right run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M12 Forest Elder<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">20 + 10</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy (cane) / Hard (tie)</span></td>
+            <td data-label="Tips">Drive along the wall from the blue home and slide under the cane to raise it. The support tie needs a flexible hook, so do it later or on a second trip. Back off so you’re not touching the model at the end.</td>
+            <td class="pb-run" data-label="Suggested run">Right run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M13 Keystone Species</td>
+            <td class="pb-pts" data-label="Max pts">30</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d1">Easy–Med</span></td>
+            <td data-label="Tips">Build a compact, heavy animal from bag 20 so it presses the platform and raises the young trees. Drop it with a trap-door basket. It counts as equipment, so it must fit the inspection box.</td>
+            <td class="pb-run" data-label="Suggested run">Dock run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M14 Seeds of Renewal</td>
+            <td class="pb-pts" data-label="Max pts">5 per seed + 5 per seed touching mat</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d2">Med</span></td>
+            <td data-label="Tips">Carry the seeds in a tall basket whose bottom opens on contact. Shake or wiggle so they reach the mat. No NEC here, so the attachment may stay on the model.</td>
+            <td class="pb-run" data-label="Suggested run">Dock run</td>
+          </tr>
+          <tr>
+            <td class="pb-mission">M15 Biocentric Architecture<br><span class="mtag mtag-nec">⛔ NEC</span></td>
+            <td class="pb-pts" data-label="Max pts">30 + 10 dock bonus</td>
+            <td data-label="Difficulty"><span class="pb-diff pb-d3">Med–Hard</span></td>
+            <td data-label="Tips">Use an inclined beam to raise the canopy, a hook on the way back to pull the skylight in, and a press-and-pull axle on the hatch. Pick the dock whose bonus action your robot does best.</td>
+            <td class="pb-run" data-label="Suggested run">Dock run</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="playbook-notes">
+
+    <div class="pb-note">
+      <h3>⛔ Handling the No Equipment Constraint</h3>
+      <ul>
+        <li>End every NEC mission with a <strong>short reverse (2–3 cm)</strong> or an attachment retract, then check by eye that nothing is touching.</li>
+        <li>Never “park” a passive attachment on an NEC model. The exception is <strong>M14</strong>, which has no NEC — a seed-dropping attachment can stay there to save time.</li>
+        <li>At the end of the match, technicians must stop the robot and touch nothing. If the robot is leaning on an NEC model when time runs out, those points are gone.</li>
+      </ul>
+    </div>
+
+    <div class="pb-note">
+      <h3>⚓ Dock Choice (M13–M15)</h3>
+      <ul>
+        <li>Put <strong>M15 on the Mine dock</strong> if the robot can square on the two walls near the blue home. The Mine bonus is the nesting canopy, which an inclined beam raises as you drive in — usually the easiest bonus action to make reliable.</li>
+        <li>Put <strong>M13 on the Farm dock.</strong> It’s the simplest dock mission, which lowers the risk of bumping the nearby spider habitat (M10).</li>
+        <li>Put <strong>M14 on the City dock</strong>, or skip M14 if we aren’t collecting seeds yet.</li>
+        <li>Whatever we choose, <strong>test all three M15 options 10 times each</strong> and pick the one with the best success rate.</li>
+      </ul>
+    </div>
+
+    <div class="pb-note">
+      <h3>🌰 Seed Collection for M14</h3>
+      <ul>
+        <li><strong>Seed sources:</strong> M02 has 3 seeds and M09 has 1. FLLCasts also points out seeds on M11 and M12 — confirm the total count with the official calculator.</li>
+        <li><strong>Is it worth it?</strong> Each seed is worth at most 10 in M14 (5 in the station + 5 touching the mat), on top of the points for freeing it (M02 = 10 per seed, M09 = 10).</li>
+        <li>A basket on the M02 attachment is cheap insurance. A dedicated seed-delivery trip is an upgrade best added <strong>after the Qualifier</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="pb-note">
+      <h3>🤝 M05 / M07 Coopertition Bonus</h3>
+      <ul>
+        <li>The M07 bonus scores when one team’s mycelium is fully extended <strong>and</strong> the opposing team’s plant root is fully extended. They don’t need to touch, and both teams can earn it.</li>
+        <li>It’s impossible without an opposing team, so practice tables can’t show it.</li>
+      </ul>
+      <div class="pb-script">Before the match, say: “Hi! We’re going to fully extend our root and mycelium. Are you planning to do M05 and M07 too?”</div>
+      <ul style="margin-top:.6rem;">
+        <li>Easy Coopertition — and the kind of above-and-beyond behavior a referee may notice for Gracious Professionalism.</li>
+      </ul>
+    </div>
+
+    <div class="pb-note wide">
+      <h3>🏁 Suggested Run Plan (newer / intermediate team)</h3>
+      <div class="pb-runs">
+        <div class="pb-runcard"><div class="pb-runnum">Run 1</div><div class="pb-runname">Left launch · “Quick hits”</div><div class="pb-rundesc">M03 flag poke, M05 swipe, then home. Add M04 or M06 once they’re reliable.</div></div>
+        <div class="pb-runcard"><div class="pb-runnum">Run 2</div><div class="pb-runname">Blue / right home · “Tree run”</div><div class="pb-rundesc">M12 cane, M08 vine, then home. Add M09 and M11 later.</div></div>
+        <div class="pb-runcard"><div class="pb-runnum">Run 3</div><div class="pb-runname">Dock run</div><div class="pb-rundesc">M13 keystone drop, plus the single M15 bonus action for our chosen dock.</div></div>
+        <div class="pb-runcard"><div class="pb-runnum">Run 4</div><div class="pb-runname">Stretch</div><div class="pb-rundesc">M01 drone, M02 seeds with a basket, then M14.</div></div>
+      </div>
+      <ul style="margin-top:1rem;">
+        <li>Keep attachment swaps to a few seconds. Paint or label attachments by run number.</li>
+        <li>Check the geography on our own mat — routes are a starting point, not a rule.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p class="pb-caveat">Points come from the official Robot Game Rulebook. Difficulty ratings, run groupings, and dock picks are coaching suggestions built on unofficial sources (FLLCasts / Robopartans and Ignite Pathways), not FIRST rulings. Some unofficial calculators disagree on the M14 seed count, the M06 fragment count, and whether M07 allows one or two bonuses — check the <a href="https://eventhub.firstinspires.org/scoresheet" target="_blank" rel="noopener">official Score Calculator</a> or ask the head referee.</p>
 
   <div class="rope-divider"><div class="rope-divider-gem"></div></div>
 
